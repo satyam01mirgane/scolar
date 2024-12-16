@@ -7,10 +7,10 @@
                 <!-- Logo and Description -->
                 <div class="col-lg-5">
                     <div class="widget" style="animation: fadeIn 0.5s ease-out;">
-                        <img alt="<?php echo e(app_setting()->site_title); ?> Logo" src="<?php echo e(asset('assets/images/logo.svg')); ?>" 
+                        <img alt="<?php echo e(app_setting()->site_title); ?> Logo" src="<?php echo e(asset('assets/images/logo dashboard.jpg')); ?>" 
                              style="max-width: 200px; margin-bottom: 20px; background-color: white; padding: 10px 30px; border-radius: 10px;">
                         <p style="color:#fff; font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
-                            V Scolar is dedicated to empowering learners by providing top-notch educational resources and transformative workshops. Join us to enhance your skills and achieve your goals.
+                            VScholar is dedicated to empowering learners by providing top-notch educational resources and transformative workshops. Join us to enhance your skills and achieve your goals.
                         </p>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                             <?php $__currentLoopData = workshop_list(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="post-thumbnail-entry" style="display: flex; align-items: center; margin-bottom: 15px; transition: transform 0.3s ease;">
                                 <img src="<?php echo e(asset($v->image)); ?>" alt="<?php echo e($v->name); ?>" 
-                                     style="width: 70px; height: 70px; object-fit: cover; border-radius: 5px; margin-right: 15px;">
+                                     style="width: 70px; height: 70px; object-fit: cover; border-radius: 5px; margin-right: -70px;">
                                 <div class="post-thumbnail-content">
                                     <a href="<?php echo e(url('/workshops-detail/'.$v->slug)); ?>" 
                                        style="color: #ffffff; text-decoration: none; font-size: 16px; transition: color 0.3s ease;"><?php echo e($v->name); ?></a>
@@ -73,7 +73,7 @@
     <div class="copyright-content" style="background-color: rgba(0, 0, 0, 0.1); padding: 20px 0; margin-top: 30px;">
         <div class="container">
             <div class="copyright-text text-center" style="font-size: 14px;">
-                &copy; Copyright V Scolar <?php echo e(date('Y')); ?>. <a href="#" style="color: #4CAF50; text-decoration: none;">VSCHOLAR</a>
+                &copy; Copyright VScholar <?php echo e(date('Y')); ?>. <a href="#" style="color: #4CAF50; text-decoration: none;">VSCHOLAR</a>
             </div>
         </div>
     </div>
@@ -81,7 +81,7 @@
 
 <!-- Floating WhatsApp Button -->
 <a href="https://api.whatsapp.com/send?phone=+919667576014&text=Hello." class="floating" target="_blank" 
-   style="position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color: #25d366; color: #FFF; 
+   style="position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color:rgb(254, 99, 9); color: #FFF; 
           border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; 
           box-shadow: 2px 2px 3px #999; z-index: 100; transition: all 0.3s ease;">
     <i class="fa fa-whatsapp"></i>

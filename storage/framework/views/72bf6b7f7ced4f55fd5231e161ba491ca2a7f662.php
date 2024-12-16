@@ -65,15 +65,15 @@
                     <input type="password" class="form-control" id="password" name="password" required placeholder="Password" />
                   </div>
                   <div class="form-group">
-                    <label for="contactNumber">Confirm Paasword</label>
-                    <input type="text" class="form-control" id="new_password" name="new_password" required placeholder="Confirm Paasword" /> 
+                    <label for="contactNumber">Confirm password</label>
+                    <input type="text" class="form-control" id="new_password" name="new_password" required placeholder="Confirm password" /> 
                   </div>
                   
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Update Paasword</button>
+                  <button type="submit" class="btn btn-primary">Update password</button>
                 </div>
               </form>
             </div>

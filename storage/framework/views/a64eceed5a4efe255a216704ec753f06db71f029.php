@@ -10,47 +10,14 @@
                     <h2 style="font-size: 2rem; font-weight: bold;">Workshops</h2>
                 </div>
 
-                <!-- Filters -->
-                <!-- <form style="margin-bottom: 2rem;">
-                    <div class="row g-3">
-                        <div class="col">
-                            <select class="form-control" name="course_type" id="course_type" style="height: 3rem; font-size: 0.9rem;">
-                                <option value="">Course Type</option>
-                                <option value="CBSE Courses" <?php if($course_type=='CBSE Courses'): ?> selected <?php endif; ?>>CBSE Courses</option>
-                                <option value="Crash Courses" <?php if($course_type=='Crash Courses'): ?> selected <?php endif; ?>>Crash Courses</option>
-                                <option value="Skill Enhancement Courses" <?php if($course_type=='Skill Enhancement Courses'): ?> selected <?php endif; ?>>Skill Enhancement Courses</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select class="form-control" name="classes" id="classes" style="height: 3rem; font-size: 0.9rem;" disabled>
-                                <option value="">Class</option>
-                                <option value="9th" <?php if($class=='9th'): ?> selected <?php endif; ?>>9th</option>
-                                <option value="10th" <?php if($class=='10th'): ?> selected <?php endif; ?>>10th</option>
-                                <option value="11th" <?php if($class=='11th'): ?> selected <?php endif; ?>>11th</option>
-                                <option value="12th" <?php if($class=='12th'): ?> selected <?php endif; ?>>12th</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select class="form-control" name="skill" style="height: 3rem; font-size: 0.9rem;">
-                                <option value="">Skill</option>
-                                <option value="Technical" <?php if($skill=='Technical'): ?> selected <?php endif; ?>>Technical</option>
-                                <option value="Non Technical" <?php if($skill=='Non Technical'): ?> selected <?php endif; ?>>Non-Technical</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <button class="btn btn-success w-100" type="submit" style="height: 3rem;">Search</button>
-                        </div>
-                    </div>
-                </form>
- -->
                 <!-- Course Grid -->
                 <div id="course-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
                     <?php $__currentLoopData = $course_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="post-item animated-card" style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background-color: #fff;">
                         <div class="post-item-wrap">
-                            <div class="post-image">
+                            <div class="post-image" style="overflow: hidden; border-radius: 8px;">
                                 <a href="<?php echo e(url('course-detail/'.$v->slug)); ?>">
-                                    <img src="<?php echo e(asset($v->image)); ?>" alt="<?php echo e($v->name); ?>" style="width: 100%; height: 200px; object-fit: cover;">
+                                    <img src="<?php echo e(asset($v->image)); ?>" alt="<?php echo e($v->name); ?>" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
                                 </a>
                             </div>
                             <div class="post-item-description" style="padding: 1rem;">
@@ -69,9 +36,17 @@
 
                                 </p>
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <!-- Price Display -->
                                     <span style="font-size: 1rem; font-weight: bold; color: #28a745;">
-                                        <?php if($v->workshop_type == 'Free'): ?> Free <?php else: ?> ₹<?php echo e($v->price); ?> <?php endif; ?>
+                                        <?php if($v->workshop_type == 'Free' || $v->price == 0): ?>
+                                            Free
+                                        <?php else: ?>
+                                            ₹<?php echo e($v->price); ?>
+
+                                        <?php endif; ?>
                                     </span>
+
+                                    <!-- Button Logic -->
                                     <?php if(!in_array($v->id, cartproduct())): ?>
                                     <form action="<?php echo e(route('cart.store')); ?>" method="POST">
                                         <?php echo csrf_field(); ?>
@@ -81,9 +56,13 @@
                                         <input type="hidden" value="<?php echo e($v->image); ?>" name="image">
                                         <input type="hidden" value="1" name="quantity">
                                         <?php if($v->total_seat > 0): ?>
-                                        <button class="btn btn-outline-success btn-sm" type="submit">Enroll Now</button>
+                                            <button class="btn btn-sm" style="background-color: #FF4A11; color: #fff; border: none;" type="submit">
+                                                Enroll Now
+                                            </button>
                                         <?php else: ?>
-                                        <button class="btn btn-outline-danger btn-sm" type="button" disabled>Seat Full</button>
+                                            <button class="btn btn-sm" style="background-color: #d6d6d6; color: #fff; border: none;" type="button" disabled>
+                                                Seat Full
+                                            </button>
                                         <?php endif; ?>
                                     </form>
                                     <?php else: ?>

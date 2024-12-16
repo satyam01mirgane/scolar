@@ -1,6 +1,7 @@
 <?php echo $__env->make('front.common.profile-header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('front.common.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <style>
+  
 .modal-header1 {
     display: -ms-flexbox;
     -ms-flex-align: start;
@@ -13,6 +14,7 @@
     border-top-right-radius: calc(0.3rem - 1px);
 }
 </style>
+
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

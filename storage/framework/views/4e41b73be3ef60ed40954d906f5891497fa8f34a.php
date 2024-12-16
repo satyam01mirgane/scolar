@@ -24,10 +24,10 @@ img.yr-cert-img {
     position: absolute;
     top: 53%;
     font-size: 5vw;
-    color: #be8a34;
+    color:rgb(0, 0, 0);
     text-align: center;
     width: 100%;
-    font-family: myHomely;
+    font-family: Montserrat;
     font-weight: 500;
 }
 

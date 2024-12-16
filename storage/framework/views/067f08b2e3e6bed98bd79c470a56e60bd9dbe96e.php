@@ -1,86 +1,115 @@
-<!-- Header -->
-<header id="header" data-transparent="true" style="background-color: white;" class="dark submenu-light">
-    <div class="header-inner">
-        <div class="container">
+<header style="background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; z-index: 1000; padding: 10px 0;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
             <!-- Logo -->
-            <div id="logo">
+            <div id="logo" style="margin-right: 10px;">
                 <a href="<?php echo e(url('/')); ?>">
-                    <span class="logo-default">
-                        <img src="<?php echo e(asset('assets/images/logo.svg')); ?>" alt="logo">
-                    </span>
-                    <span class="logo-dark">
-                        <img src="<?php echo e(asset('assets/images/logo.svg')); ?>" alt="logo">
-                    </span>
+                    <img src="<?php echo e(asset('assets/images/logo dashboard.svg')); ?>" alt="logo" style="height: 40px;">
                 </a>
             </div>
-            <!-- End: Logo -->
-            <!-- Search -->
-            <div id="search">
-                <a id="btn-search-close" class="btn-search-close" aria-label="Close search form"><i class="icon-x"></i></a>
-                <form class="search-form" method="get" action="<?php echo e(url('workshops')); ?>" id="srchfrm">
-                    <input class="form-control" name="search" type="text" placeholder="Type & Search..." />
-                    <span class="text-muted">Start typing & press "Enter" or "ESC" to close</span>
-                </form>
+
+            <!-- Hamburger Menu for Mobile & Tablet -->
+            <div id="hamburger-menu" style="display: none; cursor: pointer;">
+                <i class="fas fa-bars" style="font-size: 24px;"></i>
             </div>
-            <!-- End: Search -->
-            <!-- Header Extras -->
-            <div class="header-extras">
-                <ul>
-                    <li>
-                        <a id="btn-search" href="#"> <i class="icon-search"></i></a>
-                    </li>
-                    <li id="shopping-cart">
-                        <a href="<?php echo e(url('cart')); ?>" style="display: inline-flex;">
-                            <i class="fa fa-shopping-cart" style="color: black" aria-hidden="true"></i>
-                            <span class="shopping-cart-items"><?php echo e(Cart::getTotalQuantity()); ?></span>
-                        </a>
-                    </li>
+
+            <!-- Navigation & Action Buttons -->
+            <nav style="flex-grow: 1; display: flex; justify-content: center;">
+                <ul style="display: flex; list-style-type: none; margin: 0; padding: 0;">
+                    <li><a href="<?php echo e(url('/')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; font-weight: 500; font-size: 12px;">Home</a></li>
+                    <li><a href="<?php echo e(url('/about-us')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">About</a></li>
+                    <li><a href="<?php echo e(url('/courses')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">Workshop</a></li>
+                    <li><a href="<?php echo e(url('/blogs')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">Study Material</a></li>
+                    <li><a href="<?php echo e(url('/workshops')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">Career</a></li>
+                    <li><a href="<?php echo e(url('/contact-us')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">Contact</a></li>
                 </ul>
-            </div>
-            <!-- End: Header Extras -->
-            <!-- Navigation Responsive Trigger -->
-            <div id="mainMenu-trigger">
-                <a class="lines-button x"><span class="lines"></span></a>
-            </div>
-            <!-- End: Navigation Responsive Trigger -->
-            <!-- Navigation -->
-            <div id="mainMenu">
-                <div class="container">
-                    <nav>
-                        <ul>
-                            <li class="active"><a href="<?php echo e(url('/')); ?>" style="color: black">Home</a></li>
-                            <li><a href="<?php echo e(url('/about-us')); ?>" style="color: black">About</a></li>
-                            <li><a href="<?php echo e(url('/courses')); ?>" style="color: black">workshop</a></li>
-                            <li><a href="<?php echo e(url('/blogs')); ?>" style="color: black">Study Material</a></li>
-                            <li><a href="<?php echo e(url('/workshops')); ?>" style="color: black">Career</a></li>
-                           
-                           
-                            
+            </nav>
 
-                            <li><a href="<?php echo e(url('/contact-us')); ?>" style="color: black">Contact</a></li>
+            <!-- Action Buttons -->
+            <div style="display: flex; gap: 8px; align-items: center;">
+            <a href="https://www.vief.in/" style="padding: 4px 12px; background-color: #ff4d00; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">VIEF</a>
+<a href="https://www.Xcubit.in/" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">Xcubit</a>
+<a href="https://www.vastavintellect.com/" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">VIIP</a>
+<a href="#" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">RTTP</a>
 
-                            <?php if(isset(Auth::user()->name)): ?>
-                            <!-- User Icon with Dropdown -->
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: black; display: inline-flex; align-items: center;">
-                                    <i class="fa fa-user-circle" style="font-size: 24px; margin-right: 5px;"></i>
-                                    Hi, <?php echo e(ucfirst(substr(Auth::user()->name, 0, 8))); ?>&nbsp;<i class="fa fa-caret-down"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="<?php echo e(url('dashboard')); ?>">Dashboard</a></li>
-                                    <li><a href="<?php echo e(url('logout')); ?>">Logout</a></li>
-                                </ul>
-                            </li>
-                            <?php else: ?>
-                            <!-- Login Button -->
-                            <a href="<?php echo e(url('login')); ?>" style="margin-left: 70px;" class="btn btn-rounded">Login</a>
-                            <?php endif; ?>
-                        </ul>
-                    </nav>
-                </div>
+                <!-- Cart Icon -->
+                <a href="<?php echo e(url('cart')); ?>" style="color: #333; font-size: 16px; display: flex; align-items: center; margin-left: 40px;">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span style="background-color:#ff4d00; color: white; border-radius: 100%; padding: 3px 13px; font-size: 8px; margin-left: 4px;"><?php echo e(Cart::getTotalQuantity()); ?></span>
+                </a>
+
+                <?php if(isset(Auth::user()->name)): ?>
+                    <a href="<?php echo e(url('dashboard')); ?>" title="<?php echo e(Auth::user()->name); ?>" class="btn btn-rounded">
+                        <i class="fas fa-user"></i> <!-- User profile icon -->
+                    </a>
+                <?php else: ?>
+                    <a href="<?php echo e(url('login')); ?>" class="btn btn-rounded">Login</a>
+                <?php endif; ?>
             </div>
-            <!-- End: Navigation -->
         </div>
     </div>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div id="mobile-menu" style="display: none; background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: absolute; top: 60px; left: 0; right: 0; padding: 10px; z-index: 999;">
+        <ul style="list-style-type: none; margin: 0; padding: 0; text-align: center;">
+            <li><a href="<?php echo e(url('/')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; display: block;">Home</a></li>
+            <li><a href="<?php echo e(url('/about-us')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; display: block;">About</a></li>
+            <li><a href="<?php echo e(url('/courses')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; display: block;">Workshop</a></li>
+            <li><a href="<?php echo e(url('/blogs')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; display: block;">Study Material</a></li>
+            <li><a href="<?php echo e(url('/workshops')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; display: block;">Career</a></li>
+            <li><a href="<?php echo e(url('/contact-us')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; display: block;">Contact</a></li>
+        </ul>
+    </div>
 </header>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        margin-top: 60px;
+    }
+
+    #hamburger-menu {
+        display: none;
+    }
+
+    @media (max-width: 1200px) {
+        #hamburger-menu {
+            display: block;
+        }
+        
+        nav {
+            display: none;
+        }
+
+        .action-buttons {
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .action-buttons a {
+            margin-bottom: 5px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        #mobile-menu {
+            display: block;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburgerMenu.addEventListener('click', function() {
+        mobileMenu.style.display = mobileMenu.style.display === 'none' || mobileMenu.style.display === '' ? 'block' : 'none';
+    });
+});
+</script>
 <?php /**PATH D:\New folder\htdocs\RUN\resources\views/front/common/navbar.blade.php ENDPATH**/ ?>

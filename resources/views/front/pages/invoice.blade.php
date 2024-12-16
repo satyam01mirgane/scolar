@@ -7,128 +7,285 @@
     <title>Invoice</title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        body {
-            margin-top: 20px;
-            color: #484b51;
-            font-family: Arial, sans-serif;
-        }
-        .page-header {
-            margin: 0 0 1rem;
-            padding: 0.5rem 0;
-            border-bottom: 1px dotted #e2e2e2;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .page-title {
-            font-size: 1.75rem;
-            font-weight: bold;
-        }
-        .text-secondary-d1 { color: #728299 !important; }
-        .text-blue { color: #478fcc !important; }
-        .text-success-d3 { color: #86bd68 !important; }
-        .bgc-primary-l3 { background-color: #eaf4ff !important; }
-        .text-right { text-align: right; }
-        .text-center { text-align: center; }
-        .text-bold { font-weight: bold; }
-        .text-150 { font-size: 150%; }
-        .logo img { max-width: 150px; }
-        .table th, .table td { vertical-align: middle; }
-        .table thead th { background-color: #0071dc; color: #fff; }
+        body{
+    margin-top:20px;
+    color: #484b51;
+}
+.text-secondary-d1 {
+    color: #728299!important;
+}
+.page-header {
+    margin: 0 0 1rem;
+    padding-bottom: 1rem;
+    padding-top: .5rem;
+    border-bottom: 1px dotted #e2e2e2;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.page-title {
+    padding: 0;
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 300;
+}
+.brc-default-l1 {
+    border-color: #dce9f0!important;
+}
+
+.ml-n1, .mx-n1 {
+    margin-left: -.25rem!important;
+}
+.mr-n1, .mx-n1 {
+    margin-right: -.25rem!important;
+}
+.mb-4, .my-4 {
+    margin-bottom: 1.5rem!important;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.text-grey-m2 {
+    color: #888a8d!important;
+}
+
+.text-success-m2 {
+    color: #86bd68!important;
+}
+
+.font-bolder, .text-600 {
+    font-weight: 600!important;
+}
+
+.text-110 {
+    font-size: 110%!important;
+}
+.text-blue {
+    color: #478fcc!important;
+}
+.pb-25, .py-25 {
+    padding-bottom: .75rem!important;
+}
+
+.pt-25, .py-25 {
+    padding-top: .75rem!important;
+}
+.bgc-default-tp1 {
+    background-color: rgb(0 113 220)!important;
+}
+.bgc-default-l4, .bgc-h-default-l4:hover {
+    background-color: #f3f8fa!important;
+}
+.page-header .page-tools {
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+}
+
+.btn-light {
+    color: #757984;
+    background-color: #f5f6f9;
+    border-color: #dddfe4;
+}
+.w-2 {
+    width: 1rem;
+}
+
+.text-120 {
+    font-size: 120%!important;
+}
+.text-primary-m1 {
+    color: #0071dc!important;
+}
+
+.text-danger-m1 {
+    color: #dd4949!important;
+}
+.text-blue-m2 {
+    color: #0071dc!important;
+}
+.text-150 {
+    font-size: 150%!important;
+}
+.text-60 {
+    font-size: 60%!important;
+}
+.text-grey-m1 {
+    color: #7b7d81!important;
+}
+.align-bottom {
+    vertical-align: bottom!important;
+}
     </style>
 </head>
 <body>
-<div class="container">
-    <!-- Header Section -->
-    <div class="page-header">
-        <h1 class="page-title">Invoice</h1>
-        <small>
-            <strong>GSTIN:</strong> 07AAXFV4215H1ZR<br>
-            A-61-C Shivaji Enclave, Rajouri Garden, New Delhi-27<br>
-            <strong>Email:</strong> helpdesk@vastavintellect.com<br>
-            <strong>Phone:</strong> +91 9667576014<br>
-            <strong>Website:</strong> www.vastavintellect.com
-        </small>
+    
+
+<div class="page-content container">
+    <div class="page-header text-blue-d2">
+        <h1 class="page-title text-secondary-d1">
+            Invoice
+            <small class="page-info">
+                <i class="fa fa-angle-double-right text-80"></i> 
+                ID: #{{$orders->order_no}} <br>
+                GSTIN: 06ABYFA7585M1ZD <br>
+                Sector 16, Faridabad,<br>
+                Haryana, India- 121002,
+            </small>
+        </h1>
     </div>
 
-    <!-- Invoice Details -->
-    <div class="row mt-4">
-        <div class="col-sm-6">
-            <strong>To:</strong> {{ Auth::user()->name }}<br>
-            @if(isset(Auth::user()->phone_number))
-            <i class="fa fa-phone"></i> {{ Auth::user()->phone_number }}<br>
-            @endif
-        </div>
-        <div class="col-sm-6 text-right">
-            <strong>Invoice ID:</strong> {{ $orders->order_no }}<br>
-            <strong>Issue Date:</strong> {{ date('M d, Y', strtotime($orders->created_at)) }}<br>
-            <strong>Status:</strong> <span class="badge badge-warning">Paid</span>
-        </div>
-    </div>
+    <div class="container px-0">
+        <div class="row mt-4">
+            <div class="col-12 col-lg-12">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-center text-150" style="background: #808080;">
+                            <!-- <i class="fa fa-book fa-2x text-success-m2 mr-1"></i>
+                            <span class="text-default-d3">Bootdey.com</span> -->
+                            <a class="navbar-brand logo" href="https:// VIEF SCHOLAR .in">
+                                <img loading="lazy" class="logo-default" src="" alt="logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- .row -->
 
-    <!-- Products Table -->
-    <div class="mt-4">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Description</th>
-                    <th class="text-center">Qty</th>
-                    <th class="text-center">Unit Price</th>
-                    <th class="text-right">Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>{{ $orders->product_name }}</td>
-                    <td class="text-center">1</td>
-                    <td class="text-center">₹{{ $orders->product_price }}</td>
-                    <td class="text-right">₹{{ $orders->sub_total }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                <hr class="row brc-default-l1 mx-n1 mb-4" />
 
-    <!-- Summary -->
-    <div class="row">
-        <div class="col-sm-7">
-            <strong>GSTIN:</strong> 06ABYFA7585M1ZD
-        </div>
-        <div class="col-sm-5 text-right">
-            <table class="table">
-                <tr>
-                    <td>Subtotal</td>
-                    <td class="text-right">₹{{ $orders->sub_total }}</td>
-                </tr>
-                <tr class="bgc-primary-l3">
-                    <td><strong>Total Amount</strong></td>
-                    <td class="text-right"><strong>₹{{ $orders->sub_total }}</strong></td>
-                </tr>
-            </table>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div>
+                            <span class="text-sm text-grey-m2 align-middle">To:</span>
+                            <span class="text-600 text-110 text-blue align-middle">{{Auth::user()->name}}</span>
+                        </div>
+                        <div class="text-grey-m2">
+                            <!--<div class="my-1">
+                                Street, City
+                            </div>
+                            <div class="my-1">
+                                State, Country
+                            </div>-->
+							@if(isset(Auth::user()->phone_number))
+                            <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b class="text-600">{{Auth::user()->phone_number}}</b></div>
+							@endif
+                        </div>
+                    </div>
+                    <!-- /.col -->
+
+                    <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
+                        <hr class="d-sm-none" />
+                        <div class="text-grey-m2">
+                            <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
+                                Invoice
+                            </div>
+
+                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID:</span> {{$orders->order_no}}</div>
+
+                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Issue Date:</span> {{date('M d, Y',strtotime($orders->created_at))}}</div>
+
+                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status:</span> <span class="badge badge-warning badge-pill px-25">Paid</span></div>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+                <div class="mt-4">
+                    <div class="row text-600 text-white bgc-default-tp1 py-25">
+                        <div class="d-none d-sm-block col-1">#</div>
+                        <div class="col-9 col-sm-5">Description</div>
+                        <div class="d-none d-sm-block col-4 col-sm-2">Qty</div>
+                        <div class="d-none d-sm-block col-sm-2">Unit Price</div>
+                        <div class="col-2">Amount</div>
+                    </div>
+
+                    <div class="text-95 text-secondary-d3">
+                        <div class="row mb-2 mb-sm-0 py-25">
+                            <div class="d-none d-sm-block col-1">1</div>
+                            <div class="col-9 col-sm-5">{{$orders->product_name}}</div>
+                            <div class="d-none d-sm-block col-2">1</div>
+                            <div class="d-none d-sm-block col-2 text-95">₹{{$orders->product_price}}</div>
+                            <div class="col-2 text-secondary-d2">₹{{$orders->sub_total}}</div>
+                        </div>
+                    </div>
+
+                    <div class="row border-b-2 brc-default-l2"></div>
+                    <div class="row mt-3">
+                        <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
+                            GSTIN:06ABYFA7585M1ZD
+                        </div>
+
+                        <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
+                            <div class="row my-2">
+                                <div class="col-7 text-right">
+                                    SubTotal
+                                </div>
+                                <div class="col-5">
+                                    <span class="text-120 text-secondary-d1">₹{{$orders->sub_total}}</span>
+                                </div>
+                            </div>
+
+                            <!--<div class="row my-2">
+                                <div class="col-7 text-right">
+                                    GST (18%)
+                                </div>
+                                <div class="col-5">
+                                    <span class="text-110 text-secondary-d1">₹225</span>
+                                </div>
+                            </div>-->
+
+                            <div class="row my-2 align-items-center bgc-primary-l3 p-2">
+                                <div class="col-7 text-right">
+                                    Total Amount
+                                </div>
+                                <div class="col-5">
+                                    <span class="text-150 text-success-d3 opacity-2">₹{{$orders->sub_total}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <!--<div>
+                        <span class="text-secondary-d1 text-105">Thank you for your business</span>
+                        <a href="#" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Pay Now</a>
+                    </div>-->
+                </div>
+            </div>
         </div>
     </div>
-    <hr>
-    <p class="text-center text-secondary">Thank you for your business!</p>
 </div>
-
-<!-- Print Script -->
-<script>
-    function printDiv() {
-        window.print();
-        window.onafterprint = function() {
-            window.location.href = "{{ url('/enrolled-workshop') }}";
-        };
-    }
-
-    // Auto-redirect after printing or timeout
-    setTimeout(function() {
-        window.location.href = "{{ url('/enrolled-workshop') }}";
-    }, 2000);
-
-    // Trigger print on page load
-    window.onload = printDiv;
-</script>
 </body>
 </html>
+<script>
+printDiv('printarea');
+function printDiv(divName) {
+     //var printContents = document.getElementById(divName).innerHTML;
+     //var originalContents = document.body.innerHTML;
+
+     //document.body.innerHTML = printContents;
+
+     window.print();
+
+     //document.body.innerHTML = originalContents;
+	 window.onafterprint = function(event) {
+		window.location.href = "<?php echo url('/enrolled-workshop')?>";
+	 };
+	 window.onaftercancel = function(event) {
+		window.location.href = "<?php echo url('/enrolled-workshop')?>";
+	 };
+	 
+}
+setTimeout(function() {window.location.href = "<?php echo url('/enrolled-workshop')?>";}, 2000);
+
+</script>

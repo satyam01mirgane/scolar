@@ -1,6 +1,7 @@
 @include('front.common.profile-header')
 @include('front.common.sidebar')
 <style>
+  
 .modal-header1 {
     display: -ms-flexbox;
     -ms-flex-align: start;
@@ -13,6 +14,7 @@
     border-top-right-radius: calc(0.3rem - 1px);
 }
 </style>
+
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->

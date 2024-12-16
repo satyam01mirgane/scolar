@@ -15,7 +15,7 @@
 
     $subject = "You have a message from ".$name;
 
-    $logo = 'https:// VSCHOLAR .in/uploads/1/2022-09/logo.svg';
+    $logo = 'https:// VSCHOLAR .in/uploads/1/2022-09/logo dashboard.jpg';
     $link = 'https:// VSCHOLAR .in/';
 
 	$body = "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Express Mail</title></head><body>";

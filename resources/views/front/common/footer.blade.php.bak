@@ -17,7 +17,7 @@
                         <div class="col-lg-5">
                             <div class="widget">
                                
-								<img alt="" src="{{asset('assets/images/logo.svg')}}"><br><br>
+								<img alt="" src="{{asset('assets/images/logo dashboard.jpg')}}"><br><br>
                                 <p class="mb-5">{{app_setting()->site_description}}</p>
                                 
                             </div>

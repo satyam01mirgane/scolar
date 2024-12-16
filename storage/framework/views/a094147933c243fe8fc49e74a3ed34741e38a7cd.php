@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Enrolled Courses</h1>
+            <h1>Enrolled workshops</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo e(url('/')); ?>">Home</a></li>
-              <li class="breadcrumb-item active">Enrolled Courses</li>
+              <li class="breadcrumb-item active">Enrolled workshops</li>
             </ol>
           </div>
         </div>
@@ -38,7 +38,7 @@
                       <th>Date</th>
 					  <th>Time</th>
 					  <th>Amount Paid</th>
-                      <th>Invoice</th>
+                      <!-- <th>Invoice</th> -->
 					  <th>Status</th>
 				
                     </tr>
@@ -54,7 +54,7 @@
                       <td><?php echo e(date('d-m-Y',strtotime($v->session_date))); ?></td>
 					  <td><?php echo e(date('H:i:s A',strtotime($v->session_time))); ?></td>
                       <td>Rs.<?php echo e($v->price - $v->product_discount); ?></td>
-                      <td><a href="<?php echo e(url('print-course-invoice/'.$v->order_no)); ?>">Invoice</a></td>
+                      <!-- <td><a href="<?php echo e(url('print-course-invoice/'.$v->order_no)); ?>">Invoice</a></td> -->
 					  <td><?php echo e($v->session_status); ?></td>
                     </tr>
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

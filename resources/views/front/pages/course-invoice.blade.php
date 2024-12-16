@@ -150,7 +150,7 @@ hr {
                             <!-- <i class="fa fa-book fa-2x text-success-m2 mr-1"></i>
                             <span class="text-default-d3">Bootdey.com</span> -->
                             <a class="navbar-brand logo" href="https:// VSCHOLAR .in">
-                                <img loading="lazy" class="logo-default" src="https:// VSCHOLAR .in/uploads/1/2022-09/logo.svg" alt="logo">
+                                <img loading="lazy" class="logo-default" src="https:// VSCHOLAR .in/uploads/1/2022-09/logo dashboard.jpg" alt="logo">
                             </a>
                         </div>
                     </div>

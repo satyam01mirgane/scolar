@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Scheduled Course</h1>
+            <h1>Scheduled workshop</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo e(url('/')); ?>">Home</a></li>
-              <li class="breadcrumb-item active">Scheduled Course</li>
+              <li class="breadcrumb-item active">Scheduled workshop</li>
             </ol>
           </div>
         </div>
@@ -31,14 +31,14 @@
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>Course Name</th>
+                      <th>workshop Name</th>
                       <th>Zoom Link</th>
-                      <th>Course ID</th>
+                      <th>workshop ID</th>
                       <th>Instructor</th>
                       <th>Date</th>
 					  <th>Time</th>
 					  <th>Amount Paid</th>
-                      <th>Invoice</th>
+                      <!-- <th>Invoice</th> -->
                     
 					  <th>Status</th>
 				
@@ -55,14 +55,14 @@
                       <td><?php echo e(date('d-m-Y',strtotime($v->session_date))); ?></td>
 					  <td><?php echo e(date('H:i:s A',strtotime($v->session_time))); ?></td>
                       <td><?php if($v->workshop_type=='Free'): ?> Free <?php else: ?> Rs.<?php echo e($v->price - $v->product_discount); ?> <?php endif; ?></td>
-                      <td><a href="#"><?php if($v->workshop_type=='Free'): ?> Free <?php else: ?> Invoice <?php endif; ?></a></td>
+                      <!-- <td><a href="#"><?php if($v->workshop_type=='Free'): ?> Free <?php else: ?> Invoice <?php endif; ?></a></td> -->
                     
 					  <td><?php echo e($v->session_status); ?></td>
                     </tr>
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 					<?php else: ?>
 						<tr>
-							<td colspan="9" align="center">No course found</td>
+							<td colspan="9" align="center">No workshop found</td>
 						</tr>
 					<?php endif; ?>
                   </tbody>

@@ -54,7 +54,7 @@ img { max-width: 100%; }
 	display: inline-block;
 	width: 200px;
 	height: 110px;
-	background: url(../img/logo.svg) center center no-repeat;
+	background: url(../img/logo dashboard.jpg) center center no-repeat;
 	text-indent: -99999px;
 }
 .coming-soon .logo a:focus { outline: 0; }

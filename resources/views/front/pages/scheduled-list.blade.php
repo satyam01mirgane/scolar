@@ -38,7 +38,7 @@
                       <th>Date</th>
 					  <th>Time</th>
 					  <th>Amount Paid</th>
-                      <th>Invoice</th>
+                      <!-- <th>Invoice</th> -->
 					  <th>Status</th>
 				
                     </tr>

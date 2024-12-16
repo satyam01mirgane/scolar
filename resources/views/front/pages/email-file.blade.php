@@ -8,7 +8,7 @@
 <body>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width: 700px; margin: auto;">
   <tr style="background-color: #122536; text-align: center;">
-    <td colspan="2"><img src="https:// VSCHOLAR .in/uploads/1/2022-09/logo.svg" width="250"  /></td>
+    <td colspan="2"><img src="https:// VSCHOLAR .in/uploads/1/2022-09/logo dashboard.jpg" width="250"  /></td>
   </tr>
   <tr>
     <td colspan="2">&nbsp;</td>

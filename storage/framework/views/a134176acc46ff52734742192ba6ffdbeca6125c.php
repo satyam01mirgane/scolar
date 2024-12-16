@@ -4,7 +4,7 @@
 <section class="login-section" style="min-height: calc(100vh - 80px); display: flex; align-items: center; background-color: #f0f2f5; overflow: hidden; position: relative;">
     <div class="container" style="max-width: 400px; margin: 0 auto; position: relative; z-index: 1;">
         <div class="login-container" style="background-color: #ffffff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); overflow: hidden; animation: slideUp 0.6s ease-out;">
-            <div class="login-header" style="background-color: #4a90e2; padding: 30px 0; text-align: center;">
+            <div class="login-header" style="background-color:#25286e; padding: 30px 0; text-align: center;">
                 <h1 style="color: #ffffff; font-size: 28px; margin: 0;">Login</h1>
             </div>
             <div class="login-form-section" style="padding: 40px;">
@@ -22,7 +22,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="email" value="<?php echo e(old('email')); ?>" required autocomplete="email" autofocus style="width: 100%; padding: 12px 15px 12px 40px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; transition: border-color 0.3s ease;">
-                            <span class="input-group-text" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%);"><i class="icon-user" style="color: #4a90e2;"></i></span>
+                            <span class="input-group-text" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%);"><i class="icon-user" style="color: #25286e;"></i></span>
                         </div>
                         <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -49,7 +49,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="password" required autocomplete="current-password" style="width: 100%; padding: 12px 15px 12px 40px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; transition: border-color 0.3s ease;">
                             <span class="input-group-text toggle-password" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer;"><i class="icon-eye-off" aria-hidden="true"></i></span>
-                            <span class="input-group-text" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%);"><i class="icon-lock" style="color: #4a90e2;"></i></span>
+                            <span class="input-group-text" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%);"><i class="icon-lock" style="color: #25286e;"></i></span>
                         </div>
                         <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -70,11 +70,11 @@ unset($__errorArgs, $__bag); ?>
                 </form>
                 <div class="text-center">
                     <?php if(Route::has('password.request')): ?>
-                        <a href="<?php echo e(route('password.request')); ?>" style="color: #4a90e2; text-decoration: none; font-size: 14px; transition: color 0.3s ease;">Forgot Your Password?</a>
+                        <a href="<?php echo e(route('password.request')); ?>" style="color: #25286e; text-decoration: none; font-size: 14px; transition: color 0.3s ease;">Forgot Your Password?</a>
                     <?php endif; ?>
                     <p style="margin-top: 15px; font-size: 14px; color: #666;">
                         Not registered? 
-                        <a href="<?php echo e(route('register')); ?>" style="color: #4a90e2; text-decoration: none; font-weight: bold; transition: color 0.3s ease;">Create account</a>
+                        <a href="<?php echo e(route('register')); ?>" style="color: #25286e; text-decoration: none; font-weight: bold; transition: color 0.3s ease;">Create account</a>
                     </p>
                 </div>
             </div>
@@ -93,17 +93,17 @@ unset($__errorArgs, $__bag); ?>
 }
 
 .form-control:focus {
-    border-color: #4a90e2;
+    border-color: #25286e;
     outline: none;
     box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
 }
 
 .btn-primary:hover {
-    background-color: #3a7bc8;
+    background-color: #25286e;
 }
 
 a:hover {
-    color: #3a7bc8;
+    color: #25286e;
 }
 
 @media (max-width: 480px) {
