@@ -71,7 +71,7 @@
                         src="https://res.cloudinary.com/dql4uvrzz/video/upload/v1732974634/hsdpte3zjn7aja6s0gv3.mp4" 
                         title="Video player" 
                         frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen
                         onclick="toggleVideo(this)">
                 </iframe>
