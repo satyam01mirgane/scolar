@@ -55,7 +55,6 @@
     </div>
 </section>
 <!-- end: SERVICES -->
-
 <!-- IMAGE BLOCK -->
 <section id="image-block" class="image-block no-padding animate-fade-in">
     <div class="container-fluid">
@@ -67,17 +66,33 @@
                         background-size: cover;   
                         background-image: url('<?php echo e(asset('assets/images/yt-bg.jpg')); ?>');  
                         align-items: center;">
-                <iframe style="border-radius: 25px; width: 70%; height: 80%; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); animation: scaleIn 1s;" 
-                        src="<?php echo e(app_setting()->about_videourl); ?>" 
-                        title="YouTube video player" 
+                <iframe id="video-frame" 
+                        style="border-radius: 25px; width: 70%; height: 80%; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); animation: scaleIn 1s;" 
+                        src="https://res.cloudinary.com/dql4uvrzz/video/upload/v1732974634/hsdpte3zjn7aja6s0gv3.mp4" 
+                        title="Video player" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen>
+                        allowfullscreen
+                        onclick="toggleVideo(this)">
                 </iframe>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    function toggleVideo(iframe) {
+        // If the video is not playing, play it
+        if (!iframe.src.includes('autoplay=1')) {
+            iframe.src += '?autoplay=1';
+        } else {
+            // If the video is already playing, stop it by resetting the src
+            iframe.src = iframe.src.split('?')[0];
+        }
+    }
+</script>
+
+
 <!-- end: IMAGE BLOCK -->
 
 <?php echo $__env->make('front.home-page-common.home-course', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
