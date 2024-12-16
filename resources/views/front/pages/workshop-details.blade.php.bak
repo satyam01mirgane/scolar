@@ -1,0 +1,309 @@
+@include('front.common.header')
+@include('front.common.navbar')
+
+<!--Page Title-->
+<section id="page-title" data-bg-parallax="{{asset('assets/images/top-workshops-banner.jpg')}}">
+            <div class="container">
+                <div class="page-title">
+                    <h1>{{$workshop_details->name}}</h1>
+                    
+                </div>
+            </div>
+        </section>
+
+
+<!-- CONTENT -->        
+		<section id="page-content">
+            <div class="container">
+                <div class="row">
+                <div class="content col-lg-12">  
+                    <div class="heading-text heading-section">
+                        <h2>View Our Upcoming Workshops</h2>
+                        <span class="lead">We have identified the best offline and online workshops that will assist people in honing their innate talents and 
+                        aptitudes and moving forward into a successful era. Enroll in our next workshop to benefit from top-notch instruction. Enroll today!</span>
+                    </div>
+                </div>
+					@php $pattern = "/<p[^>]*><\\/p[^>]*>/";  @endphp 
+                    <div class="content col-lg-6">                     
+						<!--Post Carousel -->				
+                        <div class=" yr-carousel">
+                            <!-- Post item-->
+                            <div class="post-item">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                    <div class="post-image">
+                                        <a href="#">
+                                        <img alt="" src="{{asset($workshop_details->image)}}"></a>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                    <div class="post-item-description pt-0">
+                                        <h2><a href="workshops-detail.php">{{$workshop_details->name}}</a></h2>
+                                        <p><?php echo preg_replace($pattern, '', str_replace('Tahoma','',$workshop_details->short_description));?></p>
+                                        <ul class="list_will_get">
+                                            <!--<li><i class="fa fa-certificate"></i> 4 Edureka Certificates</li>-->
+                                            <li><i class="fa fa-calendar-check-o"></i> {{date('d M, Y',strtotime($workshop_details->session_date))}}</li>   
+											<li><i class="fa fa-clock"></i> {{$workshop_details->session_time}}</li>
+                                        </ul>                                       
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-end">
+										@if(!in_array($workshop_details->id,cartproduct()))
+										<form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+											@csrf
+											<input type="hidden" value="{{ $workshop_details->id }}" name="id">
+											<input type="hidden" value="{{ $workshop_details->name }}-Workshop" name="name">
+											<input type="hidden" value="{{$workshop_details->price}}" name="price">
+											<input type="hidden" value="{{ $workshop_details->image }}"  name="image">
+											<input type="hidden" value="1" name="quantity">
+											<button class="btn btn-outline;" type="submit">Enroll Now ₹{{$workshop_details->price}}</button>
+										</form>
+										@else
+											<a href="{{url('cart')}}"><button class="btn btn-outline disabled" type="button">In Cart</button></a>
+										@endif
+                                        <!--<button type="button" class="btn btn-outline;">Enroll Now </button> 
+                                        <button type="button" class="btn btn-outline; ">Print </button>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content col-lg-6">                     
+						<!--Post Carousel -->				
+                        <div class="card">
+                        <div class="card-body">
+                            <!-- Post item-->
+                            <h3>Introduction </h3>
+                            <p><?php echo preg_replace($pattern, '', str_replace('Tahoma','',$workshop_details->full_description));?></p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Module Start -->
+                <div class="row pt-5">
+                    <div class="content col-lg-8">
+                        <h2>Modules</h2>
+                        <ul class="list-group list-group-numbered">
+                            <li class="list-group-item">We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.</li>
+                            <li class="list-group-item">Enroll in our next workshop to benefit from top-notch instruction. Enroll today!</li>
+                            <li class="list-group-item">We have identified the best offline and online workshops that will assist people in honing</li>   
+                        </ul>
+                    </div>
+                    <div class="content col-lg-4">
+                    <img alt="" src="{{asset('assets/images/workshops-2.jpg')}}" class="rounded-3 w-100">
+                    </div>
+                </div>
+                 <!-- end: Module -->
+            </div>
+        </section>
+        <!-- end: Content -->
+		<!-- Section 2 Start -->
+        <section id="page-content" class="background-grey no-padding">
+            <div class="container">
+            <div class="row pt-5">
+                <div class="content col-lg-6">
+                    <h2>Parts of Choosy VSCHOLAR workshop</h2>
+                    <p>
+                    We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era. We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.  
+                    </p>
+                </div>
+                <div class="content col-lg-6">
+                <img alt="" src="{{asset('assets/images/e-learning.png')}}" class="rounded-3 w-100">
+                </div>                
+            </div>
+            <!-- Part 2 -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Tools we use</h3>
+                    <p>
+                    We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.
+                    </p>
+                </div>
+            </div>
+             <!--end: Part 2 -->
+             <!-- Part 3 -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Placement</h3>
+                    <p>
+                    We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.
+                    </p>
+                </div>
+            </div>
+             <!--end: Part 3 -->
+             <!-- Part 4 -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Consulting</h3>
+                    <p>
+                    We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.
+                    </p>
+                </div>
+            </div>
+             <!--end: Part 4 -->
+             <!-- Part 5 -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>What we have to offers</h3>
+                    <p>
+                    We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.
+                    </p>
+                </div>
+            </div>
+             <!--end: Part 5 -->
+            </div>
+        </section>
+        <!-- end:  Section 2 -->
+		
+		@include('front.home-page-common.testimonial')
+		
+		<section id="page-content" class="background-grey no-padding">
+            <div class="container">
+             
+            <div class="row pt-5">
+            <h2>Sample Certificate</h2>                 
+                <div class="content col-lg-6">                    
+                    <p>
+                    We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era. We have identified the best offline and online workshops that will assist people in honing their innate talents and aptitudes and moving forward into a successful era.  
+                    </p>
+                </div>
+                <div class="content col-lg-6">
+                <img alt="" src="{{asset('assets/images/certificate.png')}}" class="rounded-3 w-100">
+                </div>         
+            </div>
+            <!-- Part 2 -->
+            <div class="row">
+            <h3>FAQ</h3>
+                <div class="content col-lg-7">
+                <!--start Accordion  -->
+                <div class="accordion fancy radius clean">
+                             <div class="ac-item ac-active">
+                                 <h5 class="ac-title"><i class="fa fa-arrow-right"></i>Suscipit laboriosam</h5>
+                                 <div class="ac-content ac-active">We have identified the best offline and online workshops that will assist people in honing their innate talents Fusce id mi diam, Neque porro quisquam est, qui dolorem ipsum quia dolor sit
+                                     amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora</div>
+                             </div>
+                             <div class="ac-item">
+                             <h5 class="ac-title"><i class="fa fa-arrow-right"></i>Suscipit laboriosam</h5>
+                                 <div class="ac-content ac-active">We have identified the best offline and online workshops that will assist people in honing their innate talents Fusce id mi diam, Neque porro quisquam est, qui dolorem ipsum quia dolor sit
+                                     amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora</div>
+                             </div>
+                             <div class="ac-item">
+                             <h5 class="ac-title"><i class="fa fa-arrow-right"></i>Suscipit laboriosam</h5>
+                                 <div class="ac-content ac-active">We have identified the best offline and online workshops that will assist people in honing their innate talents Fusce id mi diam, Neque porro quisquam est, qui dolorem ipsum quia dolor sit
+                                     amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora</div>
+                             </div>
+                             <div class="ac-item">
+                             <h5 class="ac-title"><i class="fa fa-arrow-right"></i>Suscipit laboriosam</h5>
+                                 <div class="ac-content ac-active">We have identified the best offline and online workshops that will assist people in honing their innate talents Fusce id mi diam, Neque porro quisquam est, qui dolorem ipsum quia dolor sit
+                                     amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora</div>
+                             </div>
+                             <div class="ac-item">
+                             <h5 class="ac-title"><i class="fa fa-arrow-right"></i>Suscipit laboriosam</h5>
+                                 <div class="ac-content ac-active">We have identified the best offline and online workshops that will assist people in honing their innate talents Fusce id mi diam, Neque porro quisquam est, qui dolorem ipsum quia dolor sit
+                                     amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora</div>
+                             </div>
+                             <div class="ac-item">
+                             <h5 class="ac-title"><i class="fa fa-arrow-right"></i>Suscipit laboriosam</h5>
+                                 <div class="ac-content ac-active">We have identified the best offline and online workshops that will assist people in honing their innate talents Fusce id mi diam, Neque porro quisquam est, qui dolorem ipsum quia dolor sit
+                                     amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora</div>
+                             </div>
+                             
+                         </div>
+                                   <!--end: Accordion  -->
+                </div>
+                <div class="content col-lg-5">
+                <img alt="" src="{{asset('assets/images/workshops-2.jpg')}}" class="rounded-3 w-100">                    
+                </div>
+            </div>
+             <!--end: Part 2 -->
+             <!-- Part 3 -->
+            <div class="row">
+                <div class="content col-lg-12">
+                  
+                </div>
+            </div>
+             <!--end: Part 3 -->
+            
+            </div>
+        </section>
+<!-- Contact Section -->
+<section class="blog-section section style-four style-five">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="center-side">
+          <div class="item-holder">
+            <div class="image-box">
+              <figure>
+                <a href="Javascript:;"><img loading="lazy" class="img-fluid" src="{{asset($workshop_details->image)}}" alt=""></a>
+              </figure>
+            </div>
+            <div class="content-text">
+			@php $pattern = "/<p[^>]*><\\/p[^>]*>/";  @endphp 
+              <h4>{{$workshop_details->name}}</h4>
+              <span>By {{$workshop_details->trainer_name}}</span></br>
+              <?php echo preg_replace($pattern, '', str_replace('Tahoma','',$workshop_details->short_description));?>
+              <?php echo preg_replace($pattern, '', str_replace('Tahoma','',$workshop_details->full_description));?>
+				@if(!in_array($workshop_details->id,cartproduct()))
+                <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+					@csrf
+					<input type="hidden" value="{{ $workshop_details->id }}" name="id">
+					<input type="hidden" value="{{ $workshop_details->name }}-Workshop" name="name">
+					<input type="hidden" value="{{$workshop_details->price}}" name="price">
+					<input type="hidden" value="{{ $workshop_details->image }}"  name="image">
+					<input type="hidden" value="1" name="quantity">
+					<button class="btn btn-primary rounded" type="submit">Enroll Now ₹{{$workshop_details->price}}</button>
+				</form>
+				@else
+					<a href="{{url('cart')}}"><button class="btn btn-primary rounded disabled" type="button">In Cart</button></a>
+				@endif
+            </div>
+          </div>
+        </div>
+       
+        <!-- Start -->      
+
+        <!-- End -->
+      </div>     
+    </div>
+  </div>
+</section>
+<!-- End Contact Section -->
+<section class="team-section section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-title text-center">
+          <h3>Your Academic 
+            <span>Buddy</span>
+          </h3>
+          <p>The professional team and instructors we have on staff today will <br>provide you the chance to sign up for the best workshops based on your interests.</p>
+        </div>
+  <!--Start single tab content-->
+  <div class="team-members tab-pane fade show active" id="doctor">
+    <div class="row">
+      
+      <div class="col-lg-4 col-md-6">
+        <div class="team-person text-center">
+          <img loading="lazy" src="{{asset($workshop_details->trainer_image)}}" class="img-fluid" alt="team">
+          <h6>{{$workshop_details->trainer_name}}</h6>
+          <p>{{$workshop_details->designation}}</p>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-6">
+        <div class="team-person">
+          <p>{{$workshop_details->description}}</p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</section>
+<!--  -->
+<!--End Workshop Section-->
+@include('front.common.footer')

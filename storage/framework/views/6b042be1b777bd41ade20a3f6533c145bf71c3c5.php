@@ -1,0 +1,1 @@
+<?php echo $value; ?><?php /**PATH D:\New folder\htdocs\RUN\vendor\crocodicstudio\crudbooster\src/views/default/type_components/wysiwyg/component_detail.blade.php ENDPATH**/ ?>

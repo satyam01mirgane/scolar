@@ -1,0 +1,122 @@
+<section id="page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="content col-lg-12">                       
+                        <div class="line"></div>
+                        <!--Post Carousel -->
+                        <h3>Our Upcoming Workshops</h3>
+						<p>Take a look at our upcoming workshops that will assist you in actualizing your innate talent and enhance 
+						your aptitude allowing you to rediscover your career options. Sign up for the workshop and learn from the best.</p>
+                        <div class="carousel" data-items="3">
+							@foreach($workshop_list as $k=>$v)
+                            <!-- Post item-->
+                            <div class="post-item border">
+                                <div class="post-item-wrap">
+                                    <div class="post-image">
+                                        <a href="{{url('workshops-detail/'.$v->slug)}}">
+                                            <img alt="" src="{{asset($v->image)}}"></a>
+                                    </div>
+                                    <div class="post-item-description">
+                                        <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{date('d M Y h:i A',strtotime($v->session_date.' '.$v->session_time))}}</span>                                        
+                                        <h2><a href="{{url('workshops-detail/'.$v->slug)}}">{{truncate($v->name,30)}}</a></h2>
+										<p>{{truncate($v->short_description,70)}}</p>
+										@if(!in_array($v->id,cartproduct()))
+											<h2>
+												@if($v->workshop_type=='Free') Free @else ₹{{$v->price}} @endif &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+											</h2>
+											<form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+												@csrf
+												<input type="hidden" value="{{ $v->id }}" name="id">
+												<input type="hidden" value="{{ $v->name }}-Workshop" name="name">
+												<input type="hidden" value="{{$v->price}}" name="price">
+												<input type="hidden" value="{{ $v->image }}"  name="image">
+												<input type="hidden" value="1" name="quantity">
+												<button class="btn btn-outline" type="submit">Enroll Now</button>
+											</form>
+										  @else
+											<h2>
+												@if($v->workshop_type=='Free') Free @else ₹{{$v->price}} @endif &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+												<button class="btn btn-outline" type="button">In Cart</button>
+											</h2>
+										  @endif
+                                        
+                                    </div>
+                                </div>
+                            </div>
+							@endforeach
+                            <!-- end: Post item-->
+                        </div>
+                      
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+<!--Workshop Section-->
+<section class="service-section bg-light-blue section">
+  <div class="container">
+    <div class="section-title text-center">
+      <h3>
+        <span>Our Upcoming Workshops</span>
+      </h3>
+      <p>Take a look at our upcoming workshops that will assist you in actualizing your innate talent and enhance your aptitude allowing you to rediscover your career options. Sign up for the workshop and learn from the best.</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="items-container">
+        @foreach($workshop_list as $k=>$v)
+          <div class="item">
+            <div class="inner-box">
+              <div class="img_holder">
+                <a href="{{url('workshops-detail/'.$v->slug)}}">
+                  <img loading="lazy" src="{{asset($v->image)}}" alt="images" class="img-fluid">
+                </a>
+              </div>
+              <div class="image-content">
+                <a href="{{url('workshops-detail/'.$v->slug)}}">
+                  <h6>{{truncate($v->name,30)}}</h6>
+                </a>
+                <p>{{truncate($v->short_description,70)}}</p>
+                              <!--  -->
+              <div class="media yr-scroll-media">
+                <div class="media-left mr-3">
+                  <a href="#">
+                    <img loading="lazy" src="{{asset('assets/images/user.jpg')}}" alt="post-thumb">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h5><a href="#">{{$v->trainer_name}}</a></h5>
+                  <p>{{date('d M Y h:i A',strtotime($v->session_date.' '.$v->session_time))}}</p>
+                </div>
+              </div>
+              <!--  -->
+			  @if(!in_array($v->id,cartproduct()))
+              <div class="yr-scroll-btn">
+                <div class=""><button type="button" class="btn btn-warning">@if($v->workshop_type=='Free') Free @else ₹{{$v->price}} @endif</button></div>
+                <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+					@csrf
+					<input type="hidden" value="{{ $v->id }}" name="id">
+					<input type="hidden" value="{{ $v->name }}-Workshop" name="name">
+					<input type="hidden" value="{{$v->price}}" name="price">
+					<input type="hidden" value="{{ $v->image }}"  name="image">
+					<input type="hidden" value="1" name="quantity">
+					<button class="btn btn-primary rounded" type="submit">Enroll Now</button>
+				</form>
+              </div>
+			  @else
+				 <div class="yr-scroll-btn">
+					<div class=""><button type="button" class="btn btn-warning">@if($v->workshop_type=='Free') Free @else ₹{{$v->price}} @endif</button></div>
+					<a href="{{url('cart')}}"><button class="btn btn-primary rounded disabled" type="button">In Cart</button></a>
+				</div> 
+			  @endif
+              <!--  -->
+              </div>
+            </div>
+          </div>
+        @endforeach
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--End Workshop Section-->

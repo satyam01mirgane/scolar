@@ -1,0 +1,1 @@
+<?php echo nl2br($value); ?><?php /**PATH D:\New folder\htdocs\RUN\vendor\crocodicstudio\crudbooster\src/views/default/type_components/textarea/component_detail.blade.php ENDPATH**/ ?>
