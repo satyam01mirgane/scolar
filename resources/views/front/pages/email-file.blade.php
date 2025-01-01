@@ -20,34 +20,40 @@
     <td width="49%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-         
-         
           <tr>
             <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;">Customer </td>
           </tr>
           <tr>
             <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;">To <span style="font-weight: 600;color:#478fcc">{{Auth::user()->name}}</span></td>
           </tr>
-		  @if(Auth::user()->address)
+          @if(Auth::user()->address)
           <tr>
             <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;">{{Auth::user()->address}}</td>
           </tr>
-		  @endif
-		  @if(Auth::user()->country)
+          @endif
+          @if(Auth::user()->country)
           <tr>
             <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;">{{Auth::user()->country}}</td>
           </tr>
-		  @endif
-		  @if(Auth::user()->phone_number)
+          @endif
+          @if(Auth::user()->phone_number)
           <tr>
             <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;">Tel : {{Auth::user()->phone_number}}</td>
           </tr>
-		  @endif
-          </table></td>
+          @endif
+          <tr>
+            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;">+91-9667576014</td>
+          </tr>
+          <tr>
+            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;">Address: 61-C Rajouri Garden, New Delhi-110027</td>
+          </tr>
+          <tr>
+            <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;">GSTIN: 07AAXFV4215H1ZR</td>
+          </tr>
+        </table></td>
       </tr>
     </table></td>
     <td width="51%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      
       <tr>
         <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:15px;" align="right">Payment Receipt</td>
       </tr>
@@ -78,9 +84,9 @@
         <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333;" width="15%" align="center">Discount</td>
         <td style="font-family:Verdana, Geneva, sans-serif; font-weight:600; font-size:13px; border-top:1px solid #333; border-bottom:1px solid #333; border-right:1px solid #333; border-right:1px solid #333;" width="15%" align="center">Amount</td>
       </tr>
-	  @php  $total=0;  @endphp
-	  @foreach($orders as $k=>$v)
-	  @php $total = $total + $v->product_price; @endphp
+      @php  $total=0;  @endphp
+      @foreach($orders as $k=>$v)
+      @php $total = $total + $v->product_price; @endphp
       <tr>
         <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" height="32" align="center">{{++$k}}</td>
         <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px; border-bottom:1px solid #333; border-left:1px solid #333; border-right:1px solid #333;" height="32" align="center">{{$v->product_name}}</td>
@@ -94,16 +100,16 @@
         <td colspan="3">Bill Payment for Online education plateform</td>
         <td colspan="2" align="right"> SubTotal = ₹{{$total}}</td>
       </tr>
-	  @php $gst = 0;
-		$gst = $total - ($total*18/100);
-	  @endphp
+      @php 
+        $gst = ($total * 18) / 100; 
+      @endphp
       <tr>
         <td colspan="3">&nbsp;</td>
         <td colspan="2" align="right"> GST Included (18%) = ₹{{$gst}}</td>
       </tr>
       <tr>
         <td colspan="3">&nbsp;</td>
-        <td colspan="2" align="right"> Total Amount = ₹{{number_format($total,2)}}</td>
+        <td colspan="2" align="right"> Total Amount = ₹{{number_format($total + $gst,2)}}</td>
       </tr>
     </table></td>
   </tr>
@@ -111,7 +117,7 @@
     <td colspan="2">&nbsp;</td>
   </tr>
   <tr>
-    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;" colspan="2">Total Amount in Words: {{numberTowords($total)}} Only</td>
+    <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;" colspan="2">Total Amount in Words: {{numberTowords($total + $gst)}} Only</td>
   </tr>
   <tr>
     <td colspan="2">&nbsp;</td>
@@ -139,12 +145,6 @@
   </tr>
   <tr>
     <td style="font-family:Verdana, Geneva, sans-serif; font-weight:300; font-size:13px;" colspan="2" align="center">(This is computer generated receipt and does not require physical signature.)
-  </tr>
-  <tr>
-    <td colspan="2">&nbsp;</td>
-  </tr>
-  <tr>
-    <td colspan="2">&nbsp;</td>
   </tr>
   <tr>
     <td colspan="2">&nbsp;</td>
