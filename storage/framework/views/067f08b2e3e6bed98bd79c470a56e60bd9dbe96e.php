@@ -4,7 +4,7 @@
             <!-- Logo -->
             <div id="logo" style="margin-right: 10px;">
                 <a href="<?php echo e(url('/')); ?>">
-                    <img src="<?php echo e(asset('assets/images/logo dashboard.svg')); ?>" alt="logo" style="height: 40px;">
+                    <img src="<?php echo e(asset('assets/images/logo dashboard.svg')); ?>" alt="logo" style="height: 60px;">
                 </a>
             </div>
 
@@ -30,7 +30,7 @@
             <a href="https://www.vief.in/" style="padding: 4px 12px; background-color: #ff4d00; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">VIEF</a>
 <a href="https://www.Xcubit.in/" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">Xcubit</a>
 <a href="https://www.vastavintellect.com/" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">VIIP</a>
-<a href="#" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">RTTP</a>
+<!-- <a href="#" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">RTTP</a> -->
 
                 <!-- Cart Icon -->
                 <a href="<?php echo e(url('cart')); ?>" style="color: #333; font-size: 16px; display: flex; align-items: center; margin-left: 40px;">

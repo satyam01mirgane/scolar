@@ -51,7 +51,7 @@
 			<form action="{{ route('razorpay.payment.store') }}" method="POST" id="op" style="display:none;">
 					@csrf
 					<script src="https://checkout.razorpay.com/v1/checkout.js"
-							data-key="rzp_test_kHRlkQtGsdpYnK"
+							data-key="rzp_live_lP2LYJNlqAhhTs"
 							data-amount="{{ $grand_total*100 }}"
 							data-buttontext="Complete Order"
 							data-name="{{Auth::user()->name}}"

@@ -53,7 +53,7 @@
 			<form action="<?php echo e(route('razorpay.payment.store')); ?>" method="POST" id="op" style="display:none;">
 					<?php echo csrf_field(); ?>
 					<script src="https://checkout.razorpay.com/v1/checkout.js"
-							data-key="rzp_test_kHRlkQtGsdpYnK"
+							data-key="rzp_live_lP2LYJNlqAhhTs"
 							data-amount="<?php echo e($grand_total*100); ?>"
 							data-buttontext="Complete Order"
 							data-name="<?php echo e(Auth::user()->name); ?>"

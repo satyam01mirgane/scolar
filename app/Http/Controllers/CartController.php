@@ -145,7 +145,7 @@ class CartController extends Controller
 			DB::table('app_order_item')->insert($orderInfo);
 		}
 		if($total_amount > 0){
-			$api = new Api('rzp_live_EuNq2EgYEn62mD','Z2Y7fzKWagGz1HQsks9aUFHy');
+			$api = new Api('rzp_live_lP2LYJNlqAhhTs','jjn6moAvZe1tYKZ5ZgVN6GIM');
 			$orderData = ['receipt' => $order_no,'amount'=> $total_dis*100,'currency' => 'INR','partial_payment' => true];
 			$razorpayOrder = $api->order->create($orderData);
 			
