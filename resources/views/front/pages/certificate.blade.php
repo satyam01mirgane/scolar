@@ -78,7 +78,7 @@ img.yr-cert-img {
     <div class="name">{{ucwords(Auth::user()->name)}}</div>
     <div class="course">{{$orders->product_name}}  @if($orders->type=='Workshop') <b> Masterclass</b> @else <b>Course</b> @endif</div>        
     <div class="date">{{date('d M Y',strtotime($orders->session_date))}}</div>
-    <img src="{{asset('assets/images/COURSE.jpg')}}" class="yr-cert-img">
+    <img src="{{asset('assets/images/mcertificate.jpg')}}" class="yr-cert-img">
 </div>
 
 <!-- End Section -->
