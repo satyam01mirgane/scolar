@@ -5,7 +5,7 @@
 
 <!-- SECTION IMAGE FULLSCREEN -->
 <section class="fullscreen slide animate-slide-in" 
-         style="background-image: url('{{ asset('assets/images/bg-image.jpeg') }}'); 
+         style="background-image: url('{{ asset('assets/images/newbg.jpeg') }}'); 
                 position: relative; 
                 background-size: cover; 
                 background-position: center;">
