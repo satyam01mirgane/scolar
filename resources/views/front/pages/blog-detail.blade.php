@@ -95,21 +95,7 @@
                 </div>
                 <!-- End Recent Posts -->
 
-                <!-- Newsletter -->
-                <div class="widget widget-newsletter">
-                    <form class="widget-subscribe-form" novalidate action="#" role="form">
-                        <h4 class="widget-title">Newsletter</h4>
-                        <small>Stay informed on our latest news!</small>
-                        <div class="input-group">
-                            <input type="email" required name="widget-subscribe-form-email" id="subs_email" class="form-control required email" placeholder="Enter your Email">
-                            <span class="input-group-btn">
-                                <button type="button" id="widget-subscribe-submit-button" class="btn btn-primary saveNews"><i class="fa fa-paper-plane"></i></button>
-                            </span>
-                        </div>
-                        <span id="msg"></span>
-                    </form>
-                </div>
-                <!-- End Newsletter -->
+               
             </div>
             <!-- End Sidebar -->
         </div>
