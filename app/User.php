@@ -36,4 +36,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function enrolled_courses() {
+        return $this->belongsToMany(Course::class, 'course_user'); // Assuming this is a many-to-many relationship.
+    }
+    
 }

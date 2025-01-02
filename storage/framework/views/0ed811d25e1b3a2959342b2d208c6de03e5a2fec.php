@@ -23,33 +23,14 @@
                                         <i class="fa fa-calendar-o"></i><?php echo e(date('d M, Y', strtotime($blog_detail->created_at))); ?>
 
                                     </span>
-                                    <span class="post-meta-comments">
-                                        <a href=""><i class="fa fa-comments-o"></i>(<?php echo e(count($comment)); ?>) Comments</a>
-                                    </span>
                                     <span class="post-meta-category">
                                         <a href=""><i class="fa fa-tag"></i><?php echo e(ucfirst($category_details->name)); ?></a>
                                     </span>
+                                    <!-- Share Button -->
                                     <div class="post-meta-share">
-                                        <a class="btn btn-xs btn-slide btn-facebook" href="https://www.facebook.com/VSCHOLAR LLP">
-                                            <i class="fab fa-facebook-f"></i>
-                                            <span>Facebook</span>
-                                        </a>
-                                        <a class="btn btn-xs btn-slide btn-twitter" href="https://twitter.com/VSCHOLAR 4" data-width="100">
-                                            <i class="fab fa-twitter"></i>
-                                            <span>Twitter</span>
-                                        </a>
-                                        <a class="btn btn-xs btn-slide btn-instagram" href="https://www.instagram.com/VSCHOLAR _llp/" data-width="118">
-                                            <i class="fab fa-instagram"></i>
-                                            <span>Instagram</span>
-                                        </a>
-                                        <a class="btn btn-xs btn-slide btn-googleplus" href="https://in.linkedin.com/company/VSCHOLAR -llp" data-width="80">
-                                            <i class="fab fa-linkedin-in"></i>
-                                            <span>LinkedIn</span>
-                                        </a>
-                                        <a class="btn btn-xs btn-slide btn-googleplus" href="mailto:info@VSCHOLAR.in" data-width="80">
-                                            <i class="icon-mail"></i>
-                                            <span>Mail</span>
-                                        </a>
+                                        <button class="btn btn-primary share-button" onclick="shareContent()">
+                                            <i class="fa fa-share-alt"></i> Share
+                                        </button>
                                     </div>
                                 </div>
                                 <!-- Render WYSIWYG Content -->
@@ -140,5 +121,73 @@
     </div>
 </section>
 
-<?php echo $__env->make('front.common.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<?php /**PATH D:\New folder\htdocs\RUN\resources\views/front/pages/blog-detail.blade.php ENDPATH**/ ?>
+<!-- Add this script at the bottom of your page, before the closing body tag -->
+<script>
+function shareContent() {
+    // Get the current page URL
+    const url = window.location.href;
+    const title = document.querySelector('.post-item-description h2').textContent;
+
+    // Check if the Web Share API is supported
+    if (navigator.share) {
+        navigator.share({
+            title: title,
+            url: url
+        })
+        .then(() => console.log('Successful share'))
+        .catch((error) => console.log('Error sharing:', error));
+    } else {
+        // Fallback for browsers that don't support the Web Share API
+        // Create a temporary input to copy the URL
+        const tempInput = document.createElement('input');
+        tempInput.value = url;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        
+        // Show a notification that the link was copied
+        alert('Link copied to clipboard!');
+    }
+}
+</script>
+
+<style>
+.share-button {
+    padding: 8px 15px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.share-button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.share-button i {
+    font-size: 16px;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .post-meta {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .post-meta-share {
+        margin-top: 10px;
+    }
+    
+    .share-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+</style>
+
+<?php echo $__env->make('front.common.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\New folder\htdocs\RUN\resources\views/front/pages/blog-detail.blade.php ENDPATH**/ ?>

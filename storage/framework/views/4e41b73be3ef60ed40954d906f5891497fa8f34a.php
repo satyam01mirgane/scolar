@@ -34,7 +34,7 @@ img.yr-cert-img {
 .certID {
     position: absolute;
     top: 12%;
-    left: 11%;
+    left: 6%;
     font-size: 1.7vw;
     color: #1b2e4f;
 }
@@ -44,8 +44,8 @@ img.yr-cert-img {
 }
 .course{
     position: absolute;
-    top: 70%;
-    font-size: 2vw;
+    top: 72%;
+    font-size: 24px;
     color: #1b2e4f;
     text-align: center;
     width: 100%;
@@ -54,7 +54,7 @@ img.yr-cert-img {
 .date {
     position: absolute;
     color: #1b2e4f;
-    bottom: 15%;
+    bottom: 10%;
     top: auto;
     left: 13%;
     font-size: 2.5vw;
@@ -76,7 +76,7 @@ img.yr-cert-img {
 <div class="Cbox" id="printarea">
     <div class="certID">Certificate ID : <span>VSCL<?php echo e(rand(1000,9999)); ?></span></div>
     <div class="name"><?php echo e(ucwords(Auth::user()->name)); ?></div>
-    <div class="course"><?php echo e($orders->product_name); ?>  <?php if($orders->type=='Workshop'): ?> <b>Workshop</b> <?php else: ?> <b>Course</b> <?php endif; ?></div>        
+    <div class="course"><?php echo e($orders->product_name); ?>  <?php if($orders->type=='Workshop'): ?> <b> Masterclass</b> <?php else: ?> <b>Course</b> <?php endif; ?></div>        
     <div class="date"><?php echo e(date('d M Y',strtotime($orders->session_date))); ?></div>
     <img src="<?php echo e(asset('assets/images/COURSE.jpg')); ?>" class="yr-cert-img">
 </div>

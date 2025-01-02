@@ -1,4 +1,4 @@
-<header style="background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; z-index: 1000; padding: 10px 0;">
+<header style="background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; z-index: 1000; padding: 2px 0;">
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 10px;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <!-- Logo -->
@@ -18,17 +18,17 @@
                 <ul style="display: flex; list-style-type: none; margin: 0; padding: 0;">
                     <li><a href="{{ url('/') }}" style="color: #333; text-decoration: none; padding: 10px 10px; font-weight: 500; font-size: 12px;">Home</a></li>
                     <li><a href="{{ url('/about-us') }}" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">About</a></li>
-                    <li><a href="{{ url('/courses') }}" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">Workshop</a></li>
+                    <li><a href="{{ url('/courses') }}" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">Masterclass</a></li>
                     <li><a href="{{ url('/blogs') }}" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">Study Material</a></li>
                     <li><a href="{{ url('/workshops') }}" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">Career</a></li>
-                    <li><a href="{{ url('/contact-us') }}" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">Contact</a></li>
+                    <li><a href="{{ url('/contact-us') }}" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">Support</a></li>
                 </ul>
             </nav>
 
             <!-- Action Buttons -->
             <div style="display: flex; gap: 8px; align-items: center;">
             <a href="https://www.vief.in/" style="padding: 4px 12px; background-color: #ff4d00; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">VIEF</a>
-<a href="https://www.Xcubit.in/" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">Xcubit</a>
+<a href="http://xcubit.in/" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">Xcubit</a>
 <a href="https://www.vastavintellect.com/" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">VIIP</a>
 <!-- <a href="#" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">RTTP</a> -->
 

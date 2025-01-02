@@ -5,21 +5,21 @@
         <div class="bg-sy-blue mb-2 item">
           <img src="{{asset('assets/images/icons/webinar.png')}}" alt="">
           <h2>Enhanced Learning </h2>
-          <p> At  VSCHOLAR , we bring you workshops from different industries and fields presented by the experts in that industry.</p>
+          <p> At  VSCHOLAR , we bring you  Masterclass from different industries and fields presented by the experts in that industry.</p>
         </div>       
       </div>
       <div class="col-lg-3 col-md-6">
         <div class="bg-yellow mb-2 item">
           <img src="{{asset('assets/images/icons/professor.png')}}" alt="">
           <h2>Live Doubt Clearing</h2>
-          <p> Attendees of our workshops can ask their doubts live during the workshops. Our experts are available to clear your doubts all the time during the workshop.</p>
+          <p> Attendees of our  Masterclass can ask their doubts live during the  Masterclass. Our experts are available to clear your doubts all the time during the  Masterclass.</p>
         </div>        
       </div>
       <div class="col-lg-3 col-md-12">
         <div class="bg-purple mb-2 item">
           <img src="{{asset('assets/images/icons/top-rated.png')}}" alt="">
           <h2>Industry Experts</h2>
-          <p> All our workshops are given by industry experts who have extensive experience in their respective fields and who are proficient in providing valuable knowledge to our workshop attendees.</p>
+          <p> All our  Masterclass are given by industry experts who have extensive experience in their respective fields and who are proficient in providing valuable knowledge to our  Masterclass attendees.</p>
         </div>        
       </div>
       <div class="col-lg-3 col-md-12">

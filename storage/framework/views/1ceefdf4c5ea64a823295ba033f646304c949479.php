@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Scheduled workshop</h1>
+            <h1>Scheduled  Masterclass</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo e(url('/')); ?>">Home</a></li>
-              <li class="breadcrumb-item active">Scheduled workshop</li>
+              <li class="breadcrumb-item active">Scheduled  Masterclass</li>
             </ol>
           </div>
         </div>
@@ -31,9 +31,9 @@
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>workshop Name</th>
+                      <th>Name</th>
                       <th>Zoom Link</th>
-                      <th>workshop ID</th>
+                      <th> Masterclass ID</th>
                       <th>Instructor</th>
                       <th>Date</th>
 					  <th>Time</th>
@@ -62,7 +62,7 @@
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 					<?php else: ?>
 						<tr>
-							<td colspan="9" align="center">No workshop found</td>
+							<td colspan="9" align="center">No  Masterclass found</td>
 						</tr>
 					<?php endif; ?>
                   </tbody>

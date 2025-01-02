@@ -3,7 +3,7 @@
         <div class="heading-text" style="text-align: center; margin-bottom: 40px;">
             <h2 style="font-size: 36px; color: #333; margin-bottom: 20px;">Browse Our Latest Blogs</h2>
             <p style="font-size: 18px; color: #666; max-width: 800px; margin: 0 auto;">
-                We've included a collection of blogs with a wealth of information to help you learn more about the workshops and 
+                We've included a collection of blogs with a wealth of information to help you learn more about the  Masterclass and 
                 get to know your VSCHOLAR better.
             </p>
         </div>

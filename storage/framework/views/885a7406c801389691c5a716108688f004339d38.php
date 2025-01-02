@@ -505,7 +505,7 @@
                     <td class="content-cell" align="center">
                       <p class="f-fallback sub align-center">
                          VSCHOLAR 
-                        <br>Sector 16, Faridabad, Haryana,
+                        <br>
                         <br>India- 121002
                       </p>
                     </td>

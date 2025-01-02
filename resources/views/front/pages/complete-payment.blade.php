@@ -1,7 +1,7 @@
 @include('front.common.header')
 @include('front.common.navbar')
 
-<section id="page-title" data-bg-parallax="{{asset('assets/images/top-banner.png')}}">
+<section id="page-title" data-bg-parallax="{{asset('assets/images/newpayment.jpg')}}">
             <div class="container">
                 <div class="page-title">
                     <h1>Payment Page</h1>

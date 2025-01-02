@@ -21,7 +21,7 @@
                 <table class="table" style="width: 100%; border-collapse: separate; border-spacing: 0 15px;">
                     <thead>
                         <tr style="background-color: #f1f3f5;">
-                            <th style="padding: 15px; text-align: left; color: #495057; font-weight: 600;">Workshop/Course</th>
+                            <th style="padding: 15px; text-align: left; color: #495057; font-weight: 600;"> Masterclass</th>
                             <th style="padding: 15px; text-align: left; color: #495057; font-weight: 600;">Instructor</th>
                             <th style="padding: 15px; text-align: right; color: #495057; font-weight: 600;">Unit Price</th>
                             <th style="padding: 15px; text-align: right; color: #495057; font-weight: 600;">Discount</th>

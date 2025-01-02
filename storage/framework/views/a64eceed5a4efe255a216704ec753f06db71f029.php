@@ -7,7 +7,7 @@
         <div class="row">
             <div class="content col-lg-12">
                 <div class="heading-text heading-section text-center" style="margin-bottom: 2rem;">
-                    <h2 style="font-size: 2rem; font-weight: bold;">Workshops</h2>
+                    <h2 style="font-size: 2rem; font-weight: bold;"> Masterclass</h2>
                 </div>
 
                 <!-- Course Grid -->

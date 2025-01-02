@@ -23,7 +23,7 @@
             <figure class="itemside me-lg-5">
               <div class="aside"><img src="{{asset($item->attributes->image)}}" class="img-sm img-thumbnail"></div>
               <figcaption class="info">
-                <a href="#" class="title">Workshop Id - WKPID{{$item->id}}</a>
+                <a href="#" class="title"> Masterclass Id - MID{{$item->id}}</a>
                 <p class="text-muted"> {{$item->product_name}} </p>
                 <p class="text-muted"> Instructor Name - Y. R. Rizvi </p>
               </figcaption>
@@ -96,7 +96,7 @@
         
         <div class="d-grid gap-2 my-3">
           <a href="#" class="btn btn-success w-100"> Make Purchase </a>
-          <a href="#" class="btn btn-light w-100"> Back to workshops </a>
+          <a href="#" class="btn btn-light w-100"> Back to  Masterclass </a>
         </div>
       </div> <!-- card-body.// -->
       </div> <!-- card.// -->

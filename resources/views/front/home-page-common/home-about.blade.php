@@ -15,14 +15,14 @@
                 <h3>Welcome to the World of Advanced Learning</h3>
               </div>
               <div class="text">
-                <p> VSCHOLAR is a platform that connects respective industry experts with those who are looking to get insights about industries and want to explore new career opportunities or just want to enhance their knowledge. Our edtech platform allows you to sign-up for different workshops based on your interest. Our vision to provide quality education with affordability allows us to keep the fees to enroll for the workshops to minimal.</p>
+                <p> VSCHOLAR is a platform that connects respective industry experts with those who are looking to get insights about industries and want to explore new career opportunities or just want to enhance their knowledge. Our edtech platform allows you to sign-up for different  Masterclass based on your interest. Our vision to provide quality education with affordability allows us to keep the fees to enroll for the  Masterclass to minimal.</p>
               </div>
               <ul class="content-list">
                 
                 <li>
                     <i class="fas fa-star"></i> Enhance your practical skills.</li>
                 <li>
-                  <i class="fas fa-star"></i> Enroll in the best workshops.</li>
+                  <i class="fas fa-star"></i> Enroll in the best  Masterclass.</li>
                 <li>
                     <i class="fas fa-star"></i> Learn the newest techniques.</li>                 
 

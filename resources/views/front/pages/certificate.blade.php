@@ -76,7 +76,7 @@ img.yr-cert-img {
 <div class="Cbox" id="printarea">
     <div class="certID">Certificate ID : <span>VSCL{{rand(1000,9999)}}</span></div>
     <div class="name">{{ucwords(Auth::user()->name)}}</div>
-    <div class="course">{{$orders->product_name}}  @if($orders->type=='Workshop') <b>Workshop</b> @else <b>Course</b> @endif</div>        
+    <div class="course">{{$orders->product_name}}  @if($orders->type=='Workshop') <b> Masterclass</b> @else <b>Course</b> @endif</div>        
     <div class="date">{{date('d M Y',strtotime($orders->session_date))}}</div>
     <img src="{{asset('assets/images/COURSE.jpg')}}" class="yr-cert-img">
 </div>

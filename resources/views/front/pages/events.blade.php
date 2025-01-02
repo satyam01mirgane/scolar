@@ -135,7 +135,7 @@ The selection committee, comprising esteemed education professionals and experts
 
  <li><span>&#10003;</span><b>Commemorative Memento:</b> Awardees will also receive a special award memento. This physical token of appreciation will be dispatched to them after the event, serving as a lasting reminder of their remarkable accomplishments.</li>
 
- <li><span>&#10003;</span><b>Free Workshop by  VSCHOLAR :</b> As a gesture of our appreciation, all awardees will be entitled to a complimentary workshop by  VSCHOLAR . This workshop, valued at Rs. 1500, offers an opportunity for professional development and learning in areas relevant to their teaching practices and career growth. </li>
+ <li><span>&#10003;</span><b>Free  Masterclass by  VSCHOLAR :</b> As a gesture of our appreciation, all awardees will be entitled to a complimentary  Masterclass by  VSCHOLAR . This  Masterclass, valued at Rs. 1500, offers an opportunity for professional development and learning in areas relevant to their teaching practices and career growth. </li>
                     <h5 class="fw-bold mb-3">Fill the Nomination form Here</h5>
                     
                     <div><a href="https://forms.gle/rLRzGS3c9HCrs5Ck6" class="btn btn-dark px-5" data-bs-dismiss="">Apply</a> <span class="px-3"> 

@@ -3,17 +3,18 @@
 <footer id="footer" style="background-color: #25286e; color: #ffffff; padding-top: 50px;">
     <div class="footer-content">
         <div class="container">
-            <div class="row">
+            <div class="row d-flex justify-content-between">
                 <!-- Logo and Description -->
-                <div class="col-lg-5">
+                <div class="col-lg-4">
                     <div class="widget" style="animation: fadeIn 0.5s ease-out;">
                         <img alt="<?php echo e(app_setting()->site_title); ?> Logo" src="<?php echo e(asset('assets/images/logo dashboard.jpg')); ?>" 
                              style="max-width: 200px; margin-bottom: 20px; background-color: white; padding: 10px 30px; border-radius: 10px;">
                         <p style="color:#fff; font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
-                            VScholar is dedicated to empowering learners by providing top-notch educational resources and transformative workshops. Join us to enhance your skills and achieve your goals.
+                            VScholar empowers learners with top-notch educational resources and transformative Masterclasss. We offer expert-led doubt-solving sessions and hands-on experiences to bridge theory and practice. Join us to enhance your skills, unlock your potential, and achieve your goals confidently.
                         </p>
                     </div>
                 </div>
+
                 <!-- Quick Links -->
                 <div class="col-lg-3">
                     <div class="widget" style="animation: fadeIn 0.5s ease-out 0.2s both;">
@@ -26,9 +27,9 @@
                             $quickLinks = [
                                 ['url' => '/', 'text' => 'Home'],
                                 ['url' => 'about-us', 'text' => 'About Us'],
-                                ['url' => 'workshops', 'text' => 'Workshops'],
+                                ['url' => 'courses', 'text' => 'Masterclass'],
                                 ['url' => 'blogs', 'text' => 'Study Material'],
-                                ['url' => 'contact-us', 'text' => 'Contact Us'],
+                                ['url' => 'contact-us', 'text' => 'Support'],
                                 ['url' => 'page/term-condition', 'text' => 'Terms & Conditions'],
                                 ['url' => 'page/privacy-policy', 'text' => 'Privacy Policy'],
                             ];
@@ -45,30 +46,25 @@
                         </ul>
                     </div>
                 </div>
-                <!-- Upcoming Workshops -->
-                <div class="col-lg-4">
+
+                <!-- Address Section -->
+                <div class="col-lg-3">
                     <div class="widget" style="animation: fadeIn 0.5s ease-out 0.4s both;">
-                        <h4 style="color: #ffffff; font-size: 20px; margin-bottom: 10px; position: relative; padding-bottom: 7px;">
-                            UP COMINGS
+                        <h4 style="color: #ffffff; font-size: 20px; margin-bottom: 20px; position: relative; padding-bottom: 10px;">
+                            OUR ADDRESS
                             <span style="position: absolute; bottom: 0; left: 0; width: 50px; height: 2px; background-color: #4CAF50;"></span>
                         </h4>
-                        <div class="post-thumbnail-list" style="margin-top:20px;">
-                            <?php $__currentLoopData = workshop_list(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="post-thumbnail-entry" style="display: flex; align-items: center; margin-bottom: 15px; transition: transform 0.3s ease;">
-                                <img src="<?php echo e(asset($v->image)); ?>" alt="<?php echo e($v->name); ?>" 
-                                     style="width: 70px; height: 70px; object-fit: cover; border-radius: 5px; margin-right: -70px;">
-                                <div class="post-thumbnail-content">
-                                    <a href="<?php echo e(url('/workshops-detail/'.$v->slug)); ?>" 
-                                       style="color: #ffffff; text-decoration: none; font-size: 16px; transition: color 0.3s ease;"><?php echo e($v->name); ?></a>
-                                </div>
-                            </div>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </div>
+                        <p style="color: #ffffff; font-size: 16px; line-height: 1.6;">
+                            A-61-C Shivaji Enclave<br>
+                            Rajori Garden<br>
+                            New Delhi-27
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- Copyright Section -->
     <div class="copyright-content" style="background-color: rgba(0, 0, 0, 0.1); padding: 20px 0; margin-top: 30px;">
         <div class="container">
@@ -81,7 +77,7 @@
 
 <!-- Floating WhatsApp Button -->
 <a href="https://api.whatsapp.com/send?phone=+919667576014&text=Hello." class="floating" target="_blank" 
-   style="position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color:rgb(254, 99, 9); color: #FFF; 
+   style="position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color:rgb(48, 161, 42); color: #FFF; 
           border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; 
           box-shadow: 2px 2px 3px #999; z-index: 100; transition: all 0.3s ease;">
     <i class="fa fa-whatsapp"></i>

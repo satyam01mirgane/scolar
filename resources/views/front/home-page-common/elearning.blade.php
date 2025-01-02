@@ -19,14 +19,14 @@
               </div>
               <ul class="content-list yr-learning-list">
                 <li>
-                  <i class="far fa-dot-circle"></i> Engaging Workshops 
+                  <i class="far fa-dot-circle"></i> Engaging  Masterclass
                 </li>
                 <li>
                   <i class="far fa-dot-circle"></i>Industry Experts </li>
                 <li>
                   <i class="far fa-dot-circle"></i> Insights About Future Industries </li>
                   <li>
-                    <i class="far fa-dot-circle"></i> Interactive Workshops</li>
+                    <i class="far fa-dot-circle"></i> Interactive Masterclasss</li>
               </ul>
               <a href="{{url('workshops')}}" class="btn btn-primary">Start Learning</a>
             </div>

@@ -1,7 +1,7 @@
 <?php echo $__env->make('front.common.profile-header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('front.common.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
 <style>
-  
 .modal-header1 {
     display: -ms-flexbox;
     -ms-flex-align: start;
@@ -13,362 +13,188 @@
     border-top-left-radius: calc(0.3rem - 1px);
     border-top-right-radius: calc(0.3rem - 1px);
 }
+
+/* Table and Layout Styles */
+.content-wrapper {
+    min-height: 100vh;
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    background-color: #f4f6f9;
+}
+
+.table-wrapper {
+    position: relative;
+    max-height: calc(100vh - 250px);
+    overflow: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.table-wrapper table {
+    width: 100% !important;
+    margin-bottom: 0;
+}
+
+.table-wrapper thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    z-index: 1;
+    border-bottom: 2px solid #dee2e6;
+    padding: 12px 8px;
+}
+
+.table th, .table td {
+    min-width: 120px;
+    padding: 12px 8px;
+    vertical-align: middle;
+}
+
+.card {
+    margin-bottom: 1rem;
+    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+    border: 0;
+}
+
+.card-body {
+    padding: 0;
+}
+
+/* Form and Modal Styles */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.alert {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+.modal-dialog.modal-lg {
+    max-width: 900px;
+}
+
+/* Custom Scrollbar */
+.table-wrapper::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
 </style>
 
-<!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+<div class="content-wrapper">
+    <!-- Content Header -->
     <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Certificate & Feedback</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?php echo e(url('/')); ?>">Home</a></li>
-              <li class="breadcrumb-item active">Certificate & Feedback</li>
-            </ol>
-          </div>
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Certificate & Feedback</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="<?php echo e(url('/')); ?>">Home</a></li>
+                        <li class="breadcrumb-item active">Certificate & Feedback</li>
+                    </ol>
+                </div>
+            </div>
         </div>
-      </div><!-- /.container-fluid -->
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <div class="row">         
-          <!-- /.col -->
-          <div class="col-md-12">
-            
-            <div class="card">
-              <div class="card-body table-responsive p-0">
-				  <?php if(Session::has('success')): ?>
-				  <div class="alert alert-success">
-				  <?php echo e(Session::get('success')); ?>
-
-				  </div>
-				  <?php endif; ?>
-                <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                      <th>Workshop Name</th>
-                      <th>Workshop/Course ID</th>
-                      <th>Date</th>
-					  <th>Time</th>
-                      <th>Certificate</th>
-					  <th>Feedback</th>
-				
-                    </tr>
-                  </thead>
-                  <tbody>
-					<?php if(count($orders)>0): ?>
-					<?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <tr>
-                      <td><?php echo e($v->workshopname); ?></td>
-                      <td>WKPID<?php echo e($v->product_id); ?></td>
-                      <td><?php echo e(date('d-m-Y',strtotime($v->session_date))); ?></td>
-					  <td><?php echo e(date('H:i:s A',strtotime($v->session_time))); ?></td>
-                      <td>
-					  <?php if($v->session_status !='Open'): ?>
-					  <a href="<?php echo e(url('print-certificate/'.$v->product_id)); ?>">Certificate</a>
-					  <?php else: ?> 
-						  <span style="color:red;">Certificate not completed.</span>
-					  <?php endif; ?>
-					  </td>
-					  <?php if(!empty($v->feedback)): ?>
-						  <td><span>Feedback Submitted</span></td>
-					  <?php else: ?>
-						  <td><a href="#" data-toggle="modal" data-target="#myModal" onclick="feedback('<?php echo $v->product_id;?>')">Feedback</a></td>
-					  <?php endif; ?>
-					  
-                    </tr>
-					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-					<?php else: ?>
-						<tr>
-							<td colspan="9" align="center">No workshop found</td>
-						</tr>
-					<?php endif; ?>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-    
-  </div>
-  <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header1">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Feedback</h4>
-      </div>
-      <div class="modal-body">
-        <form id="contact_form" name="contact_form" class="default-form" method="post" action="<?php echo e(url('feedback')); ?>">
-		   <?php echo csrf_field(); ?>
-		   <input type="hidden" name="wpid" id="wpid" value="">
+        <div class="container-fluid">
             <div class="row">
-			  <?php if(Session::has('success')): ?>
-			  <div class="alert alert-success">
-			  <?php echo e(Session::has('success')); ?>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <?php if(Session::has('success')): ?>
+                            <div class="alert alert-success">
+                                <?php echo e(Session::get('success')); ?>
 
-			  </div>
-			  <?php endif; ?>
-              <div class="contact-area style-two pl-0 pr-0 pr-lg-4">
-          <div class="yr-f-form">
-              <div class="row">
-                <div class="col-md-12">                
-                  <div class="form-group">
-                    <label class="form-label">Email address</label>
-                    <input class="form-control" type="email" name="email" placeholder="Your Answer" required="">
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Name</label>
-                    <input class="form-control" type="text" name="name" placeholder="Your Answer" required="">
-                  </div>
+                            </div>
+                            <?php endif; ?>
+                            
+                            <div class="table-wrapper">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Masterclass ID</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Certificate</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if(count($orders) > 0): ?>
+                                            <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <tr>
+                                                <td><?php echo e($v->workshopname); ?></td>
+                                                <td>WKPID<?php echo e($v->product_id); ?></td>
+                                                <td><?php echo e(date('d-m-Y', strtotime($v->session_date))); ?></td>
+                                                <td><?php echo e(date('H:i:s A', strtotime($v->session_time))); ?></td>
+                                                <td>
+                                                    <?php if($v->session_status != 'Open'): ?>
+                                                        <a href="<?php echo e(url('print-certificate/'.$v->product_id)); ?>">Certificate</a>
+                                                    <?php else: ?>
+                                                        <span style="color:red;">Certificate not completed.</span>
+                                                    <?php endif; ?>
+                                                </td>
+                                            </tr>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td colspan="5" class="text-center">No Masterclass found</td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label class="form-label">Contact No.</label>
-                    <input class="form-control" type="text" name="phone" placeholder="Your Answer" required="">
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Please Confirm Your name for the Certificates</label>
-                    <input class="form-control" type="text" name="cname" placeholder="Your Answer" required="">
-                  </div>                
-                </div>
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <div><label class="form-label">Please rate the overall workshop/course<span>*</span></label></div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_rate" id="inlineRadio1" value="1">
-                      <label class="form-check-label" for="inlineRadio1">1</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_rate" id="inlineRadio2" value="2">
-                      <label class="form-check-label" for="inlineRadio2">2</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_rate" id="inlineRadio3" value="3">
-                      <label class="form-check-label" for="inlineRadio3">3</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_rate" id="inlineRadio3" value="4">
-                      <label class="form-check-label" for="inlineRadio3">4</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_rate" id="inlineRadio3" value="5">
-                      <label class="form-check-label" for="inlineRadio3">5</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_rate" id="inlineRadio3" value="6">
-                      <label class="form-check-label" for="inlineRadio3">6</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_rate" id="inlineRadio3" value="7">
-                      <label class="form-check-label" for="inlineRadio3">7</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_rate" id="inlineRadio3" value="8">
-                      <label class="form-check-label" for="inlineRadio3">8</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_rate" id="inlineRadio3" value="9">
-                      <label class="form-check-label" for="inlineRadio3">9</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_rate" id="inlineRadio3" value="10">
-                      <label class="form-check-label" for="inlineRadio3">10</label>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div><label class="form-label">Did you enjoy the workshop/course? Please rate!<span>*</span></label></div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_exp" id="inlineRadio1" value="1">
-                      <label class="form-check-label" for="inlineRadio1">1</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_exp" id="inlineRadio2" value="2">
-                      <label class="form-check-label" for="inlineRadio2">2</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_exp" id="inlineRadio3" value="3">
-                      <label class="form-check-label" for="inlineRadio3">3</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_exp" id="inlineRadio3" value="4">
-                      <label class="form-check-label" for="inlineRadio3">4</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_exp" id="inlineRadio3" value="5">
-                      <label class="form-check-label" for="inlineRadio3">5</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_exp" id="inlineRadio3" value="6">
-                      <label class="form-check-label" for="inlineRadio3">6</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_exp" id="inlineRadio3" value="7">
-                      <label class="form-check-label" for="inlineRadio3">7</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_exp" id="inlineRadio3" value="8">
-                      <label class="form-check-label" for="inlineRadio3">8</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_exp" id="inlineRadio3" value="9">
-                      <label class="form-check-label" for="inlineRadio3">9</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="workshop_exp" id="inlineRadio3" value="10">
-                      <label class="form-check-label" for="inlineRadio3">10</label>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div><label class="form-label">Please rate the content of the workshop/course<span>*</span></label></div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="content_rate" id="inlineRadio1" value="1">
-                      <label class="form-check-label" for="inlineRadio1">1</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="content_rate" id="inlineRadio2" value="2">
-                      <label class="form-check-label" for="inlineRadio2">2</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="content_rate" id="inlineRadio3" value="3">
-                      <label class="form-check-label" for="inlineRadio3">3</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="content_rate" id="inlineRadio3" value="4">
-                      <label class="form-check-label" for="inlineRadio3">4</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="content_rate" id="inlineRadio3" value="5">
-                      <label class="form-check-label" for="inlineRadio3">5</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="content_rate" id="inlineRadio3" value="6">
-                      <label class="form-check-label" for="inlineRadio3">6</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="content_rate" id="inlineRadio3" value="7">
-                      <label class="form-check-label" for="inlineRadio3">7</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="content_rate" id="inlineRadio3" value="8">
-                      <label class="form-check-label" for="inlineRadio3">8</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="content_rate" id="inlineRadio3" value="9">
-                      <label class="form-check-label" for="inlineRadio3">9</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="content_rate" id="inlineRadio3" value="10">
-                      <label class="form-check-label" for="inlineRadio3">10</label>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div><label class="form-label">Please rate the skill set of the instructor<span>*</span></label></div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="instructor_skill" id="inlineRadio1" value="1">
-                      <label class="form-check-label" for="inlineRadio1">1</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="instructor_skill" id="inlineRadio2" value="2">
-                      <label class="form-check-label" for="inlineRadio2">2</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="instructor_skill" id="inlineRadio3" value="3">
-                      <label class="form-check-label" for="inlineRadio3">3</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="instructor_skill" id="inlineRadio3" value="4">
-                      <label class="form-check-label" for="inlineRadio3">4</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="instructor_skill" id="inlineRadio3" value="5">
-                      <label class="form-check-label" for="inlineRadio3">5</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="instructor_skill" id="inlineRadio3" value="6">
-                      <label class="form-check-label" for="inlineRadio3">6</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="instructor_skill" id="inlineRadio3" value="7">
-                      <label class="form-check-label" for="inlineRadio3">7</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="instructor_skill" id="inlineRadio3" value="8">
-                      <label class="form-check-label" for="inlineRadio3">8</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="instructor_skill" id="inlineRadio3" value="9">
-                      <label class="form-check-label" for="inlineRadio3">9</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="instructor_skill" id="inlineRadio3" value="10">
-                      <label class="form-check-label" for="inlineRadio3">10</label>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Any specific topic on which you want workshop/course?<span>*</span></label>
-                    <input class="form-control" type="text" name="topic_suggest" placeholder="Your Answer" required="">
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Any Suggestions?<span>*</span></label>
-                    <input class="form-control" type="text" name="other_suggest" placeholder="Your Answer" required="">
-                  </div>
-                  <div class="form-group text-center">
-                    <button type="submit" class="btn btn-primary">submit now</button>
-                  </div>
-                </div>
-              </div>
-          </div>
-          
-        </div>
             </div>
-          </form>
-      </div>
-    </div>
-
-  </div>
+        </div>
+    </section>
 </div>
-  <!-- /.content-wrapper -->
+
 <?php echo $__env->make('front.common.profile-footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
-setTimeout(function() {$(".alert-success").slideToggle();}, 2000);
-function feedback(wpid){
-	if(wpid !=''){
-		$(".btnshow").show();
-		$("#show_form").show();
-		$("#show_feedback").hide();
-		$("#wpid").val(wpid);
-	}
-}
-function show_feedback(msg){
-	$(".btnshow").hide();
-	$("#show_form").hide();
-	$("#show_feedback").show();
-	$("#showmsg").text(msg);
-}
+// Hide success message after 2 seconds
+setTimeout(function() {
+    $(".alert-success").slideToggle();
+}, 2000);
+
+// Initialize tooltips and other Bootstrap components
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+    
+    // Handle table scroll shadows
+    const tableWrapper = document.querySelector('.table-wrapper');
+    if (tableWrapper) {
+        tableWrapper.addEventListener('scroll', function() {
+            const isScrolled = tableWrapper.scrollLeft > 0;
+            tableWrapper.classList.toggle('has-scroll', isScrolled);
+        });
+    }
+});
 </script>
 <?php /**PATH D:\New folder\htdocs\RUN\resources\views/front/pages/certificate-feedback.blade.php ENDPATH**/ ?>

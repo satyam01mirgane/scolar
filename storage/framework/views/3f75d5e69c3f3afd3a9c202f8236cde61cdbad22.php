@@ -1,7 +1,7 @@
 <?php echo $__env->make('front.common.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('front.common.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-<section id="page-title" data-bg-parallax="<?php echo e(asset('assets/images/top-banner.png')); ?>">
+<section id="page-title" data-bg-parallax="<?php echo e(asset('assets/images/newpayment.jpg')); ?>">
             <div class="container">
                 <div class="page-title">
                     <h1>Payment Page</h1>

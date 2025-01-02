@@ -35,6 +35,8 @@ Route::get('/blog-list/{name}','HomePageController@blogList');
 Route::any('/blog-detail/{name}','HomePageController@blogDetail');
 Route::post('/comment-add','HomePageController@commentAdd');
 Route::post('/send-enquiry','HomePageController@sendEnquiry');
+Route::get('/invoice/{order_id}', 'InvoiceController@show');
+Route::get('/invoice/{order_id}/pdf', 'InvoiceController@downloadPDF');
 Route::get('/events','HomePageController@events');
 Route::get('/login','HomePageController@login')->name('login');
 Route::get('/page/{name}','HomePageController@page');
@@ -50,7 +52,8 @@ Route::get('/career', [HomePageController::class, 'showCareerPage'])->name('care
 Route::get('/test-list','HomePageController@listTest');
 Route::get('/start-test/{name}','HomePageController@startTest');
 Route::post('/submit-test','HomePageController@submitTest');
-
+Route::get('/invoice/{order_id}', [InvoiceController::class, 'show']);
+Route::get('/invoice/{order_id}/pdf', [InvoiceController::class, 'downloadPDF']);
 Route::post('/getstate','HomePageController@getState');
 Route::post('/getcity','HomePageController@getCities');
 
