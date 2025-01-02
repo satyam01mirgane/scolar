@@ -34,7 +34,7 @@ img.yr-cert-img {
 .certID {
     position: absolute;
     top: 12%;
-    left: 11%;
+    left: 6%;
     font-size: 1.7vw;
     color: #1b2e4f;
 }
@@ -54,7 +54,7 @@ img.yr-cert-img {
 .date {
     position: absolute;
     color: #1b2e4f;
-    bottom: 15%;
+    bottom: 10%;
     top: auto;
     left: 13%;
     font-size: 2.5vw;
