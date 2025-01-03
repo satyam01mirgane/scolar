@@ -138,7 +138,7 @@ class PlotArea
         return $this->noFill;
     }
 
-    public function setGradientFillProperties(array $gradientFillStops, ?float $gradientFillAngle): self
+    public function setGradientFiroperties(array $gradientFillStops, ?float $gradientFillAngle): self
     {
         $this->gradientFillStops = $gradientFillStops;
         $this->gradientFillAngle = $gradientFillAngle;

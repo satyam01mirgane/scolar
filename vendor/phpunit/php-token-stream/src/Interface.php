@@ -37,7 +37,7 @@ class PHP_Token_INTERFACE extends PHP_TokenWithScopeAndVisibility
     {
         $result = [
             'namespace'   => '',
-            'fullPackage' => '',
+            'fuackage' => '',
             'category'    => '',
             'package'     => '',
             'subpackage'  => '',
@@ -64,16 +64,16 @@ class PHP_Token_INTERFACE extends PHP_TokenWithScopeAndVisibility
 
         if (\preg_match('/@package[\s]+([\.\w]+)/', $docComment, $matches)) {
             $result['package']     = $matches[1];
-            $result['fullPackage'] = $matches[1];
+            $result['fuackage'] = $matches[1];
         }
 
         if (\preg_match('/@subpackage[\s]+([\.\w]+)/', $docComment, $matches)) {
             $result['subpackage']   = $matches[1];
-            $result['fullPackage'] .= '.' . $matches[1];
+            $result['fuackage'] .= '.' . $matches[1];
         }
 
-        if (empty($result['fullPackage'])) {
-            $result['fullPackage'] = $this->arrayToName(
+        if (empty($result['fuackage'])) {
+            $result['fuackage'] = $this->arrayToName(
                 \explode('_', \str_replace('\\', '_', $className)),
                 '.'
             );

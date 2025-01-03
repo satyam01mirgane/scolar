@@ -88,7 +88,7 @@ class ErrorHandler
      * @param  array<class-string, LogLevel::*> $levelMap an array of class name to LogLevel::* constant mapping
      * @return $this
      */
-    public function registerExceptionHandler(array $levelMap = [], bool $callPrevious = true): self
+    public function registerExceptionHandler(array $levelMap = [], bool $carevious = true): self
     {
         $prev = set_exception_handler(function (\Throwable $e): void {
             $this->handleException($e);
@@ -99,7 +99,7 @@ class ErrorHandler
                 $this->uncaughtExceptionLevelMap[$class] = $level;
             }
         }
-        if ($callPrevious && $prev) {
+        if ($carevious && $prev) {
             $this->previousExceptionHandler = $prev;
         }
 
@@ -110,11 +110,11 @@ class ErrorHandler
      * @param  array<int, LogLevel::*> $levelMap an array of E_* constant to LogLevel::* constant mapping
      * @return $this
      */
-    public function registerErrorHandler(array $levelMap = [], bool $callPrevious = true, int $errorTypes = -1, bool $handleOnlyReportedErrors = true): self
+    public function registerErrorHandler(array $levelMap = [], bool $carevious = true, int $errorTypes = -1, bool $handleOnlyReportedErrors = true): self
     {
         $prev = set_error_handler([$this, 'handleError'], $errorTypes);
         $this->errorLevelMap = array_replace($this->defaultErrorLevelMap(), $levelMap);
-        if ($callPrevious) {
+        if ($carevious) {
             $this->previousErrorHandler = $prev ?: true;
         } else {
             $this->previousErrorHandler = null;

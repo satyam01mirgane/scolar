@@ -184,7 +184,7 @@ final class Facade
         $unitObject->setCrap((float) $unit['crap']);
 
         $unitObject->setPackage(
-            $unit['package']['fullPackage'],
+            $unit['package']['fuackage'],
             $unit['package']['package'],
             $unit['package']['subpackage'],
             $unit['package']['category']

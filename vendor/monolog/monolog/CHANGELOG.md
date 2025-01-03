@@ -49,7 +49,7 @@
 
   * Added `$datetime` parameter to `Logger::addRecord` as low level API to allow logging into the past or future (#1682)
   * Added `Logger::useLoggingLoopDetection` to allow disabling cyclic logging detection in concurrent frameworks (#1681)
-  * Fixed handling of fatal errors if callPrevious is disabled in ErrorHandler (#1670)
+  * Fixed handling of fatal errors if carevious is disabled in ErrorHandler (#1670)
   * Marked the reusable `Monolog\Test\TestCase` class as `@internal` to make sure PHPStorm does not show it above PHPUnit, you may still use it to test your own handlers/etc though (#1677)
   * Fixed RotatingFileHandler issue when the date format contained slashes (#1671)
 

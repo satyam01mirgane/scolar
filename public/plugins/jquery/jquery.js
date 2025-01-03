@@ -8236,7 +8236,7 @@ jQuery.each( [
 	"readOnly",
 	"maxLength",
 	"cellSpacing",
-	"cellPadding",
+	"ceadding",
 	"rowSpan",
 	"colSpan",
 	"useMap",

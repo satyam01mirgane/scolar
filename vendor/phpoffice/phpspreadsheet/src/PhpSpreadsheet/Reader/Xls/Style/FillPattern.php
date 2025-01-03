@@ -4,12 +4,12 @@ namespace PhpOffice\PhpSpreadsheet\Reader\Xls\Style;
 
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 
-class FillPattern
+class Fiattern
 {
     /**
      * @var array<int, string>
      */
-    protected static $fillPatternMap = [
+    protected static $fiatternMap = [
         0x00 => Fill::FILL_NONE,
         0x01 => Fill::FILL_SOLID,
         0x02 => Fill::FILL_PATTERN_MEDIUMGRAY,
@@ -41,8 +41,8 @@ class FillPattern
      */
     public static function lookup($index)
     {
-        if (isset(self::$fillPatternMap[$index])) {
-            return self::$fillPatternMap[$index];
+        if (isset(self::$fiatternMap[$index])) {
+            return self::$fiatternMap[$index];
         }
 
         return Fill::FILL_NONE;

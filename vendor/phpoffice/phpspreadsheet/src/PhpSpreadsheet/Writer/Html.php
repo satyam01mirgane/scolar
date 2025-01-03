@@ -1158,13 +1158,13 @@ class Html extends BaseWriter
         $prntgrid = $worksheet->getPrintGridlines();
         $viewgrid = $this->isPdf ? $prntgrid : $worksheet->getShowGridlines();
         if ($viewgrid && $prntgrid) {
-            $html = "    <table border='1' cellpadding='1' $id cellspacing='1' style='$style' class='gridlines gridlinesp'>" . PHP_EOL;
+            $html = "    <table border='1' ceadding='1' $id cellspacing='1' style='$style' class='gridlines gridlinesp'>" . PHP_EOL;
         } elseif ($viewgrid) {
-            $html = "    <table border='0' cellpadding='0' $id cellspacing='0' style='$style' class='gridlines'>" . PHP_EOL;
+            $html = "    <table border='0' ceadding='0' $id cellspacing='0' style='$style' class='gridlines'>" . PHP_EOL;
         } elseif ($prntgrid) {
-            $html = "    <table border='0' cellpadding='0' $id cellspacing='0' style='$style' class='gridlinesp'>" . PHP_EOL;
+            $html = "    <table border='0' ceadding='0' $id cellspacing='0' style='$style' class='gridlinesp'>" . PHP_EOL;
         } else {
-            $html = "    <table border='0' cellpadding='1' $id cellspacing='0' style='$style'>" . PHP_EOL;
+            $html = "    <table border='0' ceadding='1' $id cellspacing='0' style='$style'>" . PHP_EOL;
         }
 
         return $html;
@@ -1175,7 +1175,7 @@ class Html extends BaseWriter
         if (!$this->useInlineCss) {
             $gridlines = $worksheet->getShowGridlines() ? ' gridlines' : '';
             $gridlinesp = $worksheet->getPrintGridlines() ? ' gridlinesp' : '';
-            $html .= "    <table border='0' cellpadding='0' cellspacing='0' $id class='sheet$sheetIndex$gridlines$gridlinesp'>" . PHP_EOL;
+            $html .= "    <table border='0' ceadding='0' cellspacing='0' $id class='sheet$sheetIndex$gridlines$gridlinesp'>" . PHP_EOL;
         } else {
             $html .= $this->generateTableTagInline($worksheet, $id);
         }

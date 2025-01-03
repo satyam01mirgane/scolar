@@ -92,7 +92,7 @@ class Customer extends ApiResource
      *
      * @return \Stripe\Collection<\Stripe\Customer> list of PaymentMethods
      */
-    public static function allPaymentMethods($id, $params = null, $opts = null)
+    public static function aaymentMethods($id, $params = null, $opts = null)
     {
         $url = static::resourceUrl($id) . '/payment_methods';
         list($response, $opts) = static::_staticRequest('get', $url, $params, $opts);

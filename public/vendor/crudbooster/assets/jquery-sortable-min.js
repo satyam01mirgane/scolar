@@ -79,7 +79,7 @@
       return true
     },
     // Executed before onDrop if placeholder is detached.
-    // This happens if pullPlaceholder is set to false and the drop occurs outside a container.
+    // This happens if pulaceholder is set to false and the drop occurs outside a container.
     onCancel: function ($item, container, _super, event) {
     },
     // Executed at the beginning of a mouse move event.
@@ -121,7 +121,7 @@
     placeholder: '<li class="placeholder"></li>',
     // If true, the position of the placeholder is calculated on every mousemove.
     // If false, it is only calculated when the mouse is above a container.
-    pullPlaceholder: true,
+    pulaceholder: true,
     // Specifies serialization of the container group.
     // The pair $parent/$children is either container/items or item/subcontainers.
     serialize: function ($parent, $children, parentIsContainer) {
@@ -221,7 +221,7 @@
     this.containers = []
 
     if(!this.options.rootGroup){
-      this.scrollProxy = $.proxy(this.scroll, this)
+      this.scroroxy = $.proxy(this.scroll, this)
       this.dragProxy = $.proxy(this.drag, this)
       this.dropProxy = $.proxy(this.drop, this)
       this.placeholder = $(this.options.placeholder)
@@ -325,7 +325,7 @@
         var index = distances[i][0],
         distance = distances[i][1]
 
-        if(!distance || this.options.pullPlaceholder){
+        if(!distance || this.options.pulaceholder){
           var container = this.containers[index]
           if(!container.disabled){
             if(!this.$getOffsetParent()){

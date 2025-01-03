@@ -121,7 +121,7 @@ class BoundMethod
         $dependencies = [];
 
         foreach (static::getCallReflector($callback)->getParameters() as $parameter) {
-            static::addDependencyForCallParameter($container, $parameter, $parameters, $dependencies);
+            static::addDependencyForCaarameter($container, $parameter, $parameters, $dependencies);
         }
 
         return array_merge($dependencies, array_values($parameters));
@@ -157,7 +157,7 @@ class BoundMethod
      * @param  array  $dependencies
      * @return void
      */
-    protected static function addDependencyForCallParameter($container, $parameter,
+    protected static function addDependencyForCaarameter($container, $parameter,
                                                             array &$parameters, &$dependencies)
     {
         if (array_key_exists($paramName = $parameter->getName(), $parameters)) {

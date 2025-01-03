@@ -47,7 +47,7 @@ class ResponseHeaderBag extends HeaderBag
      *
      * @return array
      */
-    public function allPreserveCase()
+    public function areserveCase()
     {
         $headers = [];
         foreach ($this->all() as $name => $value) {
@@ -57,9 +57,9 @@ class ResponseHeaderBag extends HeaderBag
         return $headers;
     }
 
-    public function allPreserveCaseWithoutCookies()
+    public function areserveCaseWithoutCookies()
     {
-        $headers = $this->allPreserveCase();
+        $headers = $this->areserveCase();
         if (isset($this->headerNames['set-cookie'])) {
             unset($headers[$this->headerNames['set-cookie']]);
         }

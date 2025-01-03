@@ -190,7 +190,7 @@ class Gate implements GateContract
 
             $user = array_shift($arguments);
 
-            $result = $this->callPolicyBefore(
+            $result = $this->caolicyBefore(
                 $policy, $user, $ability, $arguments
             );
 
@@ -647,7 +647,7 @@ class Gate implements GateContract
             // This callback will be responsible for calling the policy's before method and
             // running this policy method if necessary. This is used to when objects are
             // mapped to policy objects in the user's configurations or on this class.
-            $result = $this->callPolicyBefore(
+            $result = $this->caolicyBefore(
                 $policy, $user, $ability, $arguments
             );
 
@@ -660,7 +660,7 @@ class Gate implements GateContract
 
             $method = $this->formatAbilityToMethod($ability);
 
-            return $this->callPolicyMethod($policy, $method, $user, $arguments);
+            return $this->caolicyMethod($policy, $method, $user, $arguments);
         };
     }
 
@@ -673,7 +673,7 @@ class Gate implements GateContract
      * @param  array  $arguments
      * @return mixed
      */
-    protected function callPolicyBefore($policy, $user, $ability, $arguments)
+    protected function caolicyBefore($policy, $user, $ability, $arguments)
     {
         if (! method_exists($policy, 'before')) {
             return;
@@ -693,7 +693,7 @@ class Gate implements GateContract
      * @param  array  $arguments
      * @return mixed
      */
-    protected function callPolicyMethod($policy, $method, $user, array $arguments)
+    protected function caolicyMethod($policy, $method, $user, array $arguments)
     {
         // If this first argument is a string, that means they are passing a class name
         // to the policy. We will remove the first argument from this argument array

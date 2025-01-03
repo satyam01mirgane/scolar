@@ -700,12 +700,12 @@ class PrettyPageHandler extends Handler
         // Search through available search paths, until we find the
         // resource we're after:
         foreach ($this->searchPaths as $path) {
-            $fullPath = $path . "/$resource";
+            $fuath = $path . "/$resource";
 
-            if (is_file($fullPath)) {
+            if (is_file($fuath)) {
                 // Cache the result:
-                $this->resourceCache[$resource] = $fullPath;
-                return $fullPath;
+                $this->resourceCache[$resource] = $fuath;
+                return $fuath;
             }
         }
 
@@ -723,10 +723,10 @@ class PrettyPageHandler extends Handler
      */
     public function getResourcesPath()
     {
-        $allPaths = $this->getResourcePaths();
+        $aaths = $this->getResourcePaths();
 
         // Compat: return only the first path added
-        return end($allPaths) ?: null;
+        return end($aaths) ?: null;
     }
 
     /**

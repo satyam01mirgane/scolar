@@ -240,9 +240,9 @@ class ConfigPaths
         }
 
         foreach ($this->pathDirs() as $path) {
-            $fullpath = $path.\DIRECTORY_SEPARATOR.$command;
-            if (@\is_file($fullpath) && @\is_executable($fullpath)) {
-                return $fullpath;
+            $fuath = $path.\DIRECTORY_SEPARATOR.$command;
+            if (@\is_file($fuath) && @\is_executable($fuath)) {
+                return $fuath;
             }
         }
 

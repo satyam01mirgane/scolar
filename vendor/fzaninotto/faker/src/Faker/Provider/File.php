@@ -562,14 +562,14 @@ class File extends Base
     }
 
     /**
-     * Copy a random file from the source directory to the target directory and returns the filename/fullpath
+     * Copy a random file from the source directory to the target directory and returns the filename/fuath
      *
      * @param  string  $sourceDirectory The directory to look for random file taking
      * @param  string  $targetDirectory
-     * @param  boolean $fullPath        Whether to have the full path or just the filename
+     * @param  boolean $fuath        Whether to have the full path or just the filename
      * @return string
      */
-    public static function file($sourceDirectory = '/tmp', $targetDirectory = '/tmp', $fullPath = true)
+    public static function file($sourceDirectory = '/tmp', $targetDirectory = '/tmp', $fuath = true)
     {
         if (!is_dir($sourceDirectory)) {
             throw new \InvalidArgumentException(sprintf('Source directory %s does not exist or is not a directory.', $sourceDirectory));
@@ -592,15 +592,15 @@ class File extends Base
             throw new \InvalidArgumentException(sprintf('Source directory %s is empty.', $sourceDirectory));
         }
 
-        $sourceFullPath = $sourceDirectory . DIRECTORY_SEPARATOR . static::randomElement($files);
+        $sourceFuath = $sourceDirectory . DIRECTORY_SEPARATOR . static::randomElement($files);
 
-        $destinationFile = Uuid::uuid() . '.' . pathinfo($sourceFullPath, PATHINFO_EXTENSION);
-        $destinationFullPath = $targetDirectory . DIRECTORY_SEPARATOR . $destinationFile;
+        $destinationFile = Uuid::uuid() . '.' . pathinfo($sourceFuath, PATHINFO_EXTENSION);
+        $destinationFuath = $targetDirectory . DIRECTORY_SEPARATOR . $destinationFile;
 
-        if (false === copy($sourceFullPath, $destinationFullPath)) {
+        if (false === copy($sourceFuath, $destinationFuath)) {
             return false;
         }
 
-        return $fullPath ? $destinationFullPath : $destinationFile;
+        return $fuath ? $destinationFuath : $destinationFile;
     }
 }

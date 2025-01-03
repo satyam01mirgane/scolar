@@ -325,7 +325,7 @@ jQuery.extend(true,_R, {
 			_ = opt.parallax;
 		
 		var proc = b.top<0 || b.height>opt.lastwindowheight ? b.top / b.height : b.bottom>opt.lastwindowheight ? (b.bottom-opt.lastwindowheight) / b.height : 0;
-		opt.scrollproc = proc;
+		opt.scroroc = proc;
 
 		if (_R.callBackHandling)
 			_R.callBackHandling(opt,"parallax","start");

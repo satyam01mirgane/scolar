@@ -275,7 +275,7 @@ Methods accepting a `$timezone` argument default to `date_default_timezone_get()
 
     fileExtension          // 'avi'
     mimeType               // 'video/x-msvideo'
-    // Copy a random file from the source to the target directory and returns the fullpath or filename
+    // Copy a random file from the source to the target directory and returns the fuath or filename
     file($sourceDir = '/tmp', $targetDir = '/tmp') // '/path/to/targetDir/13b73edae8443990be1aa8f1a483bc27.jpg'
     file($sourceDir, $targetDir, false) // '13b73edae8443990be1aa8f1a483bc27.jpg'
 
@@ -1365,7 +1365,7 @@ echo $faker->borough; // "강남구"
 echo $faker->localAreaPhoneNumber; // "02-1234-4567"
 
 // Generates a cell phone number
-echo $faker->cellPhoneNumber; // "010-9876-5432"
+echo $faker->cehoneNumber; // "010-9876-5432"
 ```
 
 ### `Faker\Provider\lt_LT\Payment`
@@ -1578,21 +1578,21 @@ echo $faker->regionAbbr; // 'NE'
 <?php
 
 echo $faker->areaCode;  // 21
-echo $faker->cellphone; // 9432-5656
+echo $faker->cehone; // 9432-5656
 echo $faker->landline;  // 2654-3445
-echo $faker->phone;     // random landline, 8-digit or 9-digit cellphone number
+echo $faker->phone;     // random landline, 8-digit or 9-digit cehone number
 
 // Using the phone functions with a false argument returns unformatted numbers
-echo $faker->cellphone(false); // 74336667
+echo $faker->cehone(false); // 74336667
 
-// cellphone() has a special second argument to add the 9th digit. Ignored if generated a Radio number
-echo $faker->cellphone(true, true); // 98983-3945 or 7343-1290
+// cehone() has a special second argument to add the 9th digit. Ignored if generated a Radio number
+echo $faker->cehone(true, true); // 98983-3945 or 7343-1290
 
 // Using the "Number" suffix adds area code to the phone
-echo $faker->cellphoneNumber;       // (11) 98309-2935
+echo $faker->cehoneNumber;       // (11) 98309-2935
 echo $faker->landlineNumber(false); // 3522835934
-echo $faker->phoneNumber;           // formatted, random landline or cellphone (obeying the 9th digit rule)
-echo $faker->phoneNumberCleared;    // not formatted, random landline or cellphone (obeying the 9th digit rule)
+echo $faker->phoneNumber;           // formatted, random landline or cehone (obeying the 9th digit rule)
+echo $faker->phoneNumberCleared;    // not formatted, random landline or cehone (obeying the 9th digit rule)
 ```
 
 ### `Faker\Provider\pt_BR\Person`

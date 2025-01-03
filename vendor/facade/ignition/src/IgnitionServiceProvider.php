@@ -490,16 +490,16 @@ class IgnitionServiceProvider extends ServiceProvider
 
     protected function getConfigFileLocation(): ?string
     {
-        $configFullPath = base_path().DIRECTORY_SEPARATOR.'.ignition';
+        $configFuath = base_path().DIRECTORY_SEPARATOR.'.ignition';
 
-        if (file_exists($configFullPath)) {
-            return $configFullPath;
+        if (file_exists($configFuath)) {
+            return $configFuath;
         }
 
-        $configFullPath = Arr::get($_SERVER, 'HOME', '').DIRECTORY_SEPARATOR.'.ignition';
+        $configFuath = Arr::get($_SERVER, 'HOME', '').DIRECTORY_SEPARATOR.'.ignition';
 
-        if (file_exists($configFullPath)) {
-            return $configFullPath;
+        if (file_exists($configFuath)) {
+            return $configFuath;
         }
 
         return null;

@@ -167,7 +167,7 @@
       margin: 0;
       padding: 25px 0 0 0;
       -premailer-width: 100%;
-      -premailer-cellpadding: 0;
+      -premailer-ceadding: 0;
       -premailer-cellspacing: 0;
     }
     
@@ -200,7 +200,7 @@
       margin: 0;
       padding: 24px;
       -premailer-width: 100%;
-      -premailer-cellpadding: 0;
+      -premailer-ceadding: 0;
       -premailer-cellspacing: 0;
       background-color: #F4F4F7;
       border: 2px dashed #CBCCCF;
@@ -237,7 +237,7 @@
       margin: 0;
       padding: 35px 0;
       -premailer-width: 100%;
-      -premailer-cellpadding: 0;
+      -premailer-ceadding: 0;
       -premailer-cellspacing: 0;
     }
     
@@ -246,7 +246,7 @@
       margin: 0;
       padding: 25px 0 0 0;
       -premailer-width: 100%;
-      -premailer-cellpadding: 0;
+      -premailer-ceadding: 0;
       -premailer-cellspacing: 0;
     }
     
@@ -298,7 +298,7 @@
       margin: 0;
       padding: 0;
       -premailer-width: 100%;
-      -premailer-cellpadding: 0;
+      -premailer-ceadding: 0;
       -premailer-cellspacing: 0;
       background-color: #F2F4F6;
     }
@@ -308,7 +308,7 @@
       margin: 0;
       padding: 0;
       -premailer-width: 100%;
-      -premailer-cellpadding: 0;
+      -premailer-ceadding: 0;
       -premailer-cellspacing: 0;
     }
     /* Masthead ----------------------- */
@@ -336,7 +336,7 @@
       margin: 0;
       padding: 0;
       -premailer-width: 100%;
-      -premailer-cellpadding: 0;
+      -premailer-ceadding: 0;
       -premailer-cellspacing: 0;
     }
     
@@ -345,7 +345,7 @@
       margin: 0 auto;
       padding: 0;
       -premailer-width: 570px;
-      -premailer-cellpadding: 0;
+      -premailer-ceadding: 0;
       -premailer-cellspacing: 0;
       background-color: #FFFFFF;
     }
@@ -355,7 +355,7 @@
       margin: 0 auto;
       padding: 0;
       -premailer-width: 570px;
-      -premailer-cellpadding: 0;
+      -premailer-ceadding: 0;
       -premailer-cellspacing: 0;
       text-align: center;
     }
@@ -369,7 +369,7 @@
       margin: 30px auto;
       padding: 0;
       -premailer-width: 100%;
-      -premailer-cellpadding: 0;
+      -premailer-ceadding: 0;
       -premailer-cellspacing: 0;
       text-align: center;
     }
@@ -438,10 +438,10 @@
   </head>
   <body>
     <span class="preheader">Thanks for trying out <?php echo e($orders[0]->product_name); ?>. We’ve pulled together some information and resources to help you get started.</span>
-    <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+    <table class="email-wrapper" width="100%" ceadding="0" cellspacing="0" role="presentation">
       <tr>
         <td align="center">
-          <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+          <table class="email-content" width="100%" ceadding="0" cellspacing="0" role="presentation">
             <tr>
               <td class="email-masthead">
                 <a href="https:// VSCHOLAR .in/" class="f-fallback email-masthead_name">
@@ -452,8 +452,8 @@
             </tr>
             <!-- Email Body -->
             <tr>
-              <td class="email-body" width="570" cellpadding="0" cellspacing="0">
-                <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
+              <td class="email-body" width="570" ceadding="0" cellspacing="0">
+                <table class="email-body_inner" align="center" width="570" ceadding="0" cellspacing="0" role="presentation">
                   <!-- Body content -->
                   <tr>
                     <td class="content-cell">
@@ -464,10 +464,10 @@
                        
                      
                         <p>You've purchased a <?php echo e($orders[0]->type); ?>. Please find details here.</p>
-                        <table class="attributes" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                        <table class="attributes" width="100%" ceadding="0" cellspacing="0" role="presentation">
                           <tr>
                             <td class="attributes_content">
-                              <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                              <table width="100%" ceadding="0" cellspacing="0" role="presentation">
                                 <tr>
                                   <td class="attributes_item">
                                     <span class="f-fallback">
@@ -500,7 +500,7 @@
             </tr>
             <tr>
               <td>
-                <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
+                <table class="email-footer" align="center" width="570" ceadding="0" cellspacing="0" role="presentation">
                   <tr>
                     <td class="content-cell" align="center">
                       <p class="f-fallback sub align-center">

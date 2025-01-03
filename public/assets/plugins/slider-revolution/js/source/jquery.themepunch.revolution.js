@@ -376,7 +376,7 @@
 
 		// Get Current Parallax Proc
 		revgetparallaxproc : function() {
-				return jQuery(this)[0].opt.scrollproc;				
+				return jQuery(this)[0].opt.scroroc;				
 		},
 
 		// ENABLE DEBUG MODE

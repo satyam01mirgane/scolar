@@ -2537,7 +2537,7 @@ class Calculation
             'functionCall' => [Financial\TreasuryBill::class, 'bondEquivalentYield'],
             'argumentCount' => '3',
         ],
-        'TBILLPRICE' => [
+        'TBIRICE' => [
             'category' => Category::CATEGORY_FINANCIAL,
             'functionCall' => [Financial\TreasuryBill::class, 'price'],
             'argumentCount' => '3',
@@ -3725,8 +3725,8 @@ class Calculation
             return self::wrapResult($formula);
         }
 
-        $pCellParent = ($cell !== null) ? $cell->getWorksheet() : null;
-        $wsTitle = ($pCellParent !== null) ? $pCellParent->getTitle() : "\x00Wrk";
+        $pCearent = ($cell !== null) ? $cell->getWorksheet() : null;
+        $wsTitle = ($pCearent !== null) ? $pCearent->getTitle() : "\x00Wrk";
         $wsCellReference = $wsTitle . '!' . $cellID;
 
         if (($cellID !== null) && ($this->getValueFromCache($wsCellReference, $cellValue))) {
@@ -4126,7 +4126,7 @@ class Calculation
 
         //    If we're using cell caching, then $pCell may well be flushed back to the cache (which detaches the parent worksheet),
         //        so we store the parent worksheet so that we can re-attach it when necessary
-        $pCellParent = ($cell !== null) ? $cell->getWorksheet() : null;
+        $pCearent = ($cell !== null) ? $cell->getWorksheet() : null;
 
         $regexpMatchString = '/^((?<string>' . self::CALCULATION_REGEXP_STRING .
                                 ')|(?<function>' . self::CALCULATION_REGEXP_FUNCTION .
@@ -4383,8 +4383,8 @@ class Calculation
                                 return $this->raiseFormulaError('3D Range references are not yet supported');
                             }
                         }
-                    } elseif (strpos($val, '!') === false && $pCellParent !== null) {
-                        $worksheet = $pCellParent->getTitle();
+                    } elseif (strpos($val, '!') === false && $pCearent !== null) {
+                        $worksheet = $pCearent->getTitle();
                         $val = "'{$worksheet}'!{$val}";
                     }
                     // unescape any apostrophes or double quotes in worksheet name
@@ -4456,9 +4456,9 @@ class Calculation
                                 $rangeWS2 = $rangeWS1;
                             }
 
-                            $refSheet = $pCellParent;
-                            if ($pCellParent !== null && $rangeSheetRef !== '' && $rangeSheetRef !== $pCellParent->getTitle()) {
-                                $refSheet = $pCellParent->getParentOrThrow()->getSheetByName($rangeSheetRef);
+                            $refSheet = $pCearent;
+                            if ($pCearent !== null && $rangeSheetRef !== '' && $rangeSheetRef !== $pCearent->getTitle()) {
+                                $refSheet = $pCearent->getParentOrThrow()->getSheetByName($rangeSheetRef);
                             }
 
                             if (ctype_digit($val) && $val <= 1048576) {
@@ -4497,8 +4497,8 @@ class Calculation
                         // unescape any apostrophes or double quotes in worksheet name
                         $val = str_replace(["''", '""'], ["'", '"'], $val);
                         $column = 'A';
-                        if (($testPrevOp !== null && $testPrevOp['value'] === ':') && $pCellParent !== null) {
-                            $column = $pCellParent->getHighestDataColumn($val);
+                        if (($testPrevOp !== null && $testPrevOp['value'] === ':') && $pCearent !== null) {
+                            $column = $pCearent->getHighestDataColumn($val);
                         }
                         $val = "{$rowRangeReference[2]}{$column}{$rowRangeReference[7]}";
                         $stackItemReference = $val;
@@ -4511,8 +4511,8 @@ class Calculation
                         // unescape any apostrophes or double quotes in worksheet name
                         $val = str_replace(["''", '""'], ["'", '"'], $val);
                         $row = '1';
-                        if (($testPrevOp !== null && $testPrevOp['value'] === ':') && $pCellParent !== null) {
-                            $row = $pCellParent->getHighestDataRow($val);
+                        if (($testPrevOp !== null && $testPrevOp['value'] === ':') && $pCearent !== null) {
+                            $row = $pCearent->getHighestDataRow($val);
                         }
                         $val = "{$val}{$row}";
                         $stackItemReference = $val;
@@ -4653,7 +4653,7 @@ class Calculation
         //    If we're using cell caching, then $pCell may well be flushed back to the cache (which detaches the parent cell collection),
         //        so we store the parent cell collection so that we can re-attach it when necessary
         $pCellWorksheet = ($cell !== null) ? $cell->getWorksheet() : null;
-        $pCellParent = ($cell !== null) ? $cell->getParent() : null;
+        $pCearent = ($cell !== null) ? $cell->getParent() : null;
         $stack = new Stack($this->branchPruner);
 
         // Stores branches that have been pruned
@@ -4854,7 +4854,7 @@ class Calculation
                                 break;
                             }
                             $cellRef = Coordinate::stringFromColumnIndex(min($oCol) + 1) . min($oRow) . ':' . Coordinate::stringFromColumnIndex(max($oCol) + 1) . max($oRow);
-                            if ($pCellParent !== null && $this->spreadsheet !== null) {
+                            if ($pCearent !== null && $this->spreadsheet !== null) {
                                 $cellValue = $this->extractCellRange($cellRef, $this->spreadsheet->getSheetByName($sheet1), false);
                             } else {
                                 return $this->raiseFormulaError('Unable to access Cell Reference');
@@ -4997,7 +4997,7 @@ class Calculation
                             }
                             $matches[2] = trim($matches[2], "\"'");
                             $this->debugLog->writeDebugLog('Evaluating Cell Range %s in worksheet %s', $cellRef, $matches[2]);
-                            if ($pCellParent !== null && $this->spreadsheet !== null) {
+                            if ($pCearent !== null && $this->spreadsheet !== null) {
                                 $cellValue = $this->extractCellRange($cellRef, $this->spreadsheet->getSheetByName($matches[2]), false);
                             } else {
                                 return $this->raiseFormulaError('Unable to access Cell Reference');
@@ -5005,7 +5005,7 @@ class Calculation
                             $this->debugLog->writeDebugLog('Evaluation Result for cells %s in worksheet %s is %s', $cellRef, $matches[2], $this->showTypeDetails($cellValue));
                         } else {
                             $this->debugLog->writeDebugLog('Evaluating Cell Range %s in current worksheet', $cellRef);
-                            if ($pCellParent !== null) {
+                            if ($pCearent !== null) {
                                 $cellValue = $this->extractCellRange($cellRef, $pCellWorksheet, false);
                             } else {
                                 return $this->raiseFormulaError('Unable to access Cell Reference');
@@ -5026,11 +5026,11 @@ class Calculation
                                 return $this->raiseFormulaError('Unable to access External Workbook');
                             }
                             $this->debugLog->writeDebugLog('Evaluating Cell %s in worksheet %s', $cellRef, $matches[2]);
-                            if ($pCellParent !== null && $this->spreadsheet !== null) {
+                            if ($pCearent !== null && $this->spreadsheet !== null) {
                                 $cellSheet = $this->spreadsheet->getSheetByName($matches[2]);
                                 if ($cellSheet && $cellSheet->cellExists($cellRef)) {
                                     $cellValue = $this->extractCellRange($cellRef, $this->spreadsheet->getSheetByName($matches[2]), false);
-                                    $cell->attach($pCellParent);
+                                    $cell->attach($pCearent);
                                 } else {
                                     $cellRef = ($cellSheet !== null) ? "'{$matches[2]}'!{$cellRef}" : $cellRef;
                                     $cellValue = ($cellSheet !== null) ? null : Information\ExcelError::REF();
@@ -5041,9 +5041,9 @@ class Calculation
                             $this->debugLog->writeDebugLog('Evaluation Result for cell %s in worksheet %s is %s', $cellRef, $matches[2], $this->showTypeDetails($cellValue));
                         } else {
                             $this->debugLog->writeDebugLog('Evaluating Cell %s in current worksheet', $cellRef);
-                            if ($pCellParent !== null && $pCellParent->has($cellRef)) {
+                            if ($pCearent !== null && $pCearent->has($cellRef)) {
                                 $cellValue = $this->extractCellRange($cellRef, $pCellWorksheet, false);
-                                $cell->attach($pCellParent);
+                                $cell->attach($pCearent);
                             } else {
                                 $cellValue = null;
                             }
@@ -5058,8 +5058,8 @@ class Calculation
                 }
             } elseif (preg_match('/^' . self::CALCULATION_REGEXP_FUNCTION . '$/miu', $token ?? '', $matches)) {
                 // if the token is a function, pop arguments off the stack, hand them to the function, and push the result back on
-                if ($cell !== null && $pCellParent !== null) {
-                    $cell->attach($pCellParent);
+                if ($cell !== null && $pCearent !== null) {
+                    $cell->attach($pCearent);
                 }
 
                 $functionName = $matches[1];

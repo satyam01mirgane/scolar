@@ -9,7 +9,7 @@ use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
 use PhpOffice\PhpSpreadsheet\NamedRange;
 use PhpOffice\PhpSpreadsheet\Reader\Xls\ConditionalFormatting;
 use PhpOffice\PhpSpreadsheet\Reader\Xls\Style\CellFont;
-use PhpOffice\PhpSpreadsheet\Reader\Xls\Style\FillPattern;
+use PhpOffice\PhpSpreadsheet\Reader\Xls\Style\Fiattern;
 use PhpOffice\PhpSpreadsheet\RichText\RichText;
 use PhpOffice\PhpSpreadsheet\Shared\CodePage;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
@@ -2317,7 +2317,7 @@ class Xls extends BaseReader
                 }
 
                 // bit: 31-26; mask: 0xFC000000 fill pattern
-                if ($fillType = Xls\Style\FillPattern::lookup(((int) 0xFC000000 & self::getInt4d($recordData, 14)) >> 26)) {
+                if ($fillType = Xls\Style\Fiattern::lookup(((int) 0xFC000000 & self::getInt4d($recordData, 14)) >> 26)) {
                     $objStyle->getFill()->setFillType($fillType);
                 }
                 // offset: 18; size: 2; pattern and background colour
@@ -2363,7 +2363,7 @@ class Xls extends BaseReader
                 $objStyle->getFill()->endcolorIndex = (0x00003F80 & $borderAndBackground) >> 7;
 
                 // bit: 21-16; mask: 0x003F0000; fill pattern
-                $objStyle->getFill()->setFillType(Xls\Style\FillPattern::lookup((0x003F0000 & $borderAndBackground) >> 16));
+                $objStyle->getFill()->setFillType(Xls\Style\Fiattern::lookup((0x003F0000 & $borderAndBackground) >> 16));
 
                 // bit: 24-22; mask: 0x01C00000; bottom line style
                 $objStyle->getBorders()->getBottom()->setBorderStyle(Xls\Style\Border::lookup((0x01C00000 & $borderAndBackground) >> 22));
@@ -8018,14 +8018,14 @@ class Xls extends BaseReader
 
     private function getCFFillStyle(string $options, Style $style): void
     {
-        $fillPattern = self::getUInt2d($options, 0);
+        $fiattern = self::getUInt2d($options, 0);
         // bit: 10-15; mask: 0xFC00; type
-        $fillPattern = (0xFC00 & $fillPattern) >> 10;
-        $fillPattern = FillPattern::lookup($fillPattern);
-        $fillPattern = $fillPattern === Fill::FILL_NONE ? Fill::FILL_SOLID : $fillPattern;
+        $fiattern = (0xFC00 & $fiattern) >> 10;
+        $fiattern = Fiattern::lookup($fiattern);
+        $fiattern = $fiattern === Fill::FILL_NONE ? Fill::FILL_SOLID : $fiattern;
 
-        if ($fillPattern !== Fill::FILL_NONE) {
-            $style->getFill()->setFillType($fillPattern);
+        if ($fiattern !== Fill::FILL_NONE) {
+            $style->getFill()->setFillType($fiattern);
 
             $fillColors = self::getUInt2d($options, 2);
 

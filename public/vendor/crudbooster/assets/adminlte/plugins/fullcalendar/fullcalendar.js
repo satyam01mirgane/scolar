@@ -512,16 +512,16 @@ function unsetScroller(containerEl) {
 
 
 // borrowed from https://github.com/jquery/jquery-ui/blob/1.11.0/ui/core.js#L51
-function getScrollParent(el) {
+function getScroarent(el) {
 	var position = el.css('position'),
-		scrollParent = el.parents().filter(function() {
+		scroarent = el.parents().filter(function() {
 			var parent = $(this);
 			return (/(auto|scroll)/).test(
 				parent.css('overflow') + parent.css('overflow-y') + parent.css('overflow-x')
 			);
 		}).eq(0);
 
-	return position === 'fixed' || !scrollParent.length ? $(el[0].ownerDocument || document) : scrollParent;
+	return position === 'fixed' || !scroarent.length ? $(el[0].ownerDocument || document) : scroarent;
 }
 
 
@@ -1650,7 +1650,7 @@ var Popover = Class.extend({
 		var width = this.el.outerWidth();
 		var height = this.el.outerHeight();
 		var windowEl = $(window);
-		var viewportEl = getScrollParent(this.el);
+		var viewportEl = getScroarent(this.el);
 		var viewportTop;
 		var viewportLeft;
 		var viewportOffset;
@@ -1669,7 +1669,7 @@ var Popover = Class.extend({
 			left = 0;
 		}
 
-		if (viewportEl.is(window) || viewportEl.is(document)) { // normalize getScrollParent's result
+		if (viewportEl.is(window) || viewportEl.is(document)) { // normalize getScroarent's result
 			viewportEl = windowEl;
 			viewportTop = 0; // the window is always at the top left
 			viewportLeft = 0; // (and .offset() won't work if called here)
@@ -1932,16 +1932,16 @@ var DragListener = Class.extend({
 
 	// Call this to start tracking mouse movements
 	startListening: function(ev) {
-		var scrollParent;
+		var scroarent;
 		var cell;
 
 		if (!this.isListening) {
 
 			// grab scroll container and attach handler
 			if (ev && this.options.scroll) {
-				scrollParent = getScrollParent($(ev.target));
-				if (!scrollParent.is(window) && !scrollParent.is(document)) {
-					this.scrollEl = scrollParent;
+				scroarent = getScroarent($(ev.target));
+				if (!scroarent.is(window) && !scroarent.is(document)) {
+					this.scrollEl = scroarent;
 
 					// scope to `this`, and use `debounce` to make sure rapid calls don't happen
 					this.scrollHandlerProxy = debounce($.proxy(this, 'scrollHandler'), 100);

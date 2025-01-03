@@ -102,10 +102,10 @@ final class Clover
                 $xmlClass->setAttribute('name', $className);
                 $xmlClass->setAttribute('namespace', $namespace);
 
-                if (!empty($class['package']['fullPackage'])) {
+                if (!empty($class['package']['fuackage'])) {
                     $xmlClass->setAttribute(
-                        'fullPackage',
-                        $class['package']['fullPackage']
+                        'fuackage',
+                        $class['package']['fuackage']
                     );
                 }
 

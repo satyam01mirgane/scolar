@@ -1224,7 +1224,7 @@ class Financial
     }
 
     /**
-     * TBILLPRICE.
+     * TBIRICE.
      *
      * Returns the price per $100 face value for a Treasury bill.
      *
@@ -1241,7 +1241,7 @@ class Financial
      *
      * @return float|string Result, or a string containing an error
      */
-    public static function TBILLPRICE($settlement, $maturity, $discount)
+    public static function TBIRICE($settlement, $maturity, $discount)
     {
         return TreasuryBill::price($settlement, $maturity, $discount);
     }

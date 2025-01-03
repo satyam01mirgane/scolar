@@ -10,7 +10,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     * Since december 2016 all mobile phone numbers in brazil begin with 9 and landlines 2, 3 or 4.
     * @link http://www.anatel.gov.br/Portal/exibirPortalPaginaEspecial.do?org.apache.struts.taglib.html.TOKEN=9594e1d11fbc996d52bda44e608bb744&codItemCanal=1794&pastaSelecionada=2984
     */
-    protected static $cellphoneFormats = array('9####-####');
+    protected static $cehoneFormats = array('9####-####');
 
     /**
      * Generates a 2-digit area code not composed by zeroes.
@@ -32,13 +32,13 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     }
 
     /**
-     * Generates a 9-digit cellphone number without formatting characters.
+     * Generates a 9-digit cehone number without formatting characters.
      * @param bool $formatted [def: true] If it should return a formatted number or not.
      * @return string
      */
-    public static function cellphone($formatted = true)
+    public static function cehone($formatted = true)
     {
-        $number = static::numerify(static::randomElement(static::$cellphoneFormats));
+        $number = static::numerify(static::randomElement(static::$cehoneFormats));
 
         if (!$formatted) {
             $number = strtr($number, array('-' => ''));
@@ -64,15 +64,15 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     }
 
     /**
-     * Randomizes between cellphone and landline numbers.
+     * Randomizes between cehone and landline numbers.
      * @param bool $formatted [def: true] If it should return a formatted number or not.
      * @return mixed
      */
     public static function phone($formatted = true)
     {
         $options = static::randomElement(array(
-            array('cellphone', false),
-            array('cellphone', true),
+            array('cehone', false),
+            array('cehone', true),
             array('landline', null),
         ));
 
@@ -81,28 +81,28 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
 
     /**
      * Generates a complete phone number.
-     * @param string $type      [def: landline] One of "landline" or "cellphone". Defaults to "landline" on invalid values.
+     * @param string $type      [def: landline] One of "landline" or "cehone". Defaults to "landline" on invalid values.
      * @param bool   $formatted [def: true] If the number should be formatted or not.
      * @return string
      */
     protected static function anyPhoneNumber($type, $formatted = true)
     {
         $area   = static::areaCode();
-        $number = ($type == 'cellphone')?
-            static::cellphone($formatted) :
+        $number = ($type == 'cehone')?
+            static::cehone($formatted) :
             static::landline($formatted);
 
         return $formatted? "($area) $number" : $area.$number;
     }
 
     /**
-     * Concatenates {@link areaCode} and {@link cellphone} into a national cellphone number.
+     * Concatenates {@link areaCode} and {@link cehone} into a national cehone number.
      * @param bool $formatted [def: true] If it should return a formatted number or not.
      * @return string
      */
-    public static function cellphoneNumber($formatted = true)
+    public static function cehoneNumber($formatted = true)
     {
-        return static::anyPhoneNumber('cellphone', $formatted);
+        return static::anyPhoneNumber('cehone', $formatted);
     }
 
     /**
@@ -116,22 +116,22 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     }
 
     /**
-     * Randomizes between complete cellphone and landline numbers.
+     * Randomizes between complete cehone and landline numbers.
      * @return mixed
      */
     public function phoneNumber()
     {
-        $method = static::randomElement(array('cellphoneNumber', 'landlineNumber'));
+        $method = static::randomElement(array('cehoneNumber', 'landlineNumber'));
         return call_user_func("static::$method", true);
     }
 
     /**
-     * Randomizes between complete cellphone and landline numbers, cleared from formatting symbols.
+     * Randomizes between complete cehone and landline numbers, cleared from formatting symbols.
      * @return mixed
      */
     public static function phoneNumberCleared()
     {
-        $method = static::randomElement(array('cellphoneNumber', 'landlineNumber'));
+        $method = static::randomElement(array('cehoneNumber', 'landlineNumber'));
         return call_user_func("static::$method", false);
     }
 }

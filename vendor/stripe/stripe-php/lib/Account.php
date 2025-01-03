@@ -364,7 +364,7 @@ class Account extends ApiResource
      *
      * @return \Stripe\Collection<\Stripe\Person> the list of persons
      */
-    public static function allPersons($id, $params = null, $opts = null)
+    public static function aersons($id, $params = null, $opts = null)
     {
         return self::_allNestedResources($id, static::PATH_PERSONS, $params, $opts);
     }

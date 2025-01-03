@@ -46,7 +46,7 @@ class AttributeTranslator
             ],
             'bgcolor' => 'background-color: %s;',
             'border' => '!set_table_border',
-            'cellpadding' => '!set_table_cellpadding', //'border-spacing: %0.2F; border-collapse: separate;',
+            'ceadding' => '!set_table_ceadding', //'border-spacing: %0.2F; border-collapse: separate;',
             'cellspacing' => '!set_table_cellspacing',
             'frame' => [
                 'void' => 'border-style: none;',
@@ -357,7 +357,7 @@ class AttributeTranslator
      *
      * @return null
      */
-    protected static function _set_table_cellpadding(\DOMElement $node, $value)
+    protected static function _set_table_ceadding(\DOMElement $node, $value)
     {
         $cell_list = self::get_cell_list($node);
 

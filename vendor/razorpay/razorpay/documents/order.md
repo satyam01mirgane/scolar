@@ -265,8 +265,8 @@ $api->order->create(array(
                 "width" => "1700", 
                 "height" => "1700"
             ), 
-            "image_url" => "https://unsplash.com/s/photos/new-wallpaper", 
-            "product_url" => "https://unsplash.com/s/photos/new-wallpaper", 
+            "image_url" => "https://unsplash.com/s/photos/new-waaper", 
+            "product_url" => "https://unsplash.com/s/photos/new-waaper", 
             "notes" => array())), 
             "line_items_total" => "1200", 
             "shipping_fee" => 100, 

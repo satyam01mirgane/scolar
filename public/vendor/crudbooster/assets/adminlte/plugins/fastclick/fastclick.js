@@ -340,19 +340,19 @@
 	 *
 	 * @param {EventTarget|Element} targetElement
 	 */
-	FastClick.prototype.updateScrollParent = function(targetElement) {
-		var scrollParent, parentElement;
+	FastClick.prototype.updateScroarent = function(targetElement) {
+		var scroarent, parentElement;
 
-		scrollParent = targetElement.fastClickScrollParent;
+		scroarent = targetElement.fastClickScroarent;
 
 		// Attempt to discover whether the target element is contained within a scrollable layer. Re-check if the
 		// target element was moved to another parent.
-		if (!scrollParent || !scrollParent.contains(targetElement)) {
+		if (!scroarent || !scroarent.contains(targetElement)) {
 			parentElement = targetElement;
 			do {
 				if (parentElement.scrollHeight > parentElement.offsetHeight) {
-					scrollParent = parentElement;
-					targetElement.fastClickScrollParent = parentElement;
+					scroarent = parentElement;
+					targetElement.fastClickScroarent = parentElement;
 					break;
 				}
 
@@ -361,8 +361,8 @@
 		}
 
 		// Always update the scroll top tracker if possible.
-		if (scrollParent) {
-			scrollParent.fastClickLastScrollTop = scrollParent.scrollTop;
+		if (scroarent) {
+			scroarent.fastClickLastScrollTop = scroarent.scrollTop;
 		}
 	};
 
@@ -430,7 +430,7 @@
 				// then the event.target of the last 'touchend' event will be the element that was under the user's finger
 				// when the fling scroll was started, causing FastClick to send a click event to that layer - unless a check
 				// is made to ensure that a parent layer was not scrolled before sending a synthetic click (issue #42).
-				this.updateScrollParent(targetElement);
+				this.updateScroarent(targetElement);
 			}
 		}
 
@@ -519,7 +519,7 @@
 	 * @returns {boolean}
 	 */
 	FastClick.prototype.onTouchEnd = function(event) {
-		var forElement, trackingClickStart, targetTagName, scrollParent, touch, targetElement = this.targetElement;
+		var forElement, trackingClickStart, targetTagName, scroarent, touch, targetElement = this.targetElement;
 
 		if (!this.trackingClick) {
 			return true;
@@ -553,7 +553,7 @@
 
 			// In certain cases arguments of elementFromPoint can be negative, so prevent setting targetElement to null
 			targetElement = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset) || targetElement;
-			targetElement.fastClickScrollParent = this.targetElement.fastClickScrollParent;
+			targetElement.fastClickScroarent = this.targetElement.fastClickScroarent;
 		}
 
 		targetTagName = targetElement.tagName.toLowerCase();
@@ -593,8 +593,8 @@
 
 			// Don't send a synthetic click event if the target element is contained within a parent layer that was scrolled
 			// and this tap is being used to stop the scrolling (usually initiated by a fling - issue #42).
-			scrollParent = targetElement.fastClickScrollParent;
-			if (scrollParent && scrollParent.fastClickLastScrollTop !== scrollParent.scrollTop) {
+			scroarent = targetElement.fastClickScroarent;
+			if (scroarent && scroarent.fastClickLastScrollTop !== scroarent.scrollTop) {
 				return true;
 			}
 		}

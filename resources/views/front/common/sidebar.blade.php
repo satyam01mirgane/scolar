@@ -1,17 +1,16 @@
-<aside class="main-sidebar elevation-2" style="background-color: #1E3A8A; width: 250px; position: fixed; top: 0; left: 0; bottom: 0; transition: all 0.3s ease;">
+<aside class="main-sidebar elevation-2" style="background-color: #1E3A8A; position: fixed; top: 0; left: 0; bottom: 0; transition: all 0.3s ease;">
     <!-- Brand Logo -->
     <a href="{{url('/')}}" class="brand-link" style="display: flex; align-items: center; padding: 1.5rem; text-decoration: none; border-bottom: 1px solid #374151;">
         <img src="{{asset('assets/images/logo dashboard.jpg')}}" style="height: 35px; width: auto;" alt="Logo">
     </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar" style="padding: 1rem 0; height: calc(100% - 70px); overflow-y: auto;">
-        <!-- Sidebar Menu -->
+    <!-- Sidebar Content -->
+    <div class="sidebar-content" style="padding: 1rem 0; height: calc(100% - 70px); overflow-y: auto;">
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" style="list-style: none; padding: 0;">
                 <!-- Dashboard -->
                 <li class="nav-item" style="margin-bottom: 0.5rem;">
-                    <a href="{{url('dashboard')}}" class="nav-link {{$menu1}}" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; {{ $menu1 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : '' }}" onmouseover="this.style.backgroundColor='#3B82F6'" onmouseout="this.style.backgroundColor='{{ $menu1 == 'active' ? '#2563EB' : 'transparent' }}'; this.style.color='{{ $menu1 == 'active' ? '#FFFFFF' : '#D1D5DB' }}';">
+                    <a href="{{url('dashboard')}}" class="nav-link {{$menu1}}" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; {{ $menu1 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : '' }}">
                         <i class="fas fa-tachometer-alt" style="margin-right: 0.75rem; {{ $menu1 == 'active' ? 'color: #FFFFFF;' : 'color: #D1D5DB;' }}"></i>
                         <p style="margin: 0; font-size: 0.875rem; font-weight: 500; {{ $menu1 == 'active' ? 'color: #FFFFFF;' : '' }}">Dashboard</p>
                     </a>
@@ -19,7 +18,7 @@
 
                 <!-- Scheduled Workshops -->
                 <li class="nav-item" style="margin-bottom: 0.5rem;">
-                    <a href="{{url('scheduled-course')}}" class="nav-link {{$menu7}}" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; {{ $menu7 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : '' }}" onmouseover="this.style.backgroundColor='#3B82F6'" onmouseout="this.style.backgroundColor='{{ $menu7 == 'active' ? '#2563EB' : 'transparent' }}'; this.style.color='{{ $menu7 == 'active' ? '#FFFFFF' : '#D1D5DB' }}';">
+                    <a href="{{url('scheduled-course')}}" class="nav-link {{$menu7}}" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; {{ $menu7 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : '' }}">
                         <i class="far fa-image" style="margin-right: 0.75rem; {{ $menu7 == 'active' ? 'color: #FFFFFF;' : 'color: #D1D5DB;' }}"></i>
                         <p style="margin: 0; font-size: 0.875rem; font-weight: 500; {{ $menu7 == 'active' ? 'color: #FFFFFF;' : '' }}">Scheduled Masterclass</p>
                     </a>
@@ -27,7 +26,7 @@
 
                 <!-- Certificate & Feedback -->
                 <li class="nav-item" style="margin-bottom: 0.5rem;">
-                    <a href="{{url('certificate-feedback')}}" class="nav-link {{$menu5}}" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; {{ $menu5 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : '' }}" onmouseover="this.style.backgroundColor='#3B82F6'" onmouseout="this.style.backgroundColor='{{ $menu5 == 'active' ? '#2563EB' : 'transparent' }}'; this.style.color='{{ $menu5 == 'active' ? '#FFFFFF' : '#D1D5DB' }}';">
+                    <a href="{{url('certificate-feedback')}}" class="nav-link {{$menu5}}" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; {{ $menu5 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : '' }}">
                         <i class="fas fa-certificate" style="margin-right: 0.75rem; {{ $menu5 == 'active' ? 'color: #FFFFFF;' : 'color: #D1D5DB;' }}"></i>
                         <p style="margin: 0; font-size: 0.875rem; font-weight: 500; {{ $menu5 == 'active' ? 'color: #FFFFFF;' : '' }}">Certificate & Feedback</p>
                     </a>
@@ -35,7 +34,7 @@
 
                 <!-- Change Password -->
                 <li class="nav-item" style="margin-bottom: 0.5rem;">
-                    <a href="{{url('change-password')}}" class="nav-link {{$menu2}}" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; {{ $menu2 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : '' }}" onmouseover="this.style.backgroundColor='#3B82F6'" onmouseout="this.style.backgroundColor='{{ $menu2 == 'active' ? '#2563EB' : 'transparent' }}'; this.style.color='{{ $menu2 == 'active' ? '#FFFFFF' : '#D1D5DB' }}';">
+                    <a href="{{url('change-password')}}" class="nav-link {{$menu2}}" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; {{ $menu2 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : '' }}">
                         <i class="far fa-calendar-alt" style="margin-right: 0.75rem; {{ $menu2 == 'active' ? 'color: #FFFFFF;' : 'color: #D1D5DB;' }}"></i>
                         <p style="margin: 0; font-size: 0.875rem; font-weight: 500; {{ $menu2 == 'active' ? 'color: #FFFFFF;' : '' }}">Change Password</p>
                     </a>
@@ -51,49 +50,32 @@
             </ul>
         </nav>
     </div>
+
+    <!-- Floating Sidebar Button -->
+    <button class="floating-btn" style="display: none; position: fixed; bottom: 2rem; left: 1.5rem; background-color: #2563EB; color: white; border: none; border-radius: 50%; padding: 1rem; font-size: 1.5rem; cursor: pointer; z-index: 1000;">
+        <i class="fas fa-bars"></i>
+    </button>
 </aside>
 
 <style>
-    .main-sidebar::-webkit-scrollbar {
-        width: 4px;
+    .main-sidebar {
+        display: none; /* Hide sidebar on mobile/tablet */
     }
 
-    .main-sidebar::-webkit-scrollbar-track {
-        background: transparent;
+    .floating-btn {
+        display: block; /* Floating button is visible by default */
     }
-
-    .main-sidebar::-webkit-scrollbar-thumb {
-        background: #4B5563;
-        border-radius: 2px;
-    }
-
-    .main-sidebar::-webkit-scrollbar-thumb:hover {
-        background: #374151;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateX(-10px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
-
-    .nav-item {
-        animation: fadeIn 0.3s ease-out forwards;
-    }
-
-    .nav-item:nth-child(1) { animation-delay: 0.1s; }
-    .nav-item:nth-child(2) { animation-delay: 0.2s; }
-    .nav-item:nth-child(3) { animation-delay: 0.3s; }
-    .nav-item:nth-child(4) { animation-delay: 0.4s; }
-    .nav-item:nth-child(5) { animation-delay: 0.5s; }
-    .nav-item:nth-child(6) { animation-delay: 0.6s; }
 
     /* Mobile and Tablet Responsiveness */
     @media (max-width: 768px) {
         .main-sidebar {
-            width: 60px;
+            width: 250px;
+            display: block; /* Show sidebar when toggled */
+            transition: transform 0.3s ease;
+            transform: translateX(-100%); /* Initially hidden */
         }
 
-        .sidebar {
+        .sidebar-content {
             padding: 1rem 0;
         }
 
@@ -128,12 +110,27 @@
 
     @media (max-width: 480px) {
         .main-sidebar {
-            width: 50px;
+            width: 60px;
         }
 
         .nav-link {
             font-size: 0.65rem;
             padding: 0.5rem 1rem;
         }
+
+        .floating-btn {
+            left: 1rem; /* Adjust positioning on smaller screens */
+        }
     }
 </style>
+
+<script>
+    document.querySelector('.floating-btn').addEventListener('click', function() {
+        var sidebar = document.querySelector('.main-sidebar');
+        if (sidebar.style.transform === 'translateX(0%)') {
+            sidebar.style.transform = 'translateX(-100%)';
+        } else {
+            sidebar.style.transform = 'translateX(0%)';
+        }
+    });
+</script>

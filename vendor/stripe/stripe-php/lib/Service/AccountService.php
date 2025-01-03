@@ -69,7 +69,7 @@ class AccountService extends \Stripe\Service\AbstractService
      *
      * @return \Stripe\Collection<\Stripe\Person>
      */
-    public function allPersons($parentId, $params = null, $opts = null)
+    public function aersons($parentId, $params = null, $opts = null)
     {
         return $this->requestCollection('get', $this->buildPath('/v1/accounts/%s/persons', $parentId), $params, $opts);
     }

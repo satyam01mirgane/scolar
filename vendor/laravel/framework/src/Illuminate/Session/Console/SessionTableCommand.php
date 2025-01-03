@@ -56,9 +56,9 @@ class SessionTableCommand extends Command
      */
     public function handle()
     {
-        $fullPath = $this->createBaseMigration();
+        $fuath = $this->createBaseMigration();
 
-        $this->files->put($fullPath, $this->files->get(__DIR__.'/stubs/database.stub'));
+        $this->files->put($fuath, $this->files->get(__DIR__.'/stubs/database.stub'));
 
         $this->info('Migration created successfully!');
 

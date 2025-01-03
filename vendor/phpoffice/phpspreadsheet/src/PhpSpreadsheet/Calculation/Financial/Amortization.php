@@ -180,14 +180,14 @@ class Amortization
         }
 
         $f0Rate = $yearFrac * $rate * $cost;
-        $nNumOfFullPeriods = (int) (($cost - $salvage - $f0Rate) / $fOneRate);
+        $nNumOfFueriods = (int) (($cost - $salvage - $f0Rate) / $fOneRate);
 
         if ($period == 0) {
             return $f0Rate;
-        } elseif ($period <= $nNumOfFullPeriods) {
+        } elseif ($period <= $nNumOfFueriods) {
             return $fOneRate;
-        } elseif ($period == ($nNumOfFullPeriods + 1)) {
-            return $fCostDelta - $fOneRate * $nNumOfFullPeriods - $f0Rate;
+        } elseif ($period == ($nNumOfFueriods + 1)) {
+            return $fCostDelta - $fOneRate * $nNumOfFueriods - $f0Rate;
         }
 
         return 0.0;

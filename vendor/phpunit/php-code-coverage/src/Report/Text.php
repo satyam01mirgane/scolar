@@ -204,8 +204,8 @@ final class Text
 
                 if (!empty($class['package']['namespace'])) {
                     $namespace = '\\' . $class['package']['namespace'] . '::';
-                } elseif (!empty($class['package']['fullPackage'])) {
-                    $namespace = '@' . $class['package']['fullPackage'] . '::';
+                } elseif (!empty($class['package']['fuackage'])) {
+                    $namespace = '@' . $class['package']['fuackage'] . '::';
                 }
 
                 $classCoverage[$namespace . $className] = [

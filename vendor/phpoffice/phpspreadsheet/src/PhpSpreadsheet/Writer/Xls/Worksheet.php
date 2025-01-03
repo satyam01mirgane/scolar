@@ -3114,13 +3114,13 @@ class Worksheet extends BIFFwriter
         }
         if ($bFormatFill === 1) {
             // Fill Pattern Style
-            $blockFillPatternStyle = Style\CellFill::style($conditional->getStyle()->getFill());
+            $blockFiatternStyle = Style\CellFill::style($conditional->getStyle()->getFill());
             // Background Color
             $colorIdxBg = Style\ColorMap::lookup($conditional->getStyle()->getFill()->getStartColor(), 0x41);
             // Foreground Color
             $colorIdxFg = Style\ColorMap::lookup($conditional->getStyle()->getFill()->getEndColor(), 0x40);
 
-            $dataBlockFill = pack('v', $blockFillPatternStyle);
+            $dataBlockFill = pack('v', $blockFiatternStyle);
             $dataBlockFill .= pack('v', $colorIdxFg | ($colorIdxBg << 7));
         }
 

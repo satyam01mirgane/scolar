@@ -939,7 +939,7 @@ Jan-10-2006
           <xsd:documentation>Indicates a Windows RC RTEXT control.</xsd:documentation>
         </xsd:annotation>
       </xsd:enumeration>
-      <xsd:enumeration value="scrollpane">
+      <xsd:enumeration value="scroane">
         <xsd:annotation>
           <xsd:documentation>Indicates a user navigable container used to show a portion of a document.</xsd:documentation>
         </xsd:annotation>

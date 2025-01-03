@@ -352,7 +352,7 @@ var _isDuffSafari = function ()
  * @param  {int} n Column number
  * @return {string} Column letter(s) name
  */
-function createCellPos( n ){
+function createCeos( n ){
 	var ordA = 'A'.charCodeAt(0);
 	var ordZ = 'Z'.charCodeAt(0);
 	var len = ordZ - ordA + 1;
@@ -1047,7 +1047,7 @@ DataTable.ext.buttons.excelHtml5 = {
 
 			for ( var i=0, ien=row.length ; i<ien ; i++ ) {
 				// Concat both the Cell Columns as a letter and the Row of the cell.
-				var cellId = createCellPos(i) + '' + currentRow;
+				var cellId = createCeos(i) + '' + currentRow;
 				var cell = null;
 
 				// For null, undefined of blank cell, continue so it doesn't create the _createNode
@@ -1152,7 +1152,7 @@ DataTable.ext.buttons.excelHtml5 = {
 
 			mergeCells[0].appendChild( _createNode( rels, 'mergeCell', {
 				attr: {
-					ref: 'A'+row+':'+createCellPos(colspan)+row
+					ref: 'A'+row+':'+createCeos(colspan)+row
 				}
 			} ) );
 			mergeCells.attr( 'count', parseFloat(mergeCells.attr( 'count' ))+1 );
@@ -1221,7 +1221,7 @@ DataTable.ext.buttons.excelHtml5 = {
 		if ( config.autoFilter ) {
 			$('mergeCells', rels).before( _createNode( rels, 'autoFilter', {
 				attr: {
-					ref: 'A'+dataStartRow+':'+createCellPos(data.header.length-1)+dataEndRow
+					ref: 'A'+dataStartRow+':'+createCeos(data.header.length-1)+dataEndRow
 				}
 			} ) );
 
@@ -1231,7 +1231,7 @@ DataTable.ext.buttons.excelHtml5 = {
 					localSheetId: '0',
 					hidden: 1
 				},
-				text: _sheetname(config)+'!$A$'+dataStartRow+':'+createCellPos(data.header.length-1)+dataEndRow
+				text: _sheetname(config)+'!$A$'+dataStartRow+':'+createCeos(data.header.length-1)+dataEndRow
 			} ) );
 		}
 

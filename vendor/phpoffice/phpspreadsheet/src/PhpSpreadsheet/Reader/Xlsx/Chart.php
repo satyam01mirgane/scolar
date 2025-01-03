@@ -168,7 +168,7 @@ class Chart
                                                 $sppr = $chartDetail->spPr->children($this->aNamespace);
                                                 if (isset($sppr->solidFill)) {
                                                     $axisColorArray = $this->readColor($sppr->solidFill);
-                                                    $xAxis->setFillParameters($axisColorArray['value'], $axisColorArray['alpha'], $axisColorArray['type']);
+                                                    $xAxis->setFiarameters($axisColorArray['value'], $axisColorArray['alpha'], $axisColorArray['type']);
                                                 }
                                                 if (isset($chartDetail->spPr->ln->noFill)) {
                                                     $xAxis->setNoFill(true);
@@ -241,7 +241,7 @@ class Chart
                                                 $sppr = $chartDetail->spPr->children($this->aNamespace);
                                                 if (isset($sppr->solidFill)) {
                                                     $axisColorArray = $this->readColor($sppr->solidFill);
-                                                    $whichAxis->setFillParameters($axisColorArray['value'], $axisColorArray['alpha'], $axisColorArray['type']);
+                                                    $whichAxis->setFiarameters($axisColorArray['value'], $axisColorArray['alpha'], $axisColorArray['type']);
                                                 }
                                                 if (isset($sppr->ln->noFill)) {
                                                     $whichAxis->setNoFill(true);
@@ -358,7 +358,7 @@ class Chart
                                     $plotArea->setNoFill(true);
                                 }
                                 if (!empty($gradientArray)) {
-                                    $plotArea->setGradientFillProperties($gradientArray, $gradientLin);
+                                    $plotArea->setGradientFiroperties($gradientArray, $gradientLin);
                                 }
                                 if (is_int($gapWidth)) {
                                     $plotArea->setGapWidth($gapWidth);

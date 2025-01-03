@@ -245,15 +245,15 @@ exports.subtractInnerElHeight = subtractInnerElHeight;
 /* Element Geom Utilities
 ----------------------------------------------------------------------------------------------------------------------*/
 // borrowed from https://github.com/jquery/jquery-ui/blob/1.11.0/ui/core.js#L51
-function getScrollParent(el) {
+function getScroarent(el) {
     var position = el.css('position');
-    var scrollParent = el.parents().filter(function () {
+    var scroarent = el.parents().filter(function () {
         var parent = $(this);
         return (/(auto|scroll)/).test(parent.css('overflow') + parent.css('overflow-y') + parent.css('overflow-x'));
     }).eq(0);
-    return position === 'fixed' || !scrollParent.length ? $(el[0].ownerDocument || document) : scrollParent;
+    return position === 'fixed' || !scroarent.length ? $(el[0].ownerDocument || document) : scroarent;
 }
-exports.getScrollParent = getScrollParent;
+exports.getScroarent = getScroarent;
 // Queries the outer bounding area of a jQuery element.
 // Returns a rectangle with absolute coordinates: left, right (exclusive), top, bottom (exclusive).
 // Origin is optional.
@@ -2026,7 +2026,7 @@ exports.getEvIsTouch = util_1.getEvIsTouch;
 exports.getEvX = util_1.getEvX;
 exports.getEvY = util_1.getEvY;
 exports.getRectCenter = util_1.getRectCenter;
-exports.getScrollParent = util_1.getScrollParent;
+exports.getScroarent = util_1.getScroarent;
 exports.hasOwnProp = util_1.hasOwnProp;
 exports.isArraysEqual = util_1.isArraysEqual;
 exports.isNativeDate = util_1.isNativeDate;
@@ -2507,7 +2507,7 @@ var GlobalEmitter = /** @class */ (function () {
         // attach a handler to get called when ANY scroll action happens on the page.
         // this was impossible to do with normal on/off because 'scroll' doesn't bubble.
         // http://stackoverflow.com/a/32954565/96342
-        window.addEventListener('scroll', this.handleScrollProxy = function (ev) {
+        window.addEventListener('scroll', this.handleScroroxy = function (ev) {
             _this.handleScroll($.Event(ev));
         }, true // useCapture
         );
@@ -2516,7 +2516,7 @@ var GlobalEmitter = /** @class */ (function () {
         this.stopListeningTo($(document));
         window.removeEventListener('touchmove', this.handleTouchMoveProxy, { passive: false } // use same options as addEventListener
         );
-        window.removeEventListener('scroll', this.handleScrollProxy, true // useCapture
+        window.removeEventListener('scroll', this.handleScroroxy, true // useCapture
         );
     };
     // Touch Handlers
@@ -6233,13 +6233,13 @@ var CoordCache = /** @class */ (function () {
     // Right now, only returns a rectangle if constrained by an overflow:scroll element.
     // Returns null if there are no elements
     CoordCache.prototype.queryBoundingRect = function () {
-        var scrollParentEl;
+        var scroarentEl;
         if (this.els.length > 0) {
-            scrollParentEl = util_1.getScrollParent(this.els.eq(0));
-            if (!scrollParentEl.is(document) &&
-                !scrollParentEl.is('html,body') // don't consider these bounding rects. solves issue 3615
+            scroarentEl = util_1.getScroarent(this.els.eq(0));
+            if (!scroarentEl.is(document) &&
+                !scroarentEl.is('html,body') // don't consider these bounding rects. solves issue 3615
             ) {
-                return util_1.getClientRect(scrollParentEl);
+                return util_1.getClientRect(scroarentEl);
             }
         }
         return null;
@@ -6315,7 +6315,7 @@ var DragListener = /** @class */ (function () {
             this.isDistanceSurpassed = false;
             this.originX = util_1.getEvX(ev);
             this.originY = util_1.getEvY(ev);
-            this.scrollEl = util_1.getScrollParent($(ev.target));
+            this.scrollEl = util_1.getScroarent($(ev.target));
             this.bindHandlers();
             this.initAutoScroll();
             this.handleInteractionStart(ev);
@@ -9714,7 +9714,7 @@ var Popover = /** @class */ (function () {
         var width = this.el.outerWidth();
         var height = this.el.outerHeight();
         var windowEl = $(window);
-        var viewportEl = util_1.getScrollParent(this.el);
+        var viewportEl = util_1.getScroarent(this.el);
         var viewportTop;
         var viewportLeft;
         var viewportOffset;
@@ -9731,7 +9731,7 @@ var Popover = /** @class */ (function () {
         else {
             left = 0;
         }
-        if (viewportEl.is(window) || viewportEl.is(document)) { // normalize getScrollParent's result
+        if (viewportEl.is(window) || viewportEl.is(document)) { // normalize getScroarent's result
             viewportEl = windowEl;
             viewportTop = 0; // the window is always at the top left
             viewportLeft = 0; // (and .offset() won't work if called here)

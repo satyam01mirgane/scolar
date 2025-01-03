@@ -116,7 +116,7 @@ class CoverageTest extends TestCase
       $subscription = new PlanTest();
       $subscription->setup();
       $subscription->testCreatePlan();
-      $subscription->testFetchAllPlans();
+      $subscription->testFetchAlans();
       $subscription->testFetchPlan();
     }
     
@@ -126,7 +126,7 @@ class CoverageTest extends TestCase
      * @covers \Razorpay\Api\QrCode::close
      * @uses \Razorpay\Api\ArrayableInterface
      * @covers \Razorpay\Api\QrCode::all
-     * @covers \Razorpay\Api\QrCode::fetchAllPayments
+     * @covers \Razorpay\Api\QrCode::fetchAayments
      */
     public function testQrCodeCoverage(){
       $qrCode = new QrCodeTest();
@@ -317,7 +317,7 @@ class CoverageTest extends TestCase
       $order = new PaymentTest();
       $order->setup();
       $order->testFetchPayment();
-      $order->testFetchAllPayment();
+      $order->testFetchAayment();
       $order->testUpdatePayment();
       $order->testFetchOrderPayment();
       $order->testFetchCardWithPaymentId();

@@ -25,7 +25,7 @@ class PumpStream implements StreamInterface
     private $size;
 
     /** @var int */
-    private $tellPos = 0;
+    private $teos = 0;
 
     /** @var array */
     private $metadata;
@@ -67,7 +67,7 @@ class PumpStream implements StreamInterface
 
     public function detach()
     {
-        $this->tellPos = false;
+        $this->teos = false;
         $this->source = null;
 
         return null;
@@ -80,7 +80,7 @@ class PumpStream implements StreamInterface
 
     public function tell()
     {
-        return $this->tellPos;
+        return $this->teos;
     }
 
     public function eof()
@@ -122,13 +122,13 @@ class PumpStream implements StreamInterface
     {
         $data = $this->buffer->read($length);
         $readLen = strlen($data);
-        $this->tellPos += $readLen;
+        $this->teos += $readLen;
         $remaining = $length - $readLen;
 
         if ($remaining) {
             $this->pump($remaining);
             $data .= $this->buffer->read($remaining);
-            $this->tellPos += strlen($data) - $readLen;
+            $this->teos += strlen($data) - $readLen;
         }
 
         return $data;

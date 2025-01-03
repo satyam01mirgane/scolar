@@ -56,7 +56,7 @@ class QrCode extends Entity
      * @param array $options
      * @return Entity|QrCode
      */
-    public function fetchAllPayments($options = array())
+    public function fetchAayments($options = array())
     {
         $relativeUrl = "payments/{$this->getEntityUrl()}{$this->id}/payments" ;
 

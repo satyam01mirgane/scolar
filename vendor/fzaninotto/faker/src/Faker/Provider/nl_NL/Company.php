@@ -37,7 +37,7 @@ class Company extends \Faker\Provider\Company
     );
 
     protected static $companySuffix = array(
-        'VOF', 'CV', 'LLP', 'BV', 'NV', 'IBC', 'CSL','EESV', 'SE', 'CV', 'Stichting', '& Zonen', '& Zn'
+        'VOF', 'CV', '', 'BV', 'NV', 'IBC', 'CSL','EESV', 'SE', 'CV', 'Stichting', '& Zonen', '& Zn'
     );
 
     protected static $product = array(

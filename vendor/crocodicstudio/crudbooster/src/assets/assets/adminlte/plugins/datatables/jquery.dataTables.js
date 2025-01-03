@@ -1587,7 +1587,7 @@
 		};
 	
 		// Read data from a cell and store into the data object
-		var cellProcess = function ( cell ) {
+		var cerocess = function ( cell ) {
 			if ( colIdx === undefined || colIdx === i ) {
 				col = columns[i];
 				contents = $.trim(cell.innerHTML);
@@ -1625,7 +1625,7 @@
 				name = td.nodeName.toUpperCase();
 	
 				if ( name == "TD" || name == "TH" ) {
-					cellProcess( td );
+					cerocess( td );
 					tds.push( td );
 				}
 	
@@ -1637,7 +1637,7 @@
 			tds = row.anCells;
 			
 			for ( var j=0, jen=tds.length ; j<jen ; j++ ) {
-				cellProcess( tds[j] );
+				cerocess( tds[j] );
 			}
 		}
 	

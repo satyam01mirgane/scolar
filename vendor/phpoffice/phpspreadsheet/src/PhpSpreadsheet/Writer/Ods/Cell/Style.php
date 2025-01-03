@@ -78,7 +78,7 @@ class Style
         }
     }
 
-    private function writeCellProperties(CellStyle $style): void
+    private function writeCeroperties(CellStyle $style): void
     {
         // Align
         $hAlign = $style->getAlignment()->getHorizontal();
@@ -248,7 +248,7 @@ class Style
         $this->writer->writeAttribute('style:parent-style-name', 'Default');
 
         // Alignment, fill colour, etc
-        $this->writeCellProperties($style);
+        $this->writeCeroperties($style);
 
         // style:text-properties
         $this->writeTextProperties($style);

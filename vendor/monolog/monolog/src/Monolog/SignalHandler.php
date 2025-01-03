@@ -42,14 +42,14 @@ class SignalHandler
 
     /**
      * @param  int|string $level           Level or level name
-     * @param  bool       $callPrevious
+     * @param  bool       $carevious
      * @param  bool       $restartSyscalls
      * @param  bool|null  $async
      * @return $this
      *
      * @phpstan-param Level|LevelName|LogLevel::* $level
      */
-    public function registerSignalHandler(int $signo, $level = LogLevel::CRITICAL, bool $callPrevious = true, bool $restartSyscalls = true, ?bool $async = true): self
+    public function registerSignalHandler(int $signo, $level = LogLevel::CRITICAL, bool $carevious = true, bool $restartSyscalls = true, ?bool $async = true): self
     {
         if (!extension_loaded('pcntl') || !function_exists('pcntl_signal')) {
             return $this;
@@ -57,7 +57,7 @@ class SignalHandler
 
         $level = Logger::toMonologLevel($level);
 
-        if ($callPrevious) {
+        if ($carevious) {
             $handler = pcntl_signal_get_handler($signo);
             $this->previousSignalHandler[$signo] = $handler;
         } else {

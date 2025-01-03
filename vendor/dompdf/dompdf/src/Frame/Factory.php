@@ -130,13 +130,13 @@ class Factory
             case "table-row-group":
             case "table-header-group":
             case "table-footer-group":
-                $positioner = "NullPositioner";
+                $positioner = "Nuositioner";
                 $decorator = "TableRowGroup";
                 $reflower = "TableRowGroup";
                 break;
 
             case "table-row":
-                $positioner = "NullPositioner";
+                $positioner = "Nuositioner";
                 $decorator = "TableRow";
                 $reflower = "TableRow";
                 break;
@@ -190,7 +190,7 @@ class Factory
                     return;
                 }
 
-                $positioner = "NullPositioner";
+                $positioner = "Nuositioner";
                 $decorator = "NullFrameDecorator";
                 $reflower = "NullFrameReflower";
                 break;

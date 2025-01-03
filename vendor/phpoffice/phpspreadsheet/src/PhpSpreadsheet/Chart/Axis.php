@@ -233,7 +233,7 @@ class Axis extends Properties
      * @param ?int $alpha
      * @param ?string $AlphaType
      */
-    public function setFillParameters($color, $alpha = null, $AlphaType = ChartColor::EXCEL_COLOR_TYPE_RGB): void
+    public function setFiarameters($color, $alpha = null, $AlphaType = ChartColor::EXCEL_COLOR_TYPE_RGB): void
     {
         $this->fillColor->setColorProperties($color, $alpha, $AlphaType);
     }
@@ -245,7 +245,7 @@ class Axis extends Properties
      *
      * @return string
      */
-    public function getFillProperty($property)
+    public function getFiroperty($property)
     {
         return (string) $this->fillColor->getColorProperty($property);
     }

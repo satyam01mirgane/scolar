@@ -228,7 +228,7 @@ class InstalledVersions
      * @param  string      $packageName
      * @return string|null If the package is being replaced or provided but is not really installed, null will be returned as install path. Packages of type metapackages also have a null install path.
      */
-    public static function getInstallPath($packageName)
+    public static function getInstaath($packageName)
     {
         foreach (self::getInstalled() as $installed) {
             if (!isset($installed['versions'][$packageName])) {

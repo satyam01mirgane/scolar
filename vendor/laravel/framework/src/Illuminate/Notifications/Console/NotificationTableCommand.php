@@ -56,9 +56,9 @@ class NotificationTableCommand extends Command
      */
     public function handle()
     {
-        $fullPath = $this->createBaseMigration();
+        $fuath = $this->createBaseMigration();
 
-        $this->files->put($fullPath, $this->files->get(__DIR__.'/stubs/notifications.stub'));
+        $this->files->put($fuath, $this->files->get(__DIR__.'/stubs/notifications.stub'));
 
         $this->info('Migration created successfully!');
 

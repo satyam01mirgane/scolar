@@ -142,12 +142,12 @@
             <p>Dear Consumer, the bill payment will reflect in the next 48 hours or in the next billing cycle, at your service provider's end.</p>
 
             <h4>Declaration:</h4>
-            <p>This is not an invoice but only a confirmation of the receipt of the amount paid against the service as described above. Subject to terms and conditions mentioned at VSCHOLAR LLP.</p>
+            <p>This is not an invoice but only a confirmation of the receipt of the amount paid against the service as described above. Subject to terms and conditions mentioned at VSCHOLAR .</p>
         </div>
 
         <div class="footer">
             <p>This is a computer-generated receipt and does not require a physical signature.</p>
-            <p>VSCHOLAR LLP | 61-C Rajouri Garden, New Delhi-110027 | GSTIN: 07AAXFV4215H1ZR | Tel: +91-9667576014</p>
+            <p>VSCHOLAR  | 61-C Rajouri Garden, New Delhi-110027 | GSTIN: 07AAXFV4215H1ZR | Tel: +91-9667576014</p>
         </div>
     </div>
 </body>

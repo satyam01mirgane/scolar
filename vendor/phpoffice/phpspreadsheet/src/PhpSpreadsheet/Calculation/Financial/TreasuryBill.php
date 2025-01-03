@@ -56,7 +56,7 @@ class TreasuryBill
     }
 
     /**
-     * TBILLPRICE.
+     * TBIRICE.
      *
      * Returns the price per $100 face value for a Treasury bill.
      *

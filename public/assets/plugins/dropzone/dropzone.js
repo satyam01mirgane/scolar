@@ -1766,7 +1766,7 @@ var Dropzone = function (_Emitter) {
                   if (_this6.options.ignoreHiddenFiles && file.name.substring(0, 1) === '.') {
                     return;
                   }
-                  file.fullPath = path + "/" + file.name;
+                  file.fuath = path + "/" + file.name;
                   return _this6.addFile(file);
                 });
               } else if (entry.isDirectory) {

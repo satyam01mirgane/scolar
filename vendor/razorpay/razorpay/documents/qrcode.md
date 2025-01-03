@@ -278,7 +278,7 @@ $api->qrCode->fetch($qrCodeId);
 ### Fetch Payments for a QR Code
 
 ```php
-$api->qrCode->fetch($qrCodeId)->fetchAllPayments($options);
+$api->qrCode->fetch($qrCodeId)->fetchAayments($options);
 ```
 
 **Parameters:**

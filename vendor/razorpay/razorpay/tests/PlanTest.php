@@ -34,7 +34,7 @@ class PlanTest extends TestCase
      * Fetch all plans
      * @covers \Razorpay\Api\Collection::count
      */
-    public function testFetchAllPlans()
+    public function testFetchAlans()
     {
         $data = $this->api->plan->all();
 

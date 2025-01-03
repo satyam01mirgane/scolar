@@ -44,7 +44,7 @@ $api->account->create(array(
 | phone*          | integer      | The sub-merchant's business phone number. The minimum length is 8 characters and the maximum length is 15.                       |
 | legal_business_name*      | string | The name of the sub-merchant's business. For example, Acme Corp. The minimum length is 4 characters and the maximum length is 200.          |
 | customer_facing_business_name | string | The sub-merchant billing label as it appears on the Razorpay Dashboard. The minimum length is 1 character and the maximum length is 255. |
-| business_type*         | string      | The type of business operated by the sub-merchant.Possible value is `proprietorship`, `partnership`, `private_limited`, `public_limited`, `llp`, `ngo`, `trust`, `society`, `not_yet_registered`, `huf` |
+| business_type*         | string      | The type of business operated by the sub-merchant.Possible value is `proprietorship`, `partnership`, `private_limited`, `public_limited`, ``, `ngo`, `trust`, `society`, `not_yet_registered`, `huf` |
 | reference_id         | string      |  Partner's external account reference id. The minimum length is 1 character and the maximum length is 512. |
 | profile         | object      | All keys listed [here](https://razorpay.com/docs/partners/route/linked-accounts/#create-linked-accounts-for-sub-merchants-and-others) are supported |         
 | legal_info         | object      | All keys listed [here](https://razorpay.com/docs/partners/route/linked-accounts/#create-linked-accounts-for-sub-merchants-and-others) are supported |

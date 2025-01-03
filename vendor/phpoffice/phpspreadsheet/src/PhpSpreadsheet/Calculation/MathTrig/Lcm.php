@@ -71,7 +71,7 @@ class Lcm
         }
 
         $returnValue = 1;
-        $allPoweredFactors = [];
+        $aoweredFactors = [];
         // Loop through arguments
         foreach ($arrayArgs as $value) {
             $myFactors = self::factors(floor($value));
@@ -80,24 +80,24 @@ class Lcm
             foreach ($myCountedFactors as $myCountedFactor => $myCountedPower) {
                 $myPoweredFactors[$myCountedFactor] = $myCountedFactor ** $myCountedPower;
             }
-            self::processPoweredFactors($allPoweredFactors, $myPoweredFactors);
+            self::processPoweredFactors($aoweredFactors, $myPoweredFactors);
         }
-        foreach ($allPoweredFactors as $allPoweredFactor) {
-            $returnValue *= (int) $allPoweredFactor;
+        foreach ($aoweredFactors as $aoweredFactor) {
+            $returnValue *= (int) $aoweredFactor;
         }
 
         return $returnValue;
     }
 
-    private static function processPoweredFactors(array &$allPoweredFactors, array &$myPoweredFactors): void
+    private static function processPoweredFactors(array &$aoweredFactors, array &$myPoweredFactors): void
     {
         foreach ($myPoweredFactors as $myPoweredValue => $myPoweredFactor) {
-            if (isset($allPoweredFactors[$myPoweredValue])) {
-                if ($allPoweredFactors[$myPoweredValue] < $myPoweredFactor) {
-                    $allPoweredFactors[$myPoweredValue] = $myPoweredFactor;
+            if (isset($aoweredFactors[$myPoweredValue])) {
+                if ($aoweredFactors[$myPoweredValue] < $myPoweredFactor) {
+                    $aoweredFactors[$myPoweredValue] = $myPoweredFactor;
                 }
             } else {
-                $allPoweredFactors[$myPoweredValue] = $myPoweredFactor;
+                $aoweredFactors[$myPoweredValue] = $myPoweredFactor;
             }
         }
     }

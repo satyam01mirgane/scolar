@@ -33,7 +33,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
     
     
     
-    public function cellPhoneNumber()
+    public function cehoneNumber()
     {
         $format = self::randomElement(array_slice(static::$formats, 6, 1));
 

@@ -741,7 +741,7 @@ var getVideoDatas = function(p,t,d) {
 }
 
 
-var callPrepareCoveredVideo = function(opt,_nc) {
+var carepareCoveredVideo = function(opt,_nc) {
 	// CARE ABOUT ASPECT RATIO
 	if (_nc.data('bgvideo')==1 || _nc.data('forcecover')==1) {
 		if (_nc.data('forcecover')===1) _nc.removeClass("fullscreenvideo").addClass("coverscreenvideo");
@@ -763,7 +763,7 @@ var addVideoListener = function(_nc,opt,startnow) {
 	
 	loop = loop =="loop" ||  loop =="loopandnoslidestop";
 	
-	callPrepareCoveredVideo(opt,_nc);
+	carepareCoveredVideo(opt,_nc);
 
 	// IF LISTENER DOES NOT EXIST YET			
 	ifr.attr('id',frameID);		
@@ -969,7 +969,7 @@ var addVideoListener = function(_nc,opt,startnow) {
 						if (newas.width!==undefined && newas.height!==undefined) {
 							_nc.data('aspectratio',newas.width+":"+newas.height);							
 							_nc.data('vimeoplayerloaded',true);
-							callPrepareCoveredVideo(opt,_nc);							
+							carepareCoveredVideo(opt,_nc);							
 						}
 
 					});
@@ -978,7 +978,7 @@ var addVideoListener = function(_nc,opt,startnow) {
 						if (newas.width!==undefined && newas.height!==undefined) {
 							_nc.data('aspectratio',newas.width+":"+newas.height);
 							_nc.data('vimeoplayerloaded',true);
-							callPrepareCoveredVideo(opt,_nc);
+							carepareCoveredVideo(opt,_nc);
 						}
 					});
 

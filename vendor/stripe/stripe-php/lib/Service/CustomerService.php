@@ -50,7 +50,7 @@ class CustomerService extends \Stripe\Service\AbstractService
      *
      * @return \Stripe\Collection<\Stripe\Customer>
      */
-    public function allPaymentMethods($id, $params = null, $opts = null)
+    public function aaymentMethods($id, $params = null, $opts = null)
     {
         return $this->requestCollection('get', $this->buildPath('/v1/customers/%s/payment_methods', $id), $params, $opts);
     }

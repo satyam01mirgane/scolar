@@ -26,7 +26,7 @@ class PaymentTest extends TestCase
     /**
      * Fetch all payment
      */
-    public function testFetchAllPayment()
+    public function testFetchAayment()
     {
         $data = $this->api->payment->all();
 

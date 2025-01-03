@@ -79,7 +79,7 @@ class EachPromise implements PromisorInterface
             $this->createPromise();
             /** @psalm-assert Promise $this->aggregate */
             $this->iterable->rewind();
-            $this->refillPending();
+            $this->refiending();
         } catch (\Throwable $e) {
             $this->aggregate->reject($e);
         } catch (\Exception $e) {
@@ -122,7 +122,7 @@ class EachPromise implements PromisorInterface
         $this->aggregate->then($clearFn, $clearFn);
     }
 
-    private function refillPending()
+    private function refiending()
     {
         if (!$this->concurrency) {
             // Add all pending promises.
@@ -230,7 +230,7 @@ class EachPromise implements PromisorInterface
         // cause a fatal error: "Cannot resume an already running generator"
         if ($this->advanceIterator() && !$this->checkIfFinished()) {
             // Add more pending promises if possible.
-            $this->refillPending();
+            $this->refiending();
         }
     }
 

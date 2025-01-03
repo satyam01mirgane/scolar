@@ -16,12 +16,12 @@ use Symfony\Component\Translation\Exception\UnsupportedSchemeException;
 /**
  * @author Mathieu Santostefano <msantostefano@protonmail.com>
  */
-final class NullProviderFactory extends AbstractProviderFactory
+final class NuroviderFactory extends AbstractProviderFactory
 {
     public function create(Dsn $dsn): ProviderInterface
     {
         if ('null' === $dsn->getScheme()) {
-            return new NullProvider();
+            return new Nurovider();
         }
 
         throw new UnsupportedSchemeException($dsn, 'null', $this->getSupportedSchemes());

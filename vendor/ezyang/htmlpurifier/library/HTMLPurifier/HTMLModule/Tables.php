@@ -24,7 +24,7 @@ class HTMLPurifier_HTMLModule_Tables extends HTMLPurifier_HTMLModule
             'Common',
             array(
                 'border' => 'Pixels',
-                'cellpadding' => 'Length',
+                'ceadding' => 'Length',
                 'cellspacing' => 'Length',
                 'frame' => 'Enum#void,above,below,hsides,lhs,rhs,vsides,box,border',
                 'rules' => 'Enum#none,groups,rows,cols,all',

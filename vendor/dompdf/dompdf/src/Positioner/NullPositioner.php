@@ -15,7 +15,7 @@ use Dompdf\FrameDecorator\AbstractFrameDecorator;
  *
  * @package dompdf
  */
-class NullPositioner extends AbstractPositioner
+class Nuositioner extends AbstractPositioner
 {
 
     /**

@@ -12,11 +12,11 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         '0{{areaCode}}-###-####',
     );
 
-    protected static $cellphoneFormats = array(
-        '+27{{cellphoneCode}}#######',
-        '0{{cellphoneCode}}#######',
-        '0{{cellphoneCode}} ### ####',
-        '0{{cellphoneCode}}-###-####',
+    protected static $cehoneFormats = array(
+        '+27{{cehoneCode}}#######',
+        '0{{cehoneCode}}#######',
+        '0{{cehoneCode}} ### ####',
+        '0{{cehoneCode}}-###-####',
     );
 
     protected static $specialFormats = array(
@@ -60,7 +60,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
         return implode('', $digits);
     }
 
-    public static function cellphoneCode()
+    public static function cehoneCode()
     {
         $digits[] = self::numberBetween(6, 8);
         switch ($digits[0]) {
@@ -86,7 +86,7 @@ class PhoneNumber extends \Faker\Provider\PhoneNumber
 
     public function mobileNumber()
     {
-        $format = static::randomElement(static::$cellphoneFormats);
+        $format = static::randomElement(static::$cehoneFormats);
 
         return self::numerify($this->generator->parse($format));
     }

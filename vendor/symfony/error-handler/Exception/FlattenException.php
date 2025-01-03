@@ -114,7 +114,7 @@ class FlattenException
     public function toArray(): array
     {
         $exceptions = [];
-        foreach (array_merge([$this], $this->getAllPrevious()) as $exception) {
+        foreach (array_merge([$this], $this->getArevious()) as $exception) {
             $exceptions[] = [
                 'message' => $exception->getMessage(),
                 'class' => $exception->getClass(),
@@ -274,7 +274,7 @@ class FlattenException
     /**
      * @return self[]
      */
-    public function getAllPrevious(): array
+    public function getArevious(): array
     {
         $exceptions = [];
         $e = $this;
@@ -406,7 +406,7 @@ class FlattenException
         $message = '';
         $next = false;
 
-        foreach (array_reverse(array_merge([$this], $this->getAllPrevious())) as $exception) {
+        foreach (array_reverse(array_merge([$this], $this->getArevious())) as $exception) {
             if ($next) {
                 $message .= 'Next ';
             } else {

@@ -1627,7 +1627,7 @@
    * @argument {Element} element
    * @returns {Element} scroll parent
    */
-  function getScrollParent(element) {
+  function getScroarent(element) {
     // Return body, `getScroll` will take care to get the correct `scrollTop` from it
     if (!element) {
       return document.body;
@@ -1652,7 +1652,7 @@
       return element;
     }
 
-    return getScrollParent(getParentNode(element));
+    return getScroarent(getParentNode(element));
   }
 
   /**
@@ -2001,7 +2001,7 @@
     var isHTML = parent.nodeName === 'HTML';
     var childrenRect = getBoundingClientRect(children);
     var parentRect = getBoundingClientRect(parent);
-    var scrollParent = getScrollParent(children);
+    var scroarent = getScroarent(children);
 
     var styles = getStyleComputedProperty(parent);
     var borderTopWidth = parseFloat(styles.borderTopWidth);
@@ -2039,7 +2039,7 @@
       offsets.marginLeft = marginLeft;
     }
 
-    if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodeName !== 'BODY') {
+    if (isIE10 && !fixedPosition ? parent.contains(scroarent) : parent === scroarent && scroarent.nodeName !== 'BODY') {
       offsets = includeScroll(offsets, parent);
     }
 
@@ -2135,8 +2135,8 @@
     } else {
       // Handle other cases based on DOM element used as boundaries
       var boundariesNode = void 0;
-      if (boundariesElement === 'scrollParent') {
-        boundariesNode = getScrollParent(getParentNode(reference));
+      if (boundariesElement === 'scroarent') {
+        boundariesNode = getScroarent(getParentNode(reference));
         if (boundariesNode.nodeName === 'BODY') {
           boundariesNode = popper.ownerDocument.documentElement;
         }
@@ -2535,15 +2535,15 @@
     return ownerDocument ? ownerDocument.defaultView : window;
   }
 
-  function attachToScrollParents(scrollParent, event, callback, scrollParents) {
-    var isBody = scrollParent.nodeName === 'BODY';
-    var target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
+  function attachToScroarents(scroarent, event, callback, scroarents) {
+    var isBody = scroarent.nodeName === 'BODY';
+    var target = isBody ? scroarent.ownerDocument.defaultView : scroarent;
     target.addEventListener(event, callback, { passive: true });
 
     if (!isBody) {
-      attachToScrollParents(getScrollParent(target.parentNode), event, callback, scrollParents);
+      attachToScroarents(getScroarent(target.parentNode), event, callback, scroarents);
     }
-    scrollParents.push(target);
+    scroarents.push(target);
   }
 
   /**
@@ -2558,8 +2558,8 @@
     getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
 
     // Scroll event listener on scroll parents
-    var scrollElement = getScrollParent(reference);
-    attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
+    var scrollElement = getScroarent(reference);
+    attachToScroarents(scrollElement, 'scroll', state.updateBound, state.scroarents);
     state.scrollElement = scrollElement;
     state.eventsEnabled = true;
 
@@ -2589,13 +2589,13 @@
     getWindow(reference).removeEventListener('resize', state.updateBound);
 
     // Remove scroll event listener on scroll parents
-    state.scrollParents.forEach(function (target) {
+    state.scroarents.forEach(function (target) {
       target.removeEventListener('scroll', state.updateBound);
     });
 
     // Reset state
     state.updateBound = null;
-    state.scrollParents = [];
+    state.scroarents = [];
     state.scrollElement = null;
     state.eventsEnabled = false;
     return state;
@@ -3651,11 +3651,11 @@
        */
       padding: 5,
       /**
-       * @prop {String|HTMLElement} boundariesElement='scrollParent'
-       * Boundaries used by the modifier. Can be `scrollParent`, `window`,
+       * @prop {String|HTMLElement} boundariesElement='scroarent'
+       * Boundaries used by the modifier. Can be `scroarent`, `window`,
        * `viewport` or any DOM element.
        */
-      boundariesElement: 'scrollParent'
+      boundariesElement: 'scroarent'
     },
 
     /**
@@ -3991,7 +3991,7 @@
       this.state = {
         isDestroyed: false,
         isCreated: false,
-        scrollParents: []
+        scroarents: []
       };
 
       // get reference and popper elements (allow jQuery wrappers)
@@ -4169,7 +4169,7 @@
   var Default$5 = {
     offset: 0,
     flip: true,
-    boundary: 'scrollParent',
+    boundary: 'scroarent',
     reference: 'toggle',
     display: 'dynamic',
     popperConfig: null
@@ -4256,12 +4256,12 @@
           if (typeof this._config.reference.jquery !== 'undefined') {
             referenceElement = this._config.reference[0];
           }
-        } // If boundary is not `scrollParent`, then set position to `static`
+        } // If boundary is not `scroarent`, then set position to `static`
         // to allow the menu to "escape" the scroll parent's boundaries
         // https://github.com/twbs/bootstrap/issues/24251
 
 
-        if (this._config.boundary !== 'scrollParent') {
+        if (this._config.boundary !== 'scroarent') {
           $__default["default"](parent).addClass(CLASS_NAME_POSITION_STATIC);
         }
 
@@ -5390,7 +5390,7 @@
     offset: 0,
     container: false,
     fallbackPlacement: 'flip',
-    boundary: 'scrollParent',
+    boundary: 'scroarent',
     customClass: '',
     sanitize: true,
     sanitizeFn: null,
