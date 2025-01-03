@@ -1,4 +1,4 @@
-<aside class="main-sidebar elevation-2" style="background-color: #1E3A8A; position: fixed; top: 0; left: 0; bottom: 0; transition: all 0.3s ease;">
+<aside class="main-sidebar elevation-2" id="sidebar" style="background-color: #1E3A8A; position: fixed; top: 0; left: 0; bottom: 0; transition: all 0.3s ease; display: block;">
     <!-- Brand Logo -->
     <a href="{{url('/')}}" class="brand-link" style="display: flex; align-items: center; padding: 1.5rem; text-decoration: none; border-bottom: 1px solid #374151;">
         <img src="{{asset('assets/images/logo dashboard.jpg')}}" style="height: 35px; width: auto;" alt="Logo">
@@ -59,7 +59,7 @@
 
 <style>
     .main-sidebar {
-        display: none; /* Hide sidebar on mobile/tablet */
+        display: block; /* Ensure sidebar is visible on desktop */
     }
 
     .floating-btn {
@@ -70,9 +70,10 @@
     @media (max-width: 768px) {
         .main-sidebar {
             width: 250px;
-            display: block; /* Show sidebar when toggled */
-            transition: transform 0.3s ease;
-            transform: translateX(-100%); /* Initially hidden */
+            position: fixed;
+            top: 0;
+            left: -250px; /* Initially hidden */
+            transition: all 0.3s ease;
         }
 
         .sidebar-content {
@@ -106,6 +107,10 @@
         .nav-item p {
             display: none;
         }
+
+        .floating-btn {
+            left: 1rem; /* Adjust positioning on smaller screens */
+        }
     }
 
     @media (max-width: 480px) {
@@ -117,20 +122,16 @@
             font-size: 0.65rem;
             padding: 0.5rem 1rem;
         }
-
-        .floating-btn {
-            left: 1rem; /* Adjust positioning on smaller screens */
-        }
     }
 </style>
 
 <script>
     document.querySelector('.floating-btn').addEventListener('click', function() {
-        var sidebar = document.querySelector('.main-sidebar');
-        if (sidebar.style.transform === 'translateX(0%)') {
-            sidebar.style.transform = 'translateX(-100%)';
+        var sidebar = document.querySelector('#sidebar');
+        if (sidebar.style.left === '-250px' || sidebar.style.left === '') {
+            sidebar.style.left = '0';
         } else {
-            sidebar.style.transform = 'translateX(0%)';
+            sidebar.style.left = '-250px';
         }
     });
 </script>
