@@ -14,7 +14,7 @@
                 <div id="course-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
                     @foreach($course_list as $k => $v)
                         <div class="post-item animated-card" 
-                             style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background-color: #fff; {{ $k > 2 ? 'display: none;' : '' }};">
+                             style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background-color: #fff; {{ $k > 5 ? 'display: none;' : '' }};">
                             <div class="post-item-wrap">
                                 <div class="post-image" style="overflow: hidden; border-radius: 8px;">
                                     <a href="{{ url('course-detail/'.$v->slug) }}">
@@ -123,8 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.animated-card');
     const showMoreBtn = document.getElementById('show-more');
 
-    // Show "See More" button if there are more than 3 cards
-    if (cards.length > 3) {
+    // Show "See More" button if there are more than 6 cards
+    if (cards.length > 6) {
         showMoreBtn.style.display = 'inline-block';
     }
 

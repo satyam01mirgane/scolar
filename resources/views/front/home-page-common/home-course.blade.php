@@ -9,7 +9,7 @@
                 <!-- Course Grid -->
                 <div id="course-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
                     @foreach($course_list->take(3) as $course)
-                    <div class="post-item animated-card" style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div class="post-item animated-card" style="border: 1px solid #ddd; border-radius: 10px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
                         <div class="post-item-wrap">
                             <div class="post-image" style="overflow: hidden;">
                                 <a href="{{ url('course-detail/'.$course->slug) }}">

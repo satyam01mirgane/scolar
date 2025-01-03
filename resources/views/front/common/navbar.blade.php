@@ -27,11 +27,10 @@
 
             <!-- Action Buttons -->
             <div style="display: flex; gap: 8px; align-items: center;">
-            <a href="https://www.vief.in/" style="padding: 4px 12px; background-color: #ff4d00; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">VIEF</a>
-<a href="http://xcubit.in/" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">Xcubit</a>
-<a href="https://www.vastavintellect.com/" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">VIIP</a>
-<!-- <a href="#" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">RTTP</a> -->
-
+                <a href="https://www.vief.in/" style="padding: 4px 12px; background-color: #ff4d00; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">VIEF</a>
+                <a href="http://xcubit.in/" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">Xcubit</a>
+                <a href="https://www.vastavintellect.com/" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">VIIP</a>
+                
                 <!-- Cart Icon -->
                 <a href="{{ url('cart') }}" style="color: #333; font-size: 16px; display: flex; align-items: center; margin-left: 40px;">
                     <i class="fas fa-shopping-cart"></i>
@@ -98,6 +97,10 @@
     @media (max-width: 768px) {
         #mobile-menu {
             display: block;
+        }
+
+        nav {
+            display: none;
         }
     }
 </style>
