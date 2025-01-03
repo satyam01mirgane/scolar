@@ -74,7 +74,7 @@
 
                 <!-- See More Button -->
                 <div id="see-more-btn" style="text-align: center; margin-top: 1.5rem;">
-                    <button id="show-more" class="btn btn-primary" style="display: none;">See More</button>
+                    <button id="show-more" class="btn btn-primary">See More</button>
                 </div>
 
             </div>
@@ -99,7 +99,6 @@
 
     .animated-card {
         animation: fadeInUp 1s ease-out;
-        animation-delay: calc(var(--index) * 0.1s);
         animation-fill-mode: backwards;
     }
 
@@ -138,11 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Hide the "See More" button after clicking
         showMoreBtn.style.display = 'none';
-    });
-
-    // Set the delay for animations
-    cards.forEach((card, index) => {
-        card.style.setProperty('--index', index);
     });
 });
 </script>
