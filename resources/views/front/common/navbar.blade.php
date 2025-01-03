@@ -16,32 +16,32 @@
             <!-- Navigation -->
             <nav class="desktop-nav" style="flex-grow: 1;">
                 <ul style="display: flex; list-style-type: none; margin: 0; padding: 0; justify-content: center;">
-                    <li><a href="{{ url('/') }}" style="color: #333; text-decoration: none; padding: 10px 15px; font-weight: 500; font-size: 14px;">Home</a></li>
-                    <li><a href="{{ url('/about-us') }}" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px;">About</a></li>
-                    <li><a href="{{ url('/courses') }}" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px;">Masterclass</a></li>
-                    <li><a href="{{ url('/blogs') }}" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px;">Study Material</a></li>
-                    <li><a href="{{ url('/workshops') }}" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px;">Career</a></li>
-                    <li><a href="{{ url('/contact-us') }}" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px;">Support</a></li>
+                    <li><a href="{{ url('/') }}" style="color: #333; text-decoration: none; padding: 10px 15px; font-weight: 500; font-size: 14px; font-family: 'Montserrat', sans-serif;">Home</a></li>
+                    <li><a href="{{ url('/about-us') }}" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px; font-family: 'Montserrat', sans-serif;">About</a></li>
+                    <li><a href="{{ url('/courses') }}" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px; font-family: 'Montserrat', sans-serif;">Masterclass</a></li>
+                    <li><a href="{{ url('/blogs') }}" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px; font-family: 'Montserrat', sans-serif;">Study Material</a></li>
+                    <li><a href="{{ url('/workshops') }}" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px; font-family: 'Montserrat', sans-serif;">Career</a></li>
+                    <li><a href="{{ url('/contact-us') }}" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px; font-family: 'Montserrat', sans-serif;">Support</a></li>
                 </ul>
             </nav>
 
             <!-- Action Buttons -->
             <div class="action-buttons" style="display: flex; gap: 8px; align-items: center;">
-                <a href="https://www.vief.in/" class="action-button" style="padding: 6px 12px; background-color: #ff4d00; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px;" target="_blank">VIEF</a>
-                <a href="http://xcubit.in/" class="action-button" style="padding: 6px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px;" target="_blank">Xcubit</a>
-                <a href="https://www.vastavintellect.com/" class="action-button" style="padding: 6px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px;" target="_blank">VIIP</a>
+                <a href="https://www.vief.in/" class="action-button" style="padding: 6px 12px; background-color: #ff4d00; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; font-family: 'Montserrat', sans-serif;" target="_blank">VIEF</a>
+                <a href="http://xcubit.in/" class="action-button" style="padding: 6px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; font-family: 'Montserrat', sans-serif;" target="_blank">Xcubit</a>
+                <a href="https://www.vastavintellect.com/" class="action-button" style="padding: 6px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; font-family: 'Montserrat', sans-serif;" target="_blank">VIIP</a>
                 
-                <a href="{{ url('cart') }}" class="cart-icon" style="color: #333; font-size: 16px; display: flex; align-items: center; margin-left: 20px;">
+                <a href="{{ url('cart') }}" class="cart-icon" style="color: #333; font-size: 16px; display: flex; align-items: center; margin-left: 20px; font-family: 'Montserrat', sans-serif;">
                     <i class="fas fa-shopping-cart"></i>
                     <span style="background-color:#ff4d00; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; margin-left: 4px;">{{ Cart::getTotalQuantity() }}</span>
                 </a>
 
                 @if(isset(Auth::user()->name))
-                    <a href="{{ url('dashboard') }}" title="{{ Auth::user()->name }}" class="user-icon">
+                    <a href="{{ url('dashboard') }}" title="{{ Auth::user()->name }}" class="user-icon" style="font-family: 'Montserrat', sans-serif;">
                         <i class="fas fa-user"></i>
                     </a>
                 @else
-                    <a href="{{ url('login') }}" class="login-button">Login</a>
+                    <a href="{{ url('login') }}" class="login-button" style="font-family: 'Montserrat', sans-serif;">Login</a>
                 @endif
             </div>
         </div>
@@ -50,26 +50,28 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="mobile-menu" style="display: none;">
         <ul style="list-style-type: none; margin: 0; padding: 10px;">
-            <li><a href="{{ url('/') }}" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee;">Home</a></li>
-            <li><a href="{{ url('/about-us') }}" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee;">About</a></li>
-            <li><a href="{{ url('/courses') }}" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee;">Masterclass</a></li>
-            <li><a href="{{ url('/blogs') }}" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee;">Study Material</a></li>
-            <li><a href="{{ url('/workshops') }}" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee;">Career</a></li>
-            <li><a href="{{ url('/contact-us') }}" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee;">Support</a></li>
+            <li><a href="{{ url('/') }}" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee; font-family: 'Montserrat', sans-serif;">Home</a></li>
+            <li><a href="{{ url('/about-us') }}" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee; font-family: 'Montserrat', sans-serif;">About</a></li>
+            <li><a href="{{ url('/courses') }}" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee; font-family: 'Montserrat', sans-serif;">Masterclass</a></li>
+            <li><a href="{{ url('/blogs') }}" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee; font-family: 'Montserrat', sans-serif;">Study Material</a></li>
+            <li><a href="{{ url('/workshops') }}" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee; font-family: 'Montserrat', sans-serif;">Career</a></li>
+            <li><a href="{{ url('/contact-us') }}" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee; font-family: 'Montserrat', sans-serif;">Support</a></li>
         </ul>
         <div class="mobile-action-buttons" style="padding: 15px; display: flex; flex-wrap: wrap; gap: 10px;">
-            <a href="https://www.vief.in/" style="padding: 8px 15px; background-color: #ff4d00; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 14px; text-align: center; flex: 1;" target="_blank">VIEF</a>
-            <a href="http://xcubit.in/" style="padding: 8px 15px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 14px; text-align: center; flex: 1;" target="_blank">Xcubit</a>
-            <a href="https://www.vastavintellect.com/" style="padding: 8px 15px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 14px; text-align: center; flex: 1;" target="_blank">VIIP</a>
+            <a href="https://www.vief.in/" style="padding: 8px 15px; background-color: #ff4d00; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 14px; text-align: center; flex: 1; font-family: 'Montserrat', sans-serif;" target="_blank">VIEF</a>
+            <a href="http://xcubit.in/" style="padding: 8px 15px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 14px; text-align: center; flex: 1; font-family: 'Montserrat', sans-serif;" target="_blank">Xcubit</a>
+            <a href="https://www.vastavintellect.com/" style="padding: 8px 15px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 14px; text-align: center; flex: 1; font-family: 'Montserrat', sans-serif;" target="_blank">VIIP</a>
         </div>
     </div>
 </header>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
     body {
         margin: 0;
         padding: 0;
-        font-family: Arial, sans-serif;
+        font-family: 'Montserrat', sans-serif;
     }
 
     .container {
