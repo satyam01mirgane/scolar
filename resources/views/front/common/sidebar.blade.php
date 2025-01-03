@@ -1,5 +1,4 @@
-<!-- Main Sidebar Container -->
-<aside id="sidebar" class="main-sidebar elevation-2" style="background-color: #1E3A8A; width: 250px; position: fixed; top: 0; left: 0; bottom: 0; transition: all 0.3s ease; z-index: 1000;">
+<aside class="main-sidebar elevation-2" style="background-color: #1E3A8A; width: 250px; position: fixed; top: 0; left: 0; bottom: 0; transition: all 0.3s ease;">
     <!-- Brand Logo -->
     <a href="{{url('/')}}" class="brand-link" style="display: flex; align-items: center; padding: 1.5rem; text-decoration: none; border-bottom: 1px solid #374151;">
         <img src="{{asset('assets/images/logo dashboard.jpg')}}" style="height: 35px; width: auto;" alt="Logo">
@@ -54,11 +53,6 @@
     </div>
 </aside>
 
-<!-- Sidebar Toggle Button -->
-<button id="sidebarToggle" class="sidebar-toggle" style="position: fixed; top: 1rem; left: 1rem; z-index: 1001; background-color: #1E3A8A; color: #FFFFFF; border: none; border-radius: 50%; width: 40px; height: 40px; display: none; align-items: center; justify-content: center; cursor: pointer;">
-    <i class="fas fa-bars"></i>
-</button>
-
 <style>
     .main-sidebar::-webkit-scrollbar {
         width: 4px;
@@ -93,40 +87,53 @@
     .nav-item:nth-child(5) { animation-delay: 0.5s; }
     .nav-item:nth-child(6) { animation-delay: 0.6s; }
 
-    @media (max-width: 1024px) {
-        #sidebar {
-            transform: translateX(-100%);
+    /* Mobile and Tablet Responsiveness */
+    @media (max-width: 768px) {
+        .main-sidebar {
+            width: 60px;
         }
-        #sidebar.active {
-            transform: translateX(0);
+
+        .sidebar {
+            padding: 1rem 0;
         }
-        #sidebarToggle {
-            display: flex;
+
+        .nav-link {
+            padding: 0.75rem 1rem;
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+        .nav-item i {
+            margin-right: 0;
+        }
+
+        .brand-link {
+            justify-content: center;
+            padding: 0.75rem;
+        }
+
+        .main-sidebar .nav-pills {
+            flex-direction: column;
+        }
+
+        .main-sidebar .nav-item {
+            text-align: center;
+            margin: 0;
+        }
+
+        .nav-item p {
+            display: none;
         }
     }
 
-    @media (max-width: 768px) {
-        #sidebar {
-            width: 100%;
+    @media (max-width: 480px) {
+        .main-sidebar {
+            width: 50px;
+        }
+
+        .nav-link {
+            font-size: 0.65rem;
+            padding: 0.5rem 1rem;
         }
     }
 </style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const sidebar = document.getElementById('sidebar');
-        const sidebarToggle = document.getElementById('sidebarToggle');
-
-        sidebarToggle.addEventListener('click', function() {
-            sidebar.classList.toggle('active');
-        });
-
-        // Close sidebar when clicking outside of it
-        document.addEventListener('click', function(event) {
-            const isClickInside = sidebar.contains(event.target) || sidebarToggle.contains(event.target);
-            if (!isClickInside && sidebar.classList.contains('active')) {
-                sidebar.classList.remove('active');
-            }
-        });
-    });
-</script>
