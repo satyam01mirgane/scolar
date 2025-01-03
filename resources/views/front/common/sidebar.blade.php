@@ -87,4 +87,65 @@
     .nav-item:nth-child(4) { animation-delay: 0.4s; }
     .nav-item:nth-child(5) { animation-delay: 0.5s; }
     .nav-item:nth-child(6) { animation-delay: 0.6s; }
+
+    @media (max-width: 1024px) {
+        .main-sidebar {
+            width: 200px;
+        }
+
+        .nav-item p {
+            font-size: 0.75rem;
+        }
+
+        .sidebar {
+            padding: 1rem 0;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .main-sidebar {
+            width: 0;
+            visibility: hidden;
+        }
+
+        .main-sidebar.active {
+            width: 250px;
+            visibility: visible;
+        }
+
+        .nav-item {
+            padding-left: 1rem;
+        }
+
+        .sidebar {
+            padding: 1rem;
+        }
+
+        .brand-link img {
+            height: 30px;
+        }
+
+        .sidebar-toggle {
+            display: block;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1000;
+        }
+    }
+
+    .sidebar-toggle {
+        display: none;
+    }
 </style>
+
+<script>
+    const sidebarToggle = document.createElement('button');
+    sidebarToggle.classList.add('sidebar-toggle');
+    sidebarToggle.innerHTML = '☰';
+    document.body.appendChild(sidebarToggle);
+
+    sidebarToggle.addEventListener('click', () => {
+        document.querySelector('.main-sidebar').classList.toggle('active');
+    });
+</script>
