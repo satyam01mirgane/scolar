@@ -51,7 +51,7 @@
 
                     @if(!in_array($course_details->id, cartproduct()))
                         @if($course_details->total_seat > 0)
-                        <form action="{{ route('cart.store') }}" method="POST" style="margin: 0;">
+                        <form action="{{ route('cart.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="id" value="{{ $course_details->id }}">
                             <input type="hidden" name="name" value="{{ $course_details->name }}-Course">
@@ -125,9 +125,21 @@
         <!-- FAQ Section -->
         <div class="row mb-5" style="opacity: 0; animation: fadeIn 0.6s ease-out 1s forwards;">
             <div class="col-lg-12">
-                <h2 style="font-size: 2rem; font-weight: 600; color: #333; margin-bottom: 1rem;">FAQs</h2>
-                <div style="background-color: #ffffff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                    {!! nl2br($course_details->faq) !!}
+                <h2 style="font-size: 2rem; font-weight: 600; color: #333; margin-bottom: 1rem; text-align: center;">Frequently Asked Questions</h2>
+                <div class="faq-section" style="background-color: #ffffff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                    @foreach(range(1, 5) as $index)
+                    @if(isset($course_details->{'question' . $index}))
+                    <div class="faq-item mb-4" style="opacity: 0; animation: slideInRight 0.3s ease-out {{ $index * 0.1 }}s forwards;">
+                        <h4 style="font-size: 1.25rem; font-weight: 500; color: #333; cursor: pointer;" onclick="toggleFAQ(this)">
+                            <i class="fas fa-plus" style="color: #007bff; margin-right: 0.5rem; transition: all 0.3s ease;"></i>
+                            {{ $course_details->{'question' . $index} }}
+                        </h4>
+                        <p style="color: #666; line-height: 1.6; display: none; padding-left: 1.5rem; margin-top: 0.5rem;">
+                            {{ $course_details->{'answer' . $index} }}
+                        </p>
+                    </div>
+                    @endif
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -137,50 +149,49 @@
 @include('front.common.footer')
 
 <style>
-    .btn {
-        padding: 12px 24px;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        border-radius: 8px;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        white-space: nowrap;
-        text-align: center;
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
-
-    @media (max-width: 768px) {
-        .d-flex.flex-wrap {
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .btn {
-            width: 100%;
-            justify-content: center;
-        }
+    @keyframes slideInRight {
+        from { transform: translateX(30px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
     }
-
-    .seats-left:hover {
-        background-color: #28a745;
-        color: white;
+    .course-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
     }
-
-    .seats-full:hover {
-        background-color: #6c757d;
-        color: white;
+    .course-image:hover {
+        transform: scale(1.05);
     }
-
-    .enroll-now:hover {
-        background-color: #0056b3;
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-
-    .in-cart:hover {
-        background-color: #5a6268;
+    .module-item:hover {
+        background-color: #e9ecef;
+        transform: translateX(5px);
     }
-
-    .price-tag:hover {
-        background-color: #d39e00;
-    }
+    .seats-left:hover { background-color: #28a745; color: white; }
+    .seats-full:hover { background-color: #6c757d; color: white; }
+    .enroll-now:hover { background-color: #0056b3; }
+    .in-cart:hover { background-color: #5a6268; }
+    .price-tag:hover { background-color: #d39e00; }
 </style>
+
+<script>
+    function toggleFAQ(element) {
+        const answer = element.nextElementSibling;
+        const icon = element.querySelector('i');
+        if (answer.style.display === 'none' || answer.style.display === '') {
+            answer.style.display = 'block';
+            icon.classList.remove('fa-plus');
+            icon.classList.add('fa-minus');
+        } else {
+            answer.style.display = 'none';
+            icon.classList.remove('fa-minus');
+            icon.classList.add('fa-plus');
+        }
+    }
+</script>
+
