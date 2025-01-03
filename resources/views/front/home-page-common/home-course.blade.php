@@ -10,10 +10,10 @@
                 <div id="course-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
                     @foreach($course_list->take(3) as $course)
                     <div class="post-item animated-card" style="border: 1px solid #ddd; border-radius: 10px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                        <div class="post-item-wrap">
-                            <div class="post-image" style="overflow: hidden;">
+                        <div class="post-item-wrap" style="border-radius: inherit;">
+                            <div class="post-image" style="overflow: hidden; border-radius: inherit;">
                                 <a href="{{ url('course-detail/'.$course->slug) }}">
-                                    <img src="{{ asset($course->image) }}" alt="{{ $course->name }}" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                                    <img src="{{ asset($course->image) }}" alt="{{ $course->name }}" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease; border-radius: inherit;">
                                 </a>
                             </div>
                             <div class="post-item-description" style="padding: 1rem;">
@@ -51,7 +51,7 @@
 
                 <!-- View All Courses Button -->
                 <div style="text-align: center; margin-top: 3rem;">
-                <a href="{{url('/courses')}}" style="color: black; font-weight:500; text-decoration:underline">More</a>
+                    <a href="{{url('/courses')}}" style="color: black; font-weight:500; text-decoration:underline">More</a>
                 </div>
             </div>
         </div>
@@ -72,6 +72,20 @@
 
     .post-item-wrap img:hover {
         transform: scale(1.1);
+    }
+
+    /* Uniform border radius */
+    .post-item {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .post-item-wrap {
+        border-radius: inherit;
+    }
+
+    .post-image img {
+        border-radius: inherit;
     }
 
     /* Font and Text Styling */
@@ -126,7 +140,6 @@
 
     /* View All Courses Button */
     .btn-primary {
-       
         color: #fff;
         border: none;
         transition: background-color 0.3s ease;
