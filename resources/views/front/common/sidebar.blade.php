@@ -18,7 +18,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{url('scheduled-course')}}" class="nav-link {{$menu7}}">
-                        <i class="nav-icon far fa-image"></i> Scheduled Courses
+                        <i class="nav-icon far fa-image"></i> Scheduled Masterclass
                     </a>
                 </li>
                 <li class="nav-item">

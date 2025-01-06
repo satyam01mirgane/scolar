@@ -55,7 +55,7 @@
                                         <th>Date</th>
                                         <th>Time</th>
                                         <th>Certificate</th>
-                                        <th>Feedback</th>
+                                        <!-- <th>Feedback</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,11 +74,11 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if(!empty($v->feedback))
+                                            <!-- @if(!empty($v->feedback))
                                             <span>Feedback Submitted</span>
                                             @else
                                             <a href="#" data-toggle="modal" data-target="#myModal" onclick="feedback('{{ $v->product_id }}')">Feedback</a>
-                                            @endif
+                                            @endif -->
                                         </td>
                                     </tr>
                                     @endforeach
