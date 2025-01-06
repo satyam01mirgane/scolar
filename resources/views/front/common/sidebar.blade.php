@@ -104,14 +104,14 @@ $(document).ready(function() {
     .main-sidebar {
         position: absolute;
         top: 0;
-        left: 0;
+        left: -250px; /* Initially hide the sidebar off-screen */
         bottom: 0;
-        width: 200px;
-        display: none; /* Initially hide the sidebar */
+        width: 250px;
+        transition: left 0.3s ease; /* Smooth transition */
     }
 
     .main-sidebar.show {
-        display: block; /* Show when toggled */
+        left: 0; /* Show sidebar when toggled */
     }
 
     .navbar-toggler {
