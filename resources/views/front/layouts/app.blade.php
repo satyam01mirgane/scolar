@@ -96,7 +96,7 @@ $(document).ready(function() {
     .main-sidebar {
         position: absolute;
         top: 0;
-        left: -250px; /* Hide the sidebar initially on mobile */
+        left: 0; /* Hide the sidebar initially on mobile */
         width: 250px;
         display: none; /* Initially hide the sidebar */
     }
