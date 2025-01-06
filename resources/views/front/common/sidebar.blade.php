@@ -1,109 +1,108 @@
-@include('front.common.sidebar')
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper" style="background-color: #f4f6f9; min-height: 100vh; padding: 20px;">
-    <!-- Content Header (Page header) -->
-    <section class="content-header" style="margin-bottom: 20px;">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 style="font-size: 2.5rem; color: #333; font-weight: 600;">Scheduled Masterclass</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right" style="background: none; padding: 0;">
-                        <li class="breadcrumb-item"><a href="{{url('/')}}" style="color: #007bff; text-decoration: none;">Home</a></li>
-                        <li class="breadcrumb-item active" style="color: #6c757d;">Scheduled Masterclass</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="{{url('/')}}" class="brand-link">
+      <img src="{{asset('assets/images/logo.svg')}}">
+      <span></span>
+    </a>
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card" style="border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); overflow: hidden; transition: all 0.3s ease;">
-                        <div class="card-body table-responsive p-0">
-                            @if(Session::has('success'))
-                            <div class="alert alert-success" style="margin: 20px; border-radius: 5px;">
-                                {{Session::get('success')}}
-                            </div>
-                            @endif
-                            <table class="table table-hover text-nowrap" style="margin-bottom: 0;">
-                                <thead>
-                                    <tr>
-                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Name</th>
-                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Zoom Link</th>
-                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Masterclass ID</th>
-                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Instructor</th>
-                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Date</th>
-                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Time</th>
-                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Amount Paid</th>
-                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if(count($orders) > 0)
-                                        @foreach($orders as $k => $v)
-                                            <tr style="transition: all 0.3s ease;">
-                                                <td style="padding: 15px; font-size: 1rem; color: #666;">{{$v->workshopname}}</td>
-                                                <td style="padding: 15px; font-size: 1rem; color: #007bff;"><a href="{{$v->zoom_link}}" style="text-decoration: none;">Link</a></td>
-                                                <td style="padding: 15px; font-size: 1rem; color: #666;">WKPID{{$v->product_id}}</td>
-                                                <td style="padding: 15px; font-size: 1rem; color: #666;">{{$v->trainername}}</td>
-                                                <td style="padding: 15px; font-size: 1rem; color: #666;">{{date('d-m-Y', strtotime($v->session_date))}}</td>
-                                                <td style="padding: 15px; font-size: 1rem; color: #666;">{{date('H:i:s A', strtotime($v->session_time))}}</td>
-                                                <td style="padding: 15px; font-size: 1rem; color: #666;">
-                                                    @if($v->workshop_type == 'Free')
-                                                        Free
-                                                    @else
-                                                        Rs.{{$v->price - $v->product_discount}}
-                                                    @endif
-                                                </td>
-                                                <td style="padding: 15px; font-size: 1rem; color: #666;">{{$v->session_status}}</td>
-                                            </tr>
-                                        @endforeach
-                                    @else
-                                        <tr>
-                                            <td colspan="8" style="padding: 20px; font-size: 1rem; color: #666; text-align: center;">No Masterclass found</td>
-                                        </tr>
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-@include('front.common.profile-footer')
-
-<style>
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-    }
-    tr:hover {
-        background-color: #f8f9fa;
-    }
-    a:hover {
-        text-decoration: underline;
-    }
-    .alert-success {
-        animation: fadeOut 2s 2s forwards;
-    }
-    @keyframes fadeOut {
-        to {
-            opacity: 0;
-            display: none;
-        }
-    }
-
-    /* Media Query: Hide Sidebar on Mobile/Tablet */
-    @media (max-width: 768px) {
-        #sidebar {
-            display: none;
-        }
-    }
-</style>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+    
+      <!-- SidebarSearch Form -->
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="{{url('dashboard')}}" class="nav-link {{$menu1}}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>       
+          <li class="nav-item">
+            <a href="{{url('enrolled-workshop')}}" class="nav-link {{$menu3}}">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Enrolled Workshops
+              </p>
+            </a>
+          </li>
+           
+		  <li class="nav-item">
+            <a href="{{url('scheduled-workshop')}}" class="nav-link {{$menu4}}">
+              <i class="nav-icon far fa-calendar-alt"></i>
+              <p>
+                Scheduled Workshops
+              </p>
+            </a>
+          </li>
+		  
+		  <li class="nav-item">
+            <a href="{{url('enrolled-course')}}" class="nav-link {{$menu6}}">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+               Enrolled Courses
+              </p>
+            </a>
+          </li>
+		  
+		  <li class="nav-item">
+            <a href="{{url('scheduled-course')}}" class="nav-link {{$menu7}}">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Scheduled Courses
+              </p>
+            </a>
+          </li>
+		  
+		  <li class="nav-item">
+            <a href="{{url('certificate-feedback')}}" class="nav-link {{$menu5}}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Certificate & Feedback
+              </p>
+            </a>
+          </li>
+		   <li class="nav-item">
+            <a href="{{url('quiz-list')}}" class="nav-link {{$menu8}}">
+              <i class="nav-icon fas fa-question"></i>
+              <p>
+                Online Quiz
+              </p>
+            </a>
+          </li>
+		   <li class="nav-item">
+            <a href="{{url('test-list')}}" class="nav-link {{$menu9}}">
+              <i class="nav-icon fas fa-question"></i>
+              <p>
+                Online Test
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url('change-password')}}" class="nav-link {{$menu2}}">
+              <i class="nav-icon far fa-calendar-alt"></i>
+              <p>
+                Change Password
+              </p>
+            </a>
+          </li>
+            <li class="nav-item">
+            <a href="{{url('logout')}}" class="nav-link">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                Logout
+              </p>
+            </a>
+          </li>         
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
