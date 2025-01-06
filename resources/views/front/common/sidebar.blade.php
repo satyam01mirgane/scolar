@@ -42,7 +42,7 @@
 
 <style>
 .navbar-collapse {
-    transition: all 0.3s ease;
+    transition: all 0s ease;
 }
 
 @media (max-width: 768px) {
