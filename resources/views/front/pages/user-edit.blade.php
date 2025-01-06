@@ -1,4 +1,4 @@
-<!-- @include('front.common.profile-header') -->
+@include('front.common.profile-header')
 @include('front.common.sidebar')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper" style="margin-left:0px ; background-color: #f4f6f9; min-height: 100vh; padding: 20px;">
