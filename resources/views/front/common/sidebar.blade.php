@@ -1,5 +1,5 @@
 
-<nav class="main-sidebar navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="main-header navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
         <a href="{{url('/')}}" class="navbar-brand">
             <img src="{{asset('assets/images/logo.svg')}}" alt="Logo" class="brand-image" style="height: 40px;">
