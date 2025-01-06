@@ -10,7 +10,7 @@
         </button>
 
         <div class="collapse  navbar-collapse" id="navbarCollapse">
-            <ul class="nav " data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills " data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="{{url('dashboard')}}" class="nav-link {{$menu1}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i> Dashboard
