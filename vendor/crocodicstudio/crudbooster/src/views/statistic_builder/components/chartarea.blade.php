@@ -99,7 +99,7 @@
         // $data_result = preg_replace('/"([a-zA-Z_]+[a-zA-Z0-9_]*)":/','$1:',$data_result);
 
         ?>
-        <div id="chartContainer-{{$componentID}}" style="height: 250px;"></div>
+        <div id="chartContainer-{{$componentID}}" style="height: 0px;"></div>
 
 
         <script type="text/javascript">

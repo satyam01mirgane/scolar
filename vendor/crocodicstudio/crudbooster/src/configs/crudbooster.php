@@ -47,7 +47,7 @@ return [
     * Collapsed Sidebar:   use the class .sidebar-collapse to have a collapsed sidebar upon loading.
     *                      Use this if you want the sidebar to be hidden by default.
     *
-    * Boxed Layout:        use the class .layout-boxed to get a boxed layout that stretches only to 1250px.
+    * Boxed Layout:        use the class .layout-boxed to get a boxed layout that stretches only to 10px.
     *                      Provides spaces on both sides of the screen, if the screen is big enough.
     *
     * Top Navigation:      use the class .layout-top-nav to remove the sidebar and have your links at the top navbar.

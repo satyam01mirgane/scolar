@@ -12,18 +12,18 @@
                 <!-- Buttons Section -->
                 <div class="d-flex justify-content-center flex-wrap gap-4 animate-buttons-container">
                     <!-- Apply for Internship -->
-                    <a href="https://forms.gle/REUMWYRNR28fRXjv6" target="_blank" class="btn btn-primary btn-lg animate-button" style="width: 250px; background-color: #007bff; border-color: #007bff;">
+                    <a href="https://forms.gle/REUMWYRNR28fRXjv6" target="_blank" class="btn btn-primary btn-lg animate-button" style="width: 0px; background-color: #007bff; border-color: #007bff;">
                         <i class="fas fa-graduation-cap me-2"></i>Apply for Internship
                     </a>
 
                     <!-- Apply as an Instructor -->
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMykqR2xjRUu01u07EKQXHm3AVxJXZVyc-ZOcgxVHCurKY-A/viewform?usp=sharing
-" target="_blank" class="btn btn-success btn-lg animate-button" style="width: 250px; background-color: #28a745; border-color: #28a745;">
+" target="_blank" class="btn btn-success btn-lg animate-button" style="width: 0px; background-color: #28a745; border-color: #28a745;">
                         <i class="fas fa-chalkboard-teacher me-2"></i>Apply as an Instructor
                     </a>
 
                     <!-- Apply for Job -->
-                    <a href="https://forms.gle/rXPYwMGAAUhyu98u6" target="_blank" class="btn btn-dark btn-lg animate-button" style="width: 250px; background-color: #343a40; border-color: #343a40;">
+                    <a href="https://forms.gle/rXPYwMGAAUhyu98u6" target="_blank" class="btn btn-dark btn-lg animate-button" style="width: 0px; background-color: #343a40; border-color: #343a40;">
                         <i class="fas fa-briefcase me-2"></i>Apply for Job
                     </a>
                 </div>

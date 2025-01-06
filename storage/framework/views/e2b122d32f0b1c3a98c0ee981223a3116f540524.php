@@ -17,14 +17,14 @@
 /* Table and Layout Styles */
 .content-wrapper {
     min-height: 100vh;
-    width: calc(100% - 250px);
+    width: calc(100% - 0px);
     margin-left: 0px;
     background-color: #f4f6f9;
 }
 
 .table-wrapper {
     position: relative;
-    max-height: calc(100vh - 250px);
+    max-height: calc(100vh - 0px);
     overflow: auto;
     border: 1px solid #dee2e6;
     border-radius: 4px;

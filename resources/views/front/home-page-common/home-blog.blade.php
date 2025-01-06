@@ -39,7 +39,7 @@
     <style>
         @media (max-width: 768px) {
             #blogs {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
             }
         }
         .blog-item:hover {

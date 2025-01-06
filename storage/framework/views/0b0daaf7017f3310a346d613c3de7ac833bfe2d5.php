@@ -22,7 +22,7 @@
             padding: 20px 0;
         }
         .logo {
-            max-width: 250px;
+            max-width: 0px;
         }
         .invoice-details {
             display: flex;

@@ -108,7 +108,7 @@ $(function () {
 
   // SLIMSCROLL FOR CHAT WIDGET
   $('#chat-box').overlayScrollbars({
-    height: '250px'
+    height: '0px'
   })
 
   /* Chart.js Charts */

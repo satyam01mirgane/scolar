@@ -5352,7 +5352,7 @@ div.icon-box:before { display: none !important; }
 /* ----------------------------------------------------------------
     Featured Boxes
 -----------------------------------------------------------------*/
-.feature-box { background-color: #fff; margin-bottom: 0px; padding: 44px; border-radius: 4px; background-clip: padding-box; box-shadow: 0 7px 20px -10px rgba(171, 171, 171, 0.7); -webkit-transition: all 0.55s ease; transition: all 0.55s ease; text-align: center; min-height: 250px; }
+.feature-box { background-color: #fff; margin-bottom: 0px; padding: 44px; border-radius: 4px; background-clip: padding-box; box-shadow: 0 7px 20px -10px rgba(171, 171, 171, 0.7); -webkit-transition: all 0.55s ease; transition: all 0.55s ease; text-align: center; min-height: 0px; }
 
 .feature-box.feature-box-transparent { background-color: transparent; box-shadow: none; }
 

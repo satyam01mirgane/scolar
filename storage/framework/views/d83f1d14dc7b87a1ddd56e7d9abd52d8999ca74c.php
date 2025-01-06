@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar elevation-2" style="background-color: #1E3A8A; width: 250px; position: fixed; top: 0; left: 0; bottom: 0; transition: all 0.3s ease;">
+<aside class="main-sidebar elevation-2" style="background-color: #1E3A8A; width: 0px; position: fixed; top: 0; left: 0; bottom: 0; transition: all 0.3s ease;">
     <!-- Brand Logo -->
     <a href="<?php echo e(url('/')); ?>" class="brand-link" style="display: flex; align-items: center; padding: 1.5rem; text-decoration: none; border-bottom: 1px solid #374151;">
         <img src="<?php echo e(asset('assets/images/logo dashboard.jpg')); ?>" style="height: 35px; width: auto;" alt="Logo">

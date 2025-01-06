@@ -96,8 +96,8 @@ $(document).ready(function() {
     .main-sidebar {
         position: absolute;
         top: 0;
-        left: -250px; /* Hide the sidebar initially on mobile */
-        width: 250px;
+        left: -0px; /* Hide the sidebar initially on mobile */
+        width: 0px;
         display: none; /* Initially hide the sidebar */
     }
 

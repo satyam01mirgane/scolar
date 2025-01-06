@@ -7,7 +7,7 @@
         <!-- Course Card - Modern Layout -->
         <div class="row course-card mb-5 p-4 shadow-lg rounded-4" style="background-color: #ffffff; transition: all 0.3s ease; border-radius: 16px; opacity: 0; animation: fadeIn 0.6s ease-out forwards;">
             <div class="col-md-4 d-flex align-items-center justify-content-center">
-                <img src="{{ asset($course_details->image) }}" alt="{{ $course_details->name }}" class="img-fluid rounded-4 course-image" style="object-fit: cover; max-height: 250px; border-radius: 12px; transition: all 0.3s ease;">
+                <img src="{{ asset($course_details->image) }}" alt="{{ $course_details->name }}" class="img-fluid rounded-4 course-image" style="object-fit: cover; max-height: 0px; border-radius: 12px; transition: all 0.3s ease;">
             </div>
             <div class="col-md-8">
                 <h1 style="font-size: 2.5rem; font-weight: 700; color: #333; line-height: 1.2; margin-bottom: 1rem; opacity: 0; animation: slideInRight 0.6s ease-out 0.3s forwards;">{{ $course_details->name }}</h1>
