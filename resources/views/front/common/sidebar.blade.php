@@ -3,12 +3,17 @@
         <a href="{{url('/')}}" class="navbar-brand">
             <img src="{{asset('assets/images/logo.svg')}}" alt="Logo" class="brand-image" style="height: 40px;">
         </a>
+
+        <!-- Toggler for Sidebar (for Mobile View) -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarToggle">
+            <span class="navbar-toggler-icon"></span>
+        </button>
     </div>
 </nav>
 
 <!-- Sidebar -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <div class="sidebar">
+    <div class="sidebar" id="sidebarToggle">
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -53,7 +58,10 @@
 
 <script>
 $(document).ready(function() {
-    // You can add any specific scripts here to toggle the sidebar on mobile
+    // Toggle sidebar visibility when the button is clicked on mobile
+    $('.navbar-toggler').click(function() {
+        $('#sidebarToggle').toggleClass('show');
+    });
 });
 </script>
 
@@ -99,15 +107,15 @@ $(document).ready(function() {
         left: 0;
         bottom: 0;
         width: 200px;
-        display: none;
+        display: none; /* Initially hide the sidebar */
     }
 
     .main-sidebar.show {
-        display: block;
+        display: block; /* Show when toggled */
     }
 
     .navbar-toggler {
-        display: block;
+        display: block; /* Display the toggler button */
     }
 }
 </style>
