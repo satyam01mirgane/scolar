@@ -40,18 +40,48 @@
         </div>
     </div>
 </nav>
+<!-- Required scripts -->
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
+<script>
+$(document).ready(function() {
+    $('.navbar-toggler').click(function() {
+        $('#navbarCollapse').toggleClass('show');
+    });
+
+    // Close menu when clicking outside
+    $(document).click(function(event) {
+        if (!$(event.target).closest('.navbar').length) {
+            $('#navbarCollapse').removeClass('show');
+        }
+    });
+
+    // Close menu when clicking a link on mobile
+    $('.nav-link').click(function() {
+        $('#navbarCollapse').removeClass('show');
+    });
+});
+</script>
 <style>
-@media (max-width: 768px) {
-    .navbar-collapse {
-        background: #343a40;
-    }
-    .nav-link {
-        padding: 0.5rem 1rem;
-    }
+.navbar-collapse {
+    transition: all 0.3s ease;
 }
 
-.content-wrapper {
-    margin-left: 0 !important;
+@media (max-width: 768px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #343a40;
+        padding: 1rem;
+        border-radius: 0 0 4px 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    .navbar-collapse.show {
+        display: block;
+    }
 }
 </style>
