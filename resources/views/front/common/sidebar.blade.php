@@ -1,137 +1,109 @@
-<aside class="main-sidebar elevation-2" id="sidebar" style="background-color: #1E3A8A; position: fixed; top: 0; left: 0; bottom: 0; transition: all 0.3s ease; display: block;">
-    <!-- Brand Logo -->
-    <a href="{{url('/')}}" class="brand-link" style="display: flex; align-items: center; padding: 1.5rem; text-decoration: none; border-bottom: 1px solid #374151;">
-        <img src="{{asset('assets/images/logo dashboard.jpg')}}" style="height: 35px; width: auto;" alt="Logo">
-    </a>
+@include('front.common.sidebar')
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper" style="background-color: #f4f6f9; min-height: 100vh; padding: 20px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header" style="margin-bottom: 20px;">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 style="font-size: 2.5rem; color: #333; font-weight: 600;">Scheduled Masterclass</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right" style="background: none; padding: 0;">
+                        <li class="breadcrumb-item"><a href="{{url('/')}}" style="color: #007bff; text-decoration: none;">Home</a></li>
+                        <li class="breadcrumb-item active" style="color: #6c757d;">Scheduled Masterclass</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Sidebar Content -->
-    <div class="sidebar-content" style="padding: 1rem 0; height: calc(100% - 70px); overflow-y: auto;">
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" style="list-style: none; padding: 0;">
-                <!-- Dashboard -->
-                <li class="nav-item" style="margin-bottom: 0.5rem;">
-                    <a href="{{url('dashboard')}}" class="nav-link {{$menu1}}" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; {{ $menu1 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : '' }}">
-                        <i class="fas fa-tachometer-alt" style="margin-right: 0.75rem; {{ $menu1 == 'active' ? 'color: #FFFFFF;' : 'color: #D1D5DB;' }}"></i>
-                        <p style="margin: 0; font-size: 0.875rem; font-weight: 500; {{ $menu1 == 'active' ? 'color: #FFFFFF;' : '' }}">Dashboard</p>
-                    </a>
-                </li>
-
-                <!-- Scheduled Workshops -->
-                <li class="nav-item" style="margin-bottom: 0.5rem;">
-                    <a href="{{url('scheduled-course')}}" class="nav-link {{$menu7}}" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; {{ $menu7 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : '' }}">
-                        <i class="far fa-image" style="margin-right: 0.75rem; {{ $menu7 == 'active' ? 'color: #FFFFFF;' : 'color: #D1D5DB;' }}"></i>
-                        <p style="margin: 0; font-size: 0.875rem; font-weight: 500; {{ $menu7 == 'active' ? 'color: #FFFFFF;' : '' }}">Scheduled Masterclass</p>
-                    </a>
-                </li>
-
-                <!-- Certificate & Feedback -->
-                <li class="nav-item" style="margin-bottom: 0.5rem;">
-                    <a href="{{url('certificate-feedback')}}" class="nav-link {{$menu5}}" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; {{ $menu5 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : '' }}">
-                        <i class="fas fa-certificate" style="margin-right: 0.75rem; {{ $menu5 == 'active' ? 'color: #FFFFFF;' : 'color: #D1D5DB;' }}"></i>
-                        <p style="margin: 0; font-size: 0.875rem; font-weight: 500; {{ $menu5 == 'active' ? 'color: #FFFFFF;' : '' }}">Certificate & Feedback</p>
-                    </a>
-                </li>
-
-                <!-- Change Password -->
-                <li class="nav-item" style="margin-bottom: 0.5rem;">
-                    <a href="{{url('change-password')}}" class="nav-link {{$menu2}}" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; {{ $menu2 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : '' }}">
-                        <i class="far fa-calendar-alt" style="margin-right: 0.75rem; {{ $menu2 == 'active' ? 'color: #FFFFFF;' : 'color: #D1D5DB;' }}"></i>
-                        <p style="margin: 0; font-size: 0.875rem; font-weight: 500; {{ $menu2 == 'active' ? 'color: #FFFFFF;' : '' }}">Change Password</p>
-                    </a>
-                </li>
-
-                <!-- Logout -->
-                <li class="nav-item" style="margin-top: auto;">
-                    <a href="{{url('logout')}}" class="nav-link" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#EF4444'; this.style.color='#FFFFFF';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#D1D5DB';">
-                        <i class="fas fa-sign-out-alt" style="margin-right: 0.75rem;"></i>
-                        <p style="margin: 0; font-size: 0.875rem; font-weight: 500;">Logout</p>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-
-    <!-- Floating Sidebar Button -->
-    <button class="floating-btn" style="display: none; position: fixed; bottom: 2rem; left: 1.5rem; background-color: #2563EB; color: white; border: none; border-radius: 50%; padding: 1rem; font-size: 1.5rem; cursor: pointer; z-index: 1000;">
-        <i class="fas fa-bars"></i>
-    </button>
-</aside>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1); overflow: hidden; transition: all 0.3s ease;">
+                        <div class="card-body table-responsive p-0">
+                            @if(Session::has('success'))
+                            <div class="alert alert-success" style="margin: 20px; border-radius: 5px;">
+                                {{Session::get('success')}}
+                            </div>
+                            @endif
+                            <table class="table table-hover text-nowrap" style="margin-bottom: 0;">
+                                <thead>
+                                    <tr>
+                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Name</th>
+                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Zoom Link</th>
+                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Masterclass ID</th>
+                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Instructor</th>
+                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Date</th>
+                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Time</th>
+                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Amount Paid</th>
+                                        <th style="padding: 15px; font-size: 1rem; color: #333;">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if(count($orders) > 0)
+                                        @foreach($orders as $k => $v)
+                                            <tr style="transition: all 0.3s ease;">
+                                                <td style="padding: 15px; font-size: 1rem; color: #666;">{{$v->workshopname}}</td>
+                                                <td style="padding: 15px; font-size: 1rem; color: #007bff;"><a href="{{$v->zoom_link}}" style="text-decoration: none;">Link</a></td>
+                                                <td style="padding: 15px; font-size: 1rem; color: #666;">WKPID{{$v->product_id}}</td>
+                                                <td style="padding: 15px; font-size: 1rem; color: #666;">{{$v->trainername}}</td>
+                                                <td style="padding: 15px; font-size: 1rem; color: #666;">{{date('d-m-Y', strtotime($v->session_date))}}</td>
+                                                <td style="padding: 15px; font-size: 1rem; color: #666;">{{date('H:i:s A', strtotime($v->session_time))}}</td>
+                                                <td style="padding: 15px; font-size: 1rem; color: #666;">
+                                                    @if($v->workshop_type == 'Free')
+                                                        Free
+                                                    @else
+                                                        Rs.{{$v->price - $v->product_discount}}
+                                                    @endif
+                                                </td>
+                                                <td style="padding: 15px; font-size: 1rem; color: #666;">{{$v->session_status}}</td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="8" style="padding: 20px; font-size: 1rem; color: #666; text-align: center;">No Masterclass found</td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@include('front.common.profile-footer')
 
 <style>
-    .main-sidebar {
-        display: block; /* Ensure sidebar is visible on desktop */
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 25px rgba(0,0,0,0.1);
     }
-
-    .floating-btn {
-        display: block; /* Floating button is visible by default */
+    tr:hover {
+        background-color: #f8f9fa;
     }
-
-    /* Mobile and Tablet Responsiveness */
-    @media (max-width: 768px) {
-        .main-sidebar {
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: -250px; /* Initially hidden */
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-content {
-            padding: 1rem 0;
-        }
-
-        .nav-link {
-            padding: 0.75rem 1rem;
-            font-size: 0.75rem;
-            text-align: center;
-        }
-
-        .nav-item i {
-            margin-right: 0;
-        }
-
-        .brand-link {
-            justify-content: center;
-            padding: 0.75rem;
-        }
-
-        .main-sidebar .nav-pills {
-            flex-direction: column;
-        }
-
-        .main-sidebar .nav-item {
-            text-align: center;
-            margin: 0;
-        }
-
-        .nav-item p {
+    a:hover {
+        text-decoration: underline;
+    }
+    .alert-success {
+        animation: fadeOut 2s 2s forwards;
+    }
+    @keyframes fadeOut {
+        to {
+            opacity: 0;
             display: none;
         }
-
-        .floating-btn {
-            left: 1rem; /* Adjust positioning on smaller screens */
-        }
     }
 
-    @media (max-width: 480px) {
-        .main-sidebar {
-            width: 60px;
-        }
-
-        .nav-link {
-            font-size: 0.65rem;
-            padding: 0.5rem 1rem;
+    /* Media Query: Hide Sidebar on Mobile/Tablet */
+    @media (max-width: 768px) {
+        #sidebar {
+            display: none;
         }
     }
 </style>
-
-<script>
-    document.querySelector('.floating-btn').addEventListener('click', function() {
-        var sidebar = document.querySelector('#sidebar');
-        if (sidebar.style.left === '-250px' || sidebar.style.left === '') {
-            sidebar.style.left = '0';
-        } else {
-            sidebar.style.left = '-250px';
-        }
-    });
-</script>
