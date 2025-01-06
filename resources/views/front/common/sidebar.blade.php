@@ -1,5 +1,3 @@
-
-<!-- Remove the aside and add this navbar -->
 <nav class="main-header navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
         <a href="{{url('/')}}" class="navbar-brand">
@@ -41,9 +39,10 @@
         </div>
     </div>
 </nav>
+
 <style>
 .navbar-collapse {
-    /* transition: all 0.3s ease; */
+    transition: all 0.3s ease;
 }
 
 @media (max-width: 768px) {
@@ -56,6 +55,7 @@
         padding: 1rem;
         border-radius: 0 0 4px 4px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        display: none; /* Initially hidden */
     }
     
     .navbar-collapse.show {
@@ -71,20 +71,19 @@
 <script>
 $(document).ready(function() {
     $('.navbar-toggler').click(function() {
-        $('#navbarCollapse').toggleClass('show');
+        $('#navbarCollapse').stop(true, true).slideToggle(300); // 300ms for smooth transition
     });
 
     // Close menu when clicking outside
     $(document).click(function(event) {
         if (!$(event.target).closest('.navbar').length) {
-            $('#navbarCollapse').removeClass('show');
+            $('#navbarCollapse').slideUp(300); // Close the menu with a smooth transition
         }
     });
 
     // Close menu when clicking a link on mobile
     $('.nav-link').click(function() {
-        $('#navbarCollapse').removeClass('show');
+        $('#navbarCollapse').slideUp(300); // Close with smooth transition
     });
 });
 </script>
-
