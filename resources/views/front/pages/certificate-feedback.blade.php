@@ -1,5 +1,5 @@
 @include('front.common.sidebar')
-
+@include('front.common.profile-header')
 <style>
 .modal-header1 {
     display: -ms-flexbox;
@@ -93,21 +93,7 @@
     background: #555;
 }
 </style>
-<section class="content-header" style="margin-bottom: 20px;">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 style="font-size: 2.5rem; color: #333; font-weight: 600;"></h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right" style="background: none; padding: 0;">
-                        <li class="breadcrumb-item"><a href="{{url('/')}}" style="color: #007bff; text-decoration: none;">Home</a></li>
-                        <li class="breadcrumb-item active" style="color: #6c757d;">User Profile</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </section>
+
 <div class="content-wrapper">
 
     <!-- Content Header -->
