@@ -7,7 +7,7 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="navbar-collapse">
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
