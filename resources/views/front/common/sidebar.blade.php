@@ -5,9 +5,9 @@
             <img src="{{asset('assets/images/logo.svg')}}" alt="Logo" class="brand-image" style="height: 40px;">
         </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
-        </button>
+        </button> -->
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav">
@@ -43,9 +43,9 @@
 
 <style>
 @media (max-width: 768px) {
-    .navbar-collapse {
+    /* .navbar-collapse {
         background: #343a40;
-    }
+    } */
     .nav-link {
         padding: 0.5rem 1rem;
     }
