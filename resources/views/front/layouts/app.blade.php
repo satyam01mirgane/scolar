@@ -1,129 +1,112 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-        }
-        .sidebar {
-            min-height: 100vh;
-            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-        }
-        @media (max-width: 767.98px) {
-            .sidebar {
-                top: 5rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
+<!-- Sidebar -->
+<aside id="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
+    <div class="sidebar">
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="{{url('dashboard')}}" class="nav-link {{$menu1}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('scheduled-course')}}" class="nav-link {{$menu7}}">
+                        <i class="nav-icon far fa-image"></i>
+                        <p>Scheduled Courses</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('certificate-feedback')}}" class="nav-link {{$menu5}}">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Certificate & Feedback</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('change-password')}}" class="nav-link {{$menu2}}">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>Change Password</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url('logout')}}" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>Logout</p>
+                    </a>
+                </li>
+            </ul>
         </nav>
-
-        <div class="container-fluid">
-            <div class="row">
-                @auth
-                    <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                        <div class="position-sticky pt-3">
-                            <ul class="nav flex-column">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">
-                                        Dashboard
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        Profile
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        Settings
-                                    </a>
-                                </li>
-                                <!-- Add more sidebar items as needed -->
-                            </ul>
-                        </div>
-                    </nav>
-                @endauth
-
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
-                    @yield('content')
-                </main>
-            </div>
-        </div>
     </div>
+</aside>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
-</body>
-</html>
+<!-- Required scripts -->
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
+<script>
+$(document).ready(function() {
+    // Toggle sidebar visibility when the button is clicked on mobile
+    $('.navbar-toggler').click(function() {
+        $('#sidebar').toggleClass('show');
+    });
+});
+</script>
+
+<style>
+/* Styling for the sidebar */
+.main-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #343a40;
+    color: #fff;
+    z-index: 9999;
+    transition: left 0.3s ease;
+}
+
+.main-sidebar.show {
+    left: 0;
+}
+
+.nav-sidebar {
+    padding-top: 10px;
+}
+
+.nav-sidebar .nav-item {
+    padding: 10px;
+    margin: 0;
+}
+
+.nav-sidebar .nav-link {
+    color: #ddd;
+}
+
+.nav-sidebar .nav-link:hover {
+    background-color: #495057;
+}
+
+.nav-sidebar .nav-item.active .nav-link {
+    background-color: #007bff;
+}
+
+/* For better mobile responsiveness */
+@media (max-width: 768px) {
+    .main-sidebar {
+        position: absolute;
+        top: 0;
+        left: -250px; /* Hide the sidebar initially on mobile */
+        width: 250px;
+        display: none; /* Initially hide the sidebar */
+    }
+
+    .main-sidebar.show {
+        left: 0; /* Show the sidebar when toggled */
+    }
+
+    .navbar-toggler {
+        display: block; /* Display the toggler button on mobile */
+    }
+}
+</style>
