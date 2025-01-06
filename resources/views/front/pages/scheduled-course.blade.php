@@ -45,7 +45,7 @@
 
 <!-- Modified HTML structure -->
 <div class="wrapper">
-    @include('front.common.profile-header')
+    <!-- @include('front.common.profile-header') -->
     @include('front.common.sidebar')
 
     <div class="content-wrapper">

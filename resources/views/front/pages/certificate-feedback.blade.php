@@ -1,5 +1,5 @@
 @include('front.common.sidebar')
-@include('front.common.profile-header')
+<!-- @include('front.common.profile-header') -->
 <style>
 .modal-header1 {
     display: -ms-flexbox;
