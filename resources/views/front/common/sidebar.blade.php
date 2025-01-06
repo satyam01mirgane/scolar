@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand-md navbar-dark bg-dark flex-column">
+<nav class="main-header navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
         <a href="{{url('/')}}" class="navbar-brand">
             <img src="{{asset('assets/images/logo.svg')}}" alt="Logo" class="brand-image" style="height: 40px;">
@@ -9,7 +9,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav flex-column">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="{{url('dashboard')}}" class="nav-link {{$menu1}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i> Dashboard
@@ -43,7 +43,6 @@
 <style>
 .navbar-collapse {
     transition: all 0s ease;
-    margin-top: 20px;
 }
 
 @media (max-width: 768px) {
@@ -58,23 +57,9 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         display: none; /* Initially hidden */
     }
-
+    
     .navbar-collapse.show {
         display: block;
-    }
-    
-    .navbar-nav {
-        display: block;
-        width: 100%;
-    }
-
-    .navbar-nav .nav-item {
-        width: 100%;
-    }
-
-    .navbar-nav .nav-link {
-        display: block;
-        text-align: left;
     }
 }
 </style>
