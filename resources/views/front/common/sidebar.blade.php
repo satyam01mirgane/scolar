@@ -65,7 +65,7 @@ $(document).ready(function() {
 </script>
 <style>
 .navbar-collapse {
-    transition: all 0.3s ease;
+    transition: all 5s ease;
 }
 
 @media (max-width: 768px) {
