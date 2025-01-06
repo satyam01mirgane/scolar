@@ -59,7 +59,7 @@ $(document).ready(function() {
     top: 0;
     left: 0;
     height: 100%;
-    width: 250px;
+    width: 0px;
     background-color: #343a40;
     color: #fff;
     z-index: 9999;
@@ -96,7 +96,7 @@ $(document).ready(function() {
     .main-sidebar {
         position: absolute;
         top: 0;
-        left: 0; /* Hide the sidebar initially on mobile */
+        left: -250px; /* Hide the sidebar initially on mobile */
         width: 250px;
         display: none; /* Initially hide the sidebar */
     }
