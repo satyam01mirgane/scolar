@@ -18,7 +18,7 @@
 .content-wrapper {
     min-height: 100vh;
     width: calc(100% - 250px);
-    margin-left: 250px;
+    margin-left: 0px;
     background-color: #f4f6f9;
 }
 
