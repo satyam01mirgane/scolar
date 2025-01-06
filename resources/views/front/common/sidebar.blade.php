@@ -1,8 +1,8 @@
 
-<nav class="main-header navbar  navbar-dark bg-dark">
+<nav class="navbar  navbar-dark bg-dark">
     <div class="container">
         <a href="{{url('/')}}" class="navbar-brand">
-            <img src="{{asset('assets/images/logo.svg')}}" alt="Logo" class="brand-image" style="height: 0px;">
+            <img src="{{asset('assets/images/logo.svg')}}" alt="Logo" class="brand-image" style="height: 40px;">
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
