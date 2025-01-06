@@ -1,5 +1,5 @@
 
-<nav class="main-header navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="main-sidebar sidebar-dark-primary elevation-4">
     <div class="container-fluid">
         <a href="{{url('/')}}" class="navbar-brand">
             <img src="{{asset('assets/images/logo.svg')}}" alt="Logo" class="brand-image" style="height: 40px;">
@@ -9,7 +9,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse flex-column navbar-collapse" id="navbarCollapse">
+        <div class="collapse  navbar-collapse" id="navbarCollapse">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="{{url('dashboard')}}" class="nav-link {{$menu1}}">
