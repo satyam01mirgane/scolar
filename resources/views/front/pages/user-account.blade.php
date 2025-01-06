@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 style="font-size: 2.5rem; color: #333; font-weight: 600;">User Dashboard</h1>
+                    <h1 style="font-size: 2.5rem; color: #333; font-weight: 600;"></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right" style="background: none; padding: 0;">
