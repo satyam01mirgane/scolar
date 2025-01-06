@@ -16,7 +16,7 @@
 </style>
 
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="content-wrapper" style="margin-left:0px;>
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
