@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="main-header navbar navbar-expand-md navbar-dark bg-dark flex-column">
     <div class="container-fluid">
         <a href="{{url('/')}}" class="navbar-brand">
             <img src="{{asset('assets/images/logo.svg')}}" alt="Logo" class="brand-image" style="height: 40px;">
@@ -43,6 +43,7 @@
 <style>
 .navbar-collapse {
     transition: all 0s ease;
+    margin-top: 20px;
 }
 
 @media (max-width: 768px) {
@@ -57,9 +58,23 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         display: none; /* Initially hidden */
     }
-    
+
     .navbar-collapse.show {
         display: block;
+    }
+    
+    .navbar-nav {
+        display: block;
+        width: 100%;
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%;
+    }
+
+    .navbar-nav .nav-link {
+        display: block;
+        text-align: left;
     }
 }
 </style>
