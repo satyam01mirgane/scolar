@@ -9,7 +9,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="collapse flex-column navbar-collapse" id="navbarCollapse">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="{{url('dashboard')}}" class="nav-link {{$menu1}}">
