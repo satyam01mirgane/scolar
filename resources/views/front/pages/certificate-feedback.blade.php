@@ -1,4 +1,3 @@
-@include('front.common.profile-header')
 @include('front.common.sidebar')
 
 <style>
