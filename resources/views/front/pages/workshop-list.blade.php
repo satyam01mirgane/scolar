@@ -12,17 +12,17 @@
                 <!-- Buttons Section -->
                 <div class="d-flex justify-content-center flex-wrap gap-4">
                     <!-- Apply for Internship -->
-                    <a href="https://forms.gle/REUMWYRNR28fRXjv6" target="_blank" class="btn-modern btn-primary-modern">
+                    <a href="https://forms.gle/REUMWYRNR28fRXjv6" target="_blank" class="btn-modern btn-internship">
                         <i class="fas fa-graduation-cap me-2"></i> Apply for Internship
                     </a>
 
                     <!-- Apply as an Instructor -->
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMykqR2xjRUu01u07EKQXHm3AVxJXZVyc-ZOcgxVHCurKY-A/viewform?usp=sharing" target="_blank" class="btn-modern btn-success-modern">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMykqR2xjRUu01u07EKQXHm3AVxJXZVyc-ZOcgxVHCurKY-A/viewform?usp=sharing" target="_blank" class="btn-modern btn-instructor">
                         <i class="fas fa-chalkboard-teacher me-2"></i> Apply as an Instructor
                     </a>
 
                     <!-- Apply for Job -->
-                    <a href="https://forms.gle/rXPYwMGAAUhyu98u6" target="_blank" class="btn-modern btn-dark-modern">
+                    <a href="https://forms.gle/rXPYwMGAAUhyu98u6" target="_blank" class="btn-modern btn-job">
                         <i class="fas fa-briefcase me-2"></i> Apply for Job
                     </a>
                 </div>
@@ -70,10 +70,9 @@
     text-decoration: none;
     border: none;
     border-radius: 50px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    cursor: pointer;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 /* Hover Transform */
@@ -103,29 +102,30 @@
     opacity: 0;
 }
 
-/* Specific Button Colors */
-.btn-primary-modern {
-    background: #007bff;
+/* Specific Button Backgrounds */
+.btn-internship {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
 }
 
-.btn-success-modern {
-    background: #28a745;
+.btn-instructor {
+    background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
 }
 
-.btn-dark-modern {
-    background: #343a40;
+.btn-job {
+    background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
 }
 
-.btn-primary-modern:hover {
-    background: #0056b3;
+/* Hover Effects for Backgrounds */
+.btn-internship:hover {
+    background: linear-gradient(135deg, #8e44ad 0%, #3498db 100%);
 }
 
-.btn-success-modern:hover {
-    background: #218838;
+.btn-instructor:hover {
+    background: linear-gradient(135deg, #ff6f61 0%, #ffae66 100%);
 }
 
-.btn-dark-modern:hover {
-    background: #1d2124;
+.btn-job:hover {
+    background: linear-gradient(135deg, #56ab91 0%, #1e5799 100%);
 }
 
 /* Section Animations */
