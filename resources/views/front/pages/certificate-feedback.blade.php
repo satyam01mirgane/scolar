@@ -74,7 +74,7 @@
                                                     @if($v->session_status != 'Open')
                                                         <div class="d-flex gap-3">
                                                             <!-- LinkedIn Share -->
-                                                            <a href="https://www.linkedin.com/sharing/share-offsite/&title=Excited to share my achievement!&summary=🎉 I’m thrilled to announce that I’ve successfully completed the masterclass '{{ $v->workshopname }}' under the expert guidance of {{ $v->trainername }}. 🚀💡 This experience has been truly enriching! #Masterclass #{{ str_replace(' ', '', $v->workshopname) }} #{{ str_replace(' ', '', $v->trainername) }}"
+                                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ url('print-certificate/'.$v->product_id) }}&title=Excited to share my achievement!&summary=🎉 I’m thrilled to announce that I’ve successfully completed the masterclass '{{ $v->workshopname }}' under the expert guidance of {{ $v->trainername }}. 🚀💡 This experience has been truly enriching! #Masterclass #{{ str_replace(' ', '', $v->workshopname) }} #{{ str_replace(' ', '', $v->trainername) }}"
                                                                target="_blank" title="Share on LinkedIn">
                                                                 <i class="fab fa-linkedin" style="color: #0077b5; font-size: 24px;"></i>
                                                             </a>
