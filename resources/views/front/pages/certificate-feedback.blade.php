@@ -75,15 +75,15 @@
                                                     @if($v->session_status != 'Open')
                                                         <div class="d-flex justify-content-start gap-3">
                                                             <!-- LinkedIn Share -->
-                                                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ url('certificates/'.$v->product_id.'.pdf') }}&title=Excited to share my achievement!&summary=🎉 I’m thrilled to announce that I’ve successfully completed the masterclass '{{ $v->workshopname }}' under the expert guidance of {{ $v->trainername }}. 🚀💡 This experience has been truly enriching! Check out my certificate here: 
-                                                                 #VIEF #Vscholar @vscholar #{{ str_replace(' ', '', $v->workshopname) }} #{{ str_replace(' ', '', $v->trainername) }}"
+                                                            <a href="https://www.linkedin.com/sharing/share-offsite/?text=🎉 I’m thrilled to announce that I’ve successfully completed the masterclass '{{ $v->workshopname }}' under the expert guidance of {{ $v->trainername }}. 🚀💡 This experience has been truly enriching! 
+                                                                #VIEF #Vscholar @vscholar #{{ str_replace(' ', '', $v->workshopname) }} #{{ str_replace(' ', '', $v->trainername) }}"
                                                                target="_blank" title="Share on LinkedIn">
                                                                 <i class="fab fa-linkedin" style="color: #0077b5; font-size: 24px;"></i>
                                                             </a>
 
                                                             <!-- Copy to Clipboard -->
-                                                            <a href="#" onclick="copyToClipboard('🎉 I’m thrilled to announce that I’ve successfully completed the masterclass \'{{ $v->workshopname }}\' under the expert guidance of {{ $v->trainername }}. 🚀💡 This experience has been truly enriching! Check out my certificate here: 
-                                                                 #VIEF #Vscholar @vscholar #{{ str_replace(' ', '', $v->workshopname) }} #{{ str_replace(' ', '', $v->trainername) }}')" title="Copy Link">
+                                                            <a href="#" onclick="copyToClipboard('🎉 I’m thrilled to announce that I’ve successfully completed the masterclass \'{{ $v->workshopname }}\' under the expert guidance of {{ $v->trainername }}. 🚀💡 This experience has been truly enriching! 
+                                                                #VIEF #Vscholar @vscholar #{{ str_replace(' ', '', $v->workshopname) }} #{{ str_replace(' ', '', $v->trainername) }}')" title="Copy Link">
                                                                 <i class="fas fa-copy" style="color: #6c757d; font-size: 24px;"></i>
                                                             </a>
                                                         </div>
