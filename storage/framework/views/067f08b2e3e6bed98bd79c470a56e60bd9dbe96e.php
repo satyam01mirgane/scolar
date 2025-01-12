@@ -1,103 +1,150 @@
 <header style="background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; z-index: 1000; padding: 2px 0;">
-    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 10px;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 15px;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <!-- Logo -->
             <div id="logo" style="margin-right: 10px;">
                 <a href="<?php echo e(url('/')); ?>">
-                    <img src="<?php echo e(asset('assets/images/logo dashboard.svg')); ?>" alt="logo" style="height: 60px;">
+                    <img src="<?php echo e(asset('assets/images/logo dashboard.svg')); ?>" alt="logo" style="height: 50px;">
                 </a>
             </div>
 
-            <!-- Hamburger Menu for Mobile & Tablet -->
-            <div id="hamburger-menu" style="display: none; cursor: pointer;">
-                <i class="fas fa-bars" style="font-size: 24px;"></i>
+            <!-- Hamburger Menu -->
+            <div id="hamburger-menu" class="mobile-only" style="cursor: pointer;">
+                <i class="fas fa-bars" style="font-size: 24px; color: #333;"></i>
             </div>
 
-            <!-- Navigation & Action Buttons -->
-            <nav style="flex-grow: 1; display: flex; justify-content: center;">
-                <ul style="display: flex; list-style-type: none; margin: 0; padding: 0;">
-                    <li><a href="<?php echo e(url('/')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; font-weight: 500; font-size: 12px;">Home</a></li>
-                    <li><a href="<?php echo e(url('/about-us')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">About</a></li>
-                    <li><a href="<?php echo e(url('/courses')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">Masterclass</a></li>
-                    <li><a href="<?php echo e(url('/blogs')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">Study Material</a></li>
-                    <li><a href="<?php echo e(url('/workshops')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">Career</a></li>
-                    <li><a href="<?php echo e(url('/contact-us')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; font-size: 12px;">Support</a></li>
+            <!-- Navigation -->
+            <nav class="desktop-nav" style="flex-grow: 1;">
+                <ul style="display: flex; list-style-type: none; margin: 0; padding: 0; justify-content: center;">
+                    <li><a href="<?php echo e(url('/')); ?>" style="color: #333; text-decoration: none; padding: 10px 15px; font-weight: 500; font-size: 14px; font-family: 'Montserrat', sans-serif;">Home</a></li>
+                    <li><a href="<?php echo e(url('/about-us')); ?>" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px; font-family: 'Montserrat', sans-serif;">About</a></li>
+                    <li><a href="<?php echo e(url('/courses')); ?>" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px; font-family: 'Montserrat', sans-serif;">Masterclass</a></li>
+                    <li><a href="<?php echo e(url('/blogs')); ?>" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px; font-family: 'Montserrat', sans-serif;">Study Material</a></li>
+                    <li><a href="<?php echo e(url('/workshops')); ?>" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px; font-family: 'Montserrat', sans-serif;">Career</a></li>
+                    <li><a href="<?php echo e(url('/contact-us')); ?>" style="color: #333; text-decoration: none; padding: 10px 15px; font-size: 14px; font-family: 'Montserrat', sans-serif;">Support</a></li>
                 </ul>
             </nav>
 
             <!-- Action Buttons -->
-            <div style="display: flex; gap: 8px; align-items: center;">
-            <a href="https://www.vief.in/" style="padding: 4px 12px; background-color: #ff4d00; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">VIEF</a>
-<a href="http://xcubit.in/" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">Xcubit</a>
-<a href="https://www.vastavintellect.com/" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">VIIP</a>
-<!-- <a href="#" style="padding: 4px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 12px;" target="_blank">RTTP</a> -->
-
-                <!-- Cart Icon -->
-                <a href="<?php echo e(url('cart')); ?>" style="color: #333; font-size: 16px; display: flex; align-items: center; margin-left: 40px;">
+            <div class="action-buttons" style="display: flex; gap: 8px; align-items: center;">
+                <a href="https://www.vief.in/" class="action-button" style="padding: 6px 12px; background-color: #ff4d00; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; font-family: 'Montserrat', sans-serif;" target="_blank">VIEF</a>
+                <a href="http://xcubit.in/" class="action-button" style="padding: 6px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; font-family: 'Montserrat', sans-serif;" target="_blank">Xcubit</a>
+                <a href="https://www.vastavintellect.com/" class="action-button" style="padding: 6px 12px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 13px; font-family: 'Montserrat', sans-serif;" target="_blank">VIIP</a>
+                
+                <a href="<?php echo e(url('cart')); ?>" class="cart-icon" style="color: #333; font-size: 16px; display: flex; align-items: center; margin-left: 20px; font-family: 'Montserrat', sans-serif;">
                     <i class="fas fa-shopping-cart"></i>
-                    <span style="background-color:#ff4d00; color: white; border-radius: 100%; padding: 3px 13px; font-size: 8px; margin-left: 4px;"><?php echo e(Cart::getTotalQuantity()); ?></span>
+                    <span style="background-color:#ff4d00; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; margin-left: 4px;"><?php echo e(Cart::getTotalQuantity()); ?></span>
                 </a>
 
                 <?php if(isset(Auth::user()->name)): ?>
-                    <a href="<?php echo e(url('dashboard')); ?>" title="<?php echo e(Auth::user()->name); ?>" class="btn btn-rounded">
-                        <i class="fas fa-user"></i> <!-- User profile icon -->
+                    <a href="<?php echo e(url('dashboard')); ?>" title="<?php echo e(Auth::user()->name); ?>" class="user-icon" style="font-family: 'Montserrat', sans-serif;">
+                        <i class="fas fa-user"></i>
                     </a>
                 <?php else: ?>
-                    <a href="<?php echo e(url('login')); ?>" class="btn btn-rounded">Login</a>
+                    <a href="<?php echo e(url('login')); ?>" class="login-button" style="font-family: 'Montserrat', sans-serif;">Login</a>
                 <?php endif; ?>
             </div>
         </div>
     </div>
 
-    <!-- Mobile Menu (Hidden by default) -->
-    <div id="mobile-menu" style="display: none; background-color: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: absolute; top: 60px; left: 0; right: 0; padding: 10px; z-index: 999;">
-        <ul style="list-style-type: none; margin: 0; padding: 0; text-align: center;">
-            <li><a href="<?php echo e(url('/')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; display: block;">Home</a></li>
-            <li><a href="<?php echo e(url('/about-us')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; display: block;">About</a></li>
-            <li><a href="<?php echo e(url('/courses')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; display: block;">Workshop</a></li>
-            <li><a href="<?php echo e(url('/blogs')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; display: block;">Study Material</a></li>
-            <li><a href="<?php echo e(url('/workshops')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; display: block;">Career</a></li>
-            <li><a href="<?php echo e(url('/contact-us')); ?>" style="color: #333; text-decoration: none; padding: 10px 10px; display: block;">Contact</a></li>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu" style="display: none;">
+        <ul style="list-style-type: none; margin: 0; padding: 10px;">
+            <li><a href="<?php echo e(url('/')); ?>" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee; font-family: 'Montserrat', sans-serif;">Home</a></li>
+            <li><a href="<?php echo e(url('/about-us')); ?>" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee; font-family: 'Montserrat', sans-serif;">About</a></li>
+            <li><a href="<?php echo e(url('/courses')); ?>" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee; font-family: 'Montserrat', sans-serif;">Masterclass</a></li>
+            <li><a href="<?php echo e(url('/blogs')); ?>" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee; font-family: 'Montserrat', sans-serif;">Study Material</a></li>
+            <li><a href="<?php echo e(url('/workshops')); ?>" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee; font-family: 'Montserrat', sans-serif;">Career</a></li>
+            <li><a href="<?php echo e(url('/contact-us')); ?>" style="color: #333; text-decoration: none; padding: 12px 15px; display: block; border-bottom: 1px solid #eee; font-family: 'Montserrat', sans-serif;">Support</a></li>
         </ul>
+        <div class="mobile-action-buttons" style="padding: 15px; display: flex; flex-wrap: wrap; gap: 10px;">
+            <a href="https://www.vief.in/" style="padding: 8px 15px; background-color: #ff4d00; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 14px; text-align: center; flex: 1; font-family: 'Montserrat', sans-serif;" target="_blank">VIEF</a>
+            <a href="http://xcubit.in/" style="padding: 8px 15px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 14px; text-align: center; flex: 1; font-family: 'Montserrat', sans-serif;" target="_blank">Xcubit</a>
+            <a href="https://www.vastavintellect.com/" style="padding: 8px 15px; background-color: white; color: #ff4d00; border: 1px solid #ff4d00; text-decoration: none; border-radius: 4px; font-weight: 500; font-size: 14px; text-align: center; flex: 1; font-family: 'Montserrat', sans-serif;" target="_blank">VIIP</a>
+        </div>
     </div>
 </header>
 
 <style>
+    @import  url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
     body {
         margin: 0;
         padding: 0;
+        font-family: 'Montserrat', sans-serif;
     }
 
     .container {
         margin-top: 60px;
     }
 
-    #hamburger-menu {
+    .mobile-only {
         display: none;
     }
 
-    @media (max-width: 1200px) {
-        #hamburger-menu {
-            display: block;
-        }
-        
-        nav {
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+
+    .action-buttons a:hover {
+        opacity: 0.9;
+    }
+
+    @media (max-width: 1024px) {
+        .desktop-nav {
             display: none;
         }
 
-        .action-buttons {
-            flex-wrap: wrap;
-            justify-content: flex-end;
+        .mobile-only {
+            display: block;
         }
 
-        .action-buttons a {
-            margin-bottom: 5px;
+        .action-buttons .action-button {
+            display: none;
+        }
+
+        .cart-icon, .user-icon, .login-button {
+            margin-left: 15px !important;
         }
     }
 
     @media (max-width: 768px) {
-        #mobile-menu {
-            display: block;
+        #logo img {
+            height: 40px;
+        }
+
+        .cart-icon {
+            font-size: 14px !important;
+        }
+
+        .mobile-menu ul li a {
+            font-size: 14px;
+        }
+
+        .mobile-action-buttons {
+            flex-direction: column;
+        }
+
+        .mobile-action-buttons a {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            padding: 0 10px;
+        }
+
+        .cart-icon span {
+            padding: 1px 4px;
+            font-size: 8px;
         }
     }
 </style>
@@ -106,10 +153,32 @@
 document.addEventListener('DOMContentLoaded', function() {
     const hamburgerMenu = document.getElementById('hamburger-menu');
     const mobileMenu = document.getElementById('mobile-menu');
+    let isMenuOpen = false;
 
     hamburgerMenu.addEventListener('click', function() {
-        mobileMenu.style.display = mobileMenu.style.display === 'none' || mobileMenu.style.display === '' ? 'block' : 'none';
+        isMenuOpen = !isMenuOpen;
+        mobileMenu.style.display = isMenuOpen ? 'block' : 'none';
+        
+        // Prevent body scrolling when menu is open
+        document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (isMenuOpen && !mobileMenu.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+            mobileMenu.style.display = 'none';
+            isMenuOpen = false;
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Close menu on window resize if switching to desktop view
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 1024 && isMenuOpen) {
+            mobileMenu.style.display = 'none';
+            isMenuOpen = false;
+            document.body.style.overflow = 'auto';
+        }
     });
 });
-</script>
-<?php /**PATH D:\New folder\htdocs\RUN\resources\views/front/common/navbar.blade.php ENDPATH**/ ?>
+</script><?php /**PATH D:\New folder\htdocs\RUN\resources\views/front/common/navbar.blade.php ENDPATH**/ ?>

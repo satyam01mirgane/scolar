@@ -1,91 +1,91 @@
-<!-- Main Sidebar Container -->
-<aside class="main-sidebar elevation-2" style="background-color: #1E3A8A; width: 0px; position: fixed; top: 0; left: 0; bottom: 0; transition: all 0.3s ease;">
-    <!-- Brand Logo -->
-    <a href="<?php echo e(url('/')); ?>" class="brand-link" style="display: flex; align-items: center; padding: 1.5rem; text-decoration: none; border-bottom: 1px solid #374151;">
-        <img src="<?php echo e(asset('assets/images/logo dashboard.jpg')); ?>" style="height: 35px; width: auto;" alt="Logo">
-    </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar" style="padding: 1rem 0; height: calc(100% - 70px); overflow-y: auto;">
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" style="list-style: none; padding: 0;">
-                <!-- Dashboard -->
-                <li class="nav-item" style="margin-bottom: 0.5rem;">
-                    <a href="<?php echo e(url('dashboard')); ?>" class="nav-link <?php echo e($menu1); ?>" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; <?php echo e($menu1 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : ''); ?>" onmouseover="this.style.backgroundColor='#3B82F6'" onmouseout="this.style.backgroundColor='<?php echo e($menu1 == 'active' ? '#2563EB' : 'transparent'); ?>'; this.style.color='<?php echo e($menu1 == 'active' ? '#FFFFFF' : '#D1D5DB'); ?>';">
-                        <i class="fas fa-tachometer-alt" style="margin-right: 0.75rem; <?php echo e($menu1 == 'active' ? 'color: #FFFFFF;' : 'color: #D1D5DB;'); ?>"></i>
-                        <p style="margin: 0; font-size: 0.875rem; font-weight: 500; <?php echo e($menu1 == 'active' ? 'color: #FFFFFF;' : ''); ?>">Dashboard</p>
+<nav class="main-header navbar navbar-expand-md navbar-dark bg-light " style="margin-left:0px;">
+    <div class="container">
+        <a href="<?php echo e(url('/')); ?>" class="navbar-brand">
+            <img src="<?php echo e(asset('assets/images/logo.svg')); ?>" alt="Logo" class="brand-image" style="height: 40px; margin-right:100px;">
+        </a>
+
+        <button class="navbar-toggler" style="background-color: orangered;" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse  navbar-collapse" id="navbarCollapse">
+            <ul class="nav nav-pills " data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="<?php echo e(url('dashboard')); ?>" class="nav-link <?php echo e($menu1); ?>">
+                        <i class="nav-icon fas fa-tachometer-alt"></i> Dashboard
                     </a>
                 </li>
-
-                <!-- Scheduled Workshops -->
-                <li class="nav-item" style="margin-bottom: 0.5rem;">
-                    <a href="<?php echo e(url('scheduled-course')); ?>" class="nav-link <?php echo e($menu7); ?>" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; <?php echo e($menu7 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : ''); ?>" onmouseover="this.style.backgroundColor='#3B82F6'" onmouseout="this.style.backgroundColor='<?php echo e($menu7 == 'active' ? '#2563EB' : 'transparent'); ?>'; this.style.color='<?php echo e($menu7 == 'active' ? '#FFFFFF' : '#D1D5DB'); ?>';">
-                        <i class="far fa-image" style="margin-right: 0.75rem; <?php echo e($menu7 == 'active' ? 'color: #FFFFFF;' : 'color: #D1D5DB;'); ?>"></i>
-                        <p style="margin: 0; font-size: 0.875rem; font-weight: 500; <?php echo e($menu7 == 'active' ? 'color: #FFFFFF;' : ''); ?>">Scheduled Masterclass</p>
+                <li class="nav-item">
+                    <a href="<?php echo e(url('scheduled-course')); ?>" class="nav-link <?php echo e($menu7); ?>">
+                        <i class="nav-icon far fa-image"></i> Scheduled Masterclass
                     </a>
                 </li>
-
-                <!-- Certificate & Feedback -->
-                <li class="nav-item" style="margin-bottom: 0.5rem;">
-                    <a href="<?php echo e(url('certificate-feedback')); ?>" class="nav-link <?php echo e($menu5); ?>" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; <?php echo e($menu5 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : ''); ?>" onmouseover="this.style.backgroundColor='#3B82F6'" onmouseout="this.style.backgroundColor='<?php echo e($menu5 == 'active' ? '#2563EB' : 'transparent'); ?>'; this.style.color='<?php echo e($menu5 == 'active' ? '#FFFFFF' : '#D1D5DB'); ?>';">
-                        <i class="fas fa-certificate" style="margin-right: 0.75rem; <?php echo e($menu5 == 'active' ? 'color: #FFFFFF;' : 'color: #D1D5DB;'); ?>"></i>
-                        <p style="margin: 0; font-size: 0.875rem; font-weight: 500; <?php echo e($menu5 == 'active' ? 'color: #FFFFFF;' : ''); ?>">Certificate & Feedback</p>
+                <li class="nav-item">
+                    <a href="<?php echo e(url('certificate-feedback')); ?>" class="nav-link <?php echo e($menu5); ?>">
+                        <i class="nav-icon fas fa-tachometer-alt"></i> Certificate & Feedback
                     </a>
                 </li>
-
-                <!-- Change Password -->
-                <li class="nav-item" style="margin-bottom: 0.5rem;">
-                    <a href="<?php echo e(url('change-password')); ?>" class="nav-link <?php echo e($menu2); ?>" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease; <?php echo e($menu2 == 'active' ? 'background-color: #2563EB; color: #FFFFFF;' : ''); ?>" onmouseover="this.style.backgroundColor='#3B82F6'" onmouseout="this.style.backgroundColor='<?php echo e($menu2 == 'active' ? '#2563EB' : 'transparent'); ?>'; this.style.color='<?php echo e($menu2 == 'active' ? '#FFFFFF' : '#D1D5DB'); ?>';">
-                        <i class="far fa-calendar-alt" style="margin-right: 0.75rem; <?php echo e($menu2 == 'active' ? 'color: #FFFFFF;' : 'color: #D1D5DB;'); ?>"></i>
-                        <p style="margin: 0; font-size: 0.875rem; font-weight: 500; <?php echo e($menu2 == 'active' ? 'color: #FFFFFF;' : ''); ?>">Change Password</p>
+                <li class="nav-item">
+                    <a href="<?php echo e(url('change-password')); ?>" class="nav-link <?php echo e($menu2); ?>">
+                        <i class="nav-icon far fa-calendar-alt"></i> Change Password
                     </a>
                 </li>
-
-                <!-- Logout -->
-                <li class="nav-item" style="margin-top: auto;">
-                    <a href="<?php echo e(url('logout')); ?>" class="nav-link" style="display: flex; align-items: center; padding: 0.75rem 1.5rem; color: #D1D5DB; text-decoration: none; border-radius: 8px; margin: 0 0.75rem; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#EF4444'; this.style.color='#FFFFFF';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#D1D5DB';">
-                        <i class="fas fa-sign-out-alt" style="margin-right: 0.75rem;"></i>
-                        <p style="margin: 0; font-size: 0.875rem; font-weight: 500;">Logout</p>
+                <li class="nav-item">
+                    <a href="<?php echo e(url('logout')); ?>" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i> Logout
                     </a>
                 </li>
             </ul>
-        </nav>
+        </div>
     </div>
-</aside>
+</nav>
 
 <style>
-    .main-sidebar::-webkit-scrollbar {
-        width: 4px;
-    }
+.navbar-collapse {
+    transition: all 0s ease;
+}
 
-    .main-sidebar::-webkit-scrollbar-track {
-        background: transparent;
+@media (max-width: 768px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background:rgb(255, 255, 255);
+        padding: 1rem;
+        border-radius: 0 0 4px 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        display: none; /* Initially hidden */
     }
-
-    .main-sidebar::-webkit-scrollbar-thumb {
-        background: #4B5563;
-        border-radius: 2px;
+    
+    .navbar-collapse.show {
+        display: block;
     }
-
-    .main-sidebar::-webkit-scrollbar-thumb:hover {
-        background: #374151;
-    }
-
-    @keyframes  fadeIn {
-        from { opacity: 0; transform: translateX(-10px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
-
-    .nav-item {
-        animation: fadeIn 0.3s ease-out forwards;
-    }
-
-    .nav-item:nth-child(1) { animation-delay: 0.1s; }
-    .nav-item:nth-child(2) { animation-delay: 0.2s; }
-    .nav-item:nth-child(3) { animation-delay: 0.3s; }
-    .nav-item:nth-child(4) { animation-delay: 0.4s; }
-    .nav-item:nth-child(5) { animation-delay: 0.5s; }
-    .nav-item:nth-child(6) { animation-delay: 0.6s; }
+}
 </style>
+
+<!-- Required scripts -->
+<script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script>
+<script src="<?php echo e(asset('plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
+
+<script>
+$(document).ready(function() {
+    $('.navbar-toggler').click(function() {
+        $('#navbarCollapse').stop(true, true).slideToggle(300); // 300ms for smooth transition
+    });
+
+    // Close menu when clicking outside
+    $(document).click(function(event) {
+        if (!$(event.target).closest('.navbar').length) {
+            $('#navbarCollapse').slideUp(300); // Close the menu with a smooth transition
+        }
+    });
+
+    // Close menu when clicking a link on mobile
+    $('.nav-link').click(function() {
+        $('#navbarCollapse').slideUp(300); // Close with smooth transition
+    });
+});
+</script>
 <?php /**PATH D:\New folder\htdocs\RUN\resources\views/front/common/sidebar.blade.php ENDPATH**/ ?>

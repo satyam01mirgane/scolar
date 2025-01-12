@@ -1,18 +1,18 @@
 <?php echo $__env->make('front.common.profile-header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('front.common.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="margin-left:0px; >
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Scheduled  Masterclass</h1>
+            <h1>Scheduled Masterclass</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo e(url('/')); ?>">Home</a></li>
-              <li class="breadcrumb-item active">Scheduled  Masterclass</li>
+              <li class="breadcrumb-item active">Scheduled Masterclass</li>
             </ol>
           </div>
         </div>
@@ -31,9 +31,9 @@
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>Name</th>
+                      <th>Masterclass Name</th>
                       <th>Zoom Link</th>
-                      <th> Masterclass ID</th>
+                      <th>MasterclassID</th>
                       <th>Instructor</th>
                       <th>Date</th>
 					  <th>Time</th>
@@ -62,7 +62,7 @@
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 					<?php else: ?>
 						<tr>
-							<td colspan="9" align="center">No  Masterclass found</td>
+							<td colspan="9" align="center">No course found</td>
 						</tr>
 					<?php endif; ?>
                   </tbody>

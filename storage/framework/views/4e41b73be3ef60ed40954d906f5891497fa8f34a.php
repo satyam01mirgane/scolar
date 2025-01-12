@@ -44,8 +44,8 @@ img.yr-cert-img {
 }
 .course{
     position: absolute;
-    top: 72%;
-    font-size: 24px;
+    top: 70%;
+    font-size: 2vw;
     color: #1b2e4f;
     text-align: center;
     width: 100%;
@@ -78,7 +78,7 @@ img.yr-cert-img {
     <div class="name"><?php echo e(ucwords(Auth::user()->name)); ?></div>
     <div class="course"><?php echo e($orders->product_name); ?>  <?php if($orders->type=='Workshop'): ?> <b> Masterclass</b> <?php else: ?> <b>Course</b> <?php endif; ?></div>        
     <div class="date"><?php echo e(date('d M Y',strtotime($orders->session_date))); ?></div>
-    <img src="<?php echo e(asset('assets/images/COURSE.jpg')); ?>" class="yr-cert-img">
+    <img src="<?php echo e(asset('assets/images/mcertificate.jpg')); ?>" class="yr-cert-img">
 </div>
 
 <!-- End Section -->

@@ -1,7 +1,7 @@
 <?php echo $__env->make('front.common.profile-header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('front.common.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+<div class="content-wrapper" style="margin-left:0px ; background-color: #f4f6f9; min-height: 100vh; padding: 20px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -25,7 +25,7 @@
       <div class="container-fluid">
         <div class="row">         
           <!-- /.col -->
-          <div class="col-md-12">
+          <div class="col-md-3">
             
             <div class="card card-primary">
               <div class="card-header">

@@ -9,11 +9,11 @@
                 <!-- Course Grid -->
                 <div id="course-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
                     <?php $__currentLoopData = $course_list->take(3); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="post-item animated-card" style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                        <div class="post-item-wrap">
-                            <div class="post-image" style="overflow: hidden;">
+                    <div class="post-item animated-card" style="border: 1px solid #ddd; border-radius: 10px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <div class="post-item-wrap" style="border-radius: inherit;">
+                            <div class="post-image" style="overflow: hidden; border-radius: inherit;">
                                 <a href="<?php echo e(url('course-detail/'.$course->slug)); ?>">
-                                    <img src="<?php echo e(asset($course->image)); ?>" alt="<?php echo e($course->name); ?>" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease;">
+                                    <img src="<?php echo e(asset($course->image)); ?>" alt="<?php echo e($course->name); ?>" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s ease; border-radius: inherit;">
                                 </a>
                             </div>
                             <div class="post-item-description" style="padding: 1rem;">
@@ -53,7 +53,7 @@
 
                 <!-- View All Courses Button -->
                 <div style="text-align: center; margin-top: 3rem;">
-                <a href="<?php echo e(url('/courses')); ?>" style="color: black; font-weight:500; text-decoration:underline">More</a>
+                    <a href="<?php echo e(url('/courses')); ?>" style="color: black; font-weight:500; text-decoration:underline">More</a>
                 </div>
             </div>
         </div>
@@ -74,6 +74,20 @@
 
     .post-item-wrap img:hover {
         transform: scale(1.1);
+    }
+
+    /* Uniform border radius */
+    .post-item {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .post-item-wrap {
+        border-radius: inherit;
+    }
+
+    .post-image img {
+        border-radius: inherit;
     }
 
     /* Font and Text Styling */
@@ -128,7 +142,6 @@
 
     /* View All Courses Button */
     .btn-primary {
-       
         color: #fff;
         border: none;
         transition: background-color 0.3s ease;

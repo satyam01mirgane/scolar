@@ -1,12 +1,11 @@
 @include('front.common.profile-header')
 @include('front.common.sidebar')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
 <style>
 .modal-header1 {
-    display: -ms-flexbox;
-    -ms-flex-align: start;
+    display: flex;
     align-items: flex-start;
-    -ms-flex-pack: justify;
     justify-content: space-between;
     padding: 1rem;
     border-bottom: 1px solid #e9ecef;
@@ -16,7 +15,7 @@
 </style>
 
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper" style="margin-left:0px;>
+<div class="content-wrapper" style="margin-left:0px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -38,7 +37,6 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <!-- /.col -->
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body table-responsive p-0">
@@ -55,12 +53,12 @@
                                         <th>Date</th>
                                         <th>Time</th>
                                         <th>Certificate</th>
-                                        <!-- <th>Feedback</th> -->
+                                        <th>Share</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if(count($orders)>0)
-                                    @foreach($orders as $k=>$v)
+                                    @if(count($orders) > 0)
+                                    @foreach($orders as $k => $v)
                                     <tr>
                                         <td>{{ $v->workshopname }}</td>
                                         <td>WKPID{{ $v->product_id }}</td>
@@ -68,17 +66,33 @@
                                         <td>{{ date('H:i:s A', strtotime($v->session_time)) }}</td>
                                         <td>
                                             @if($v->session_status != 'Open')
-                                            <a href="{{ url('print-certificate/'.$v->product_id) }}">Certificate</a>
-                                            @else 
+                                            <a href="{{ url('print-certificate/'.$v->product_id) }}" target="_blank">Certificate</a>
+                                            @else
                                             <span style="color:red;">Certificate not completed.</span>
                                             @endif
                                         </td>
                                         <td>
-                                            <!-- @if(!empty($v->feedback))
-                                            <span>Feedback Submitted</span>
+                                            @if($v->session_status != 'Open')
+                                            <div class="d-flex justify-content-start gap-3">
+                                                <!-- LinkedIn Share -->
+                                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ url('print-certificate/'.$v->product_id) }}&title=Excited to share my achievement!&summary=🎉 I’m thrilled to announce that I’ve successfully completed the masterclass '{{ $v->workshopname }}' under the expert guidance of {{ $v->trainername }}. 🚀💡 This experience has been truly enriching! Check out my certificate here: {{ url('print-certificate/'.$v->product_id) }} #VIEF #Vscholar @vscholar #{{ str_replace(' ', '', $v->workshopname) }} #{{ str_replace(' ', '', $v->trainername) }}"
+                                                   target="_blank" title="Share on LinkedIn">
+                                                    <i class="fab fa-linkedin" style="color: #0077b5; font-size: 24px;"></i>
+                                                </a>
+
+                                                <!-- Instagram Share (placeholder link for web) -->
+                                                <a href="https://instagram.com" target="_blank" title="Share on Instagram">
+                                                    <i class="fab fa-instagram" style="color: #e4405f; font-size: 24px;"></i>
+                                                </a>
+
+                                                <!-- Copy to Clipboard -->
+                                                <a href="#" onclick="copyToClipboard('🎉 I’m thrilled to announce that I’ve successfully completed the masterclass \'{{ $v->workshopname }}\' under the expert guidance of {{ $v->trainername }}. 🚀💡 This experience has been truly enriching! Check out my certificate here: {{ url('print-certificate/'.$v->product_id) }} #VIEF #Vscholar @vscholar #{{ str_replace(' ', '', $v->workshopname) }} #{{ str_replace(' ', '', $v->trainername) }}')" title="Copy Link">
+                                                    <i class="fas fa-copy" style="color: #6c757d; font-size: 24px;"></i>
+                                                </a>
+                                            </div>
                                             @else
-                                            <a href="#" data-toggle="modal" data-target="#myModal" onclick="feedback('{{ $v->product_id }}')">Feedback</a>
-                                            @endif -->
+                                            <span style="color:red;">Not available</span>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
@@ -97,60 +111,13 @@
     </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header1">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Feedback</h4>
-            </div>
-            <div class="modal-body">
-                <form id="contact_form" name="contact_form" class="default-form" method="post" action="{{ url('feedback') }}">
-                    @csrf
-                    <input type="hidden" name="wpid" id="wpid" value="">
-                    <div class="row">
-                        @if(Session::has('success'))
-                        <div class="alert alert-success">
-                            {{ Session::get('success') }}
-                        </div>
-                        @endif
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="form-label">Email address</label>
-                                <input class="form-control" type="email" name="email" placeholder="Your Answer" required="">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Name</label>
-                                <input class="form-control" type="text" name="name" placeholder="Your Answer" required="">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="form-label">Contact No.</label>
-                                <input class="form-control" type="text" name="phone" placeholder="Your Answer" required="">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Please Confirm Your name for the Certificates</label>
-                                <input class="form-control" type="text" name="cname" placeholder="Your Answer" required="">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="form-label">Please rate the overall workshop/course<span>*</span></label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="workshop_rate" id="inlineRadio1" value="1">
-                                    <label class="form-check-label" for="inlineRadio1">1</label>
-                                </div>
-                                <!-- Add other rating options here -->
-                            </div>
-                            <!-- Add other form fields for feedback -->
-                            <button type="submit" class="btn btn-primary">Submit Feedback</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+<script>
+    // Copy to Clipboard Functionality
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(function() {
+            alert("Message copied to clipboard!");
+        }, function(err) {
+            console.error("Failed to copy: ", err);
+        });
+    }
+</script>

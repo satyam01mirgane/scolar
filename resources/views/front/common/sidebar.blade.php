@@ -1,11 +1,11 @@
 
-<nav class="main-header navbar navbar-expand-md navbar-dark bg-dark " style="margin-left:0px;">
+<nav class="main-header navbar navbar-expand-md navbar-dark bg-light " style="margin-left:0px;">
     <div class="container">
         <a href="{{url('/')}}" class="navbar-brand">
-            <img src="{{asset('assets/images/logo.svg')}}" alt="Logo" class="brand-image" style="height: 40px;">
+            <img src="{{asset('assets/images/logo.svg')}}" alt="Logo" class="brand-image" style="height: 40px; margin-right:100px;">
         </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+        <button class="navbar-toggler" style="background-color: orangered;" type="button" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -52,7 +52,7 @@
         top: 100%;
         left: 0;
         right: 0;
-        background: #343a40;
+        background:rgb(255, 255, 255);
         padding: 1rem;
         border-radius: 0 0 4px 4px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
