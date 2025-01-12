@@ -47,8 +47,8 @@
                             <table class="table table-hover text-nowrap">
                                 <thead>
                                     <tr>
-                                        <th>Workshop Name</th>
-                                        <th>Workshop/Course ID</th>
+                                        <th>Masterclass Name</th>
+                                        <th>Masterclass ID</th>
                                         <th>Date</th>
                                         <th>Time</th>
                                         <th>Certificate</th>
@@ -79,7 +79,7 @@
                                                                 <i class="fab fa-linkedin" style="color: #0077b5; font-size: 24px;"></i>
                                                             </a>
 
-                                                            
+
                                                             <!-- Copy to Clipboard -->
                                                             <a href="#" onclick="copyToClipboard('🎉 I’m thrilled to announce that I’ve successfully completed the masterclass \'{{ $v->workshopname }}\' under the expert guidance of {{ $v->trainername }}. 🚀💡 This experience has been truly enriching! #Masterclass #{{ str_replace(' ', '', $v->workshopname) }} #{{ str_replace(' ', '', $v->trainername) }}')" title="Copy Link">
                                                                 <i class="fas fa-copy" style="color: #6c757d; font-size: 24px;"></i>

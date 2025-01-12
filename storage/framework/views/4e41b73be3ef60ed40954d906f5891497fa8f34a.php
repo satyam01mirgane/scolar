@@ -1,21 +1,27 @@
 <?php echo $__env->make('front.common.profile-header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php echo $__env->make('front.common.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
 <style>
+  @import  url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
   @import  url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap');
-html, body{
+
+html, body {
     padding: 0px;
     margin: 0px;
     color: #1b2e4f;
     font-family: 'EB Garamond', serif;
 }
+
 @font-face {
   font-family: theSuavityRegular;
   src: url(fonts/the-suavity.regular.ttf);
 }
+
 @font-face {
   font-family: myHomely;
   src: url(fonts/myHomely.ttf);
 }
+
 img.yr-cert-img {
     max-width: 100%;
 }
@@ -24,10 +30,10 @@ img.yr-cert-img {
     position: absolute;
     top: 53%;
     font-size: 5vw;
-    color:rgb(0, 0, 0);
+    color: #1b2e4f;
     text-align: center;
     width: 100%;
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 500;
 }
 
@@ -37,27 +43,32 @@ img.yr-cert-img {
     left: 6%;
     font-size: 1.7vw;
     color: #1b2e4f;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .Cbox {
     position: relative;
 }
-.course{
+
+.course {
     position: absolute;
-    top: 70%;
-    font-size: 2vw;
+    top: 73%;
+    font-size: 2.4vw;
     color: #1b2e4f;
     text-align: center;
     width: 100%;
+    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
 }
+
 .date {
     position: absolute;
     color: #1b2e4f;
     bottom: 10%;
     top: auto;
-    left: 13%;
+    left: 12%;
     font-size: 2.5vw;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Force landscape orientation for printing */
