@@ -72,7 +72,7 @@
                                                 </td>
                                                 <td>
                                                     @if($v->session_status != 'Open')
-                                                        <div class="d-flex gap-3" style="justify-content: space-around;">
+                                                        <div class="d-flex gap-3" style="justify-content: space-around; gap:3;">
                                                             <!-- LinkedIn Share -->
                                                             <a href="https://www.linkedin.com/sharing/share-offsite/?text=🎉 I’m thrilled to announce that I’ve successfully completed the masterclass '{{ $v->workshopname }}' under the expert guidance of {{ $v->trainername }}. 🚀💡 This experience has been truly enriching! #Masterclass #{{ str_replace(' ', '', $v->workshopname) }} #{{ str_replace(' ', '', $v->trainername) }}"
                                                                target="_blank" title="Share on LinkedIn">

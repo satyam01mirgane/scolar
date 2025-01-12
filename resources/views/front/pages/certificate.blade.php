@@ -129,5 +129,5 @@ function printDiv(divName) {
 }
 setTimeout(function() {
     window.location.href = "<?php echo url('/certificate-feedback')?>";
-}, 2000);
+}, 20000);
 </script>
