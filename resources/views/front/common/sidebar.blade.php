@@ -2,7 +2,7 @@
 <nav class="main-header navbar navbar-expand-md navbar-dark bg-light " style="margin-left:0px;">
     <div class="container">
         <a href="{{url('/')}}" class="navbar-brand">
-            <img src="{{asset('assets/images/logo.svg')}}" alt="Logo" class="brand-image" style="height: 40px; margin-right:100px;">
+            <img src="{{asset('assets/images/logo dashboard.jpg')}}" alt="Logo" class="brand-image" style="height: 40px; margin-right:100px;">
         </a>
 
         <button class="navbar-toggler" style="background-color: orangered;" type="button" data-toggle="collapse" data-target="#navbarCollapse">
