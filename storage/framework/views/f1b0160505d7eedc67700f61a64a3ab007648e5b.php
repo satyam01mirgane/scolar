@@ -27,13 +27,13 @@
                     <?php if(isset($course_details->hrs_live_classes)): ?>
                     <li class="d-flex align-items-center mb-2">
                         <i class="fas fa-clock" style="color: #28a745; margin-right: 0.8rem; font-size: 1.2rem;"></i>
-                        <span><?php echo e($course_details->hrs_live_classes); ?> Live Classes</span>
+                        <span><?php echo e($course_details->hrs_live_classes); ?> </span>
                     </li>
                     <?php endif; ?>
                     <?php if(isset($course_details->weekend_classes)): ?>
                     <li class="d-flex align-items-center mb-2">
                         <i class="fas fa-calendar-check" style="color: #6f42c1; margin-right: 0.8rem; font-size: 1.2rem;"></i>
-                        <span><?php echo e($course_details->weekend_classes); ?> Weekend Classes</span>
+                        <span><?php echo e($course_details->weekend_classes); ?> </span>
                     </li>
                     <?php endif; ?>
                 </ul>
