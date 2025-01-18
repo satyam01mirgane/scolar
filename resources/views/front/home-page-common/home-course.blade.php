@@ -37,10 +37,7 @@
                                         <input type="hidden" value="{{ $course->price }}" name="price">
                                         <input type="hidden" value="{{ $course->image }}" name="image">
                                         <input type="hidden" value="1" name="quantity">
-                                        utton type="submit" class="btn btn-primary enroll-now" style=" font-size: 1rem; border-radius: 0.5rem; font-weight: 600;">
-                                <i class="fas fa-shopping-cart" style="margin-right: 0.5rem;"></i>
-                                Enroll Now
-                            </button>                                    </form>
+                                    </form>
                                     @else
                                     <button class="btn btn-orange btn-sm" type="button">In Cart</button>
                                     @endif
