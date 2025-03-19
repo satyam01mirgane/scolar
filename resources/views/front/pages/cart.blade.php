@@ -14,6 +14,10 @@
         @php 
             $udis = 0;
             $total_dis = 0;
+            $coupon_discount = 0;
+            if(session()->has('coupon') && session('coupon') == 'FLAT10') {
+                $coupon_discount = 10;
+            }
         @endphp
 
         <div class="shop-cart" style="background-color: #fff; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); overflow: hidden; opacity: 0; animation: fadeIn 0.5s ease-out 0.2s forwards;">
@@ -39,7 +43,7 @@
                                     </td>
                                     @php
                                         $udis = calculate_discount($item->id);
-                                        $total_dis = $total_dis + $udis;
+                                        $total_dis += $udis;
                                     @endphp 
                                     <td style="padding: 15px; color: #666;">{{GetCatNameById($item->id)->trainer_name}}</td>
                                     <td style="padding: 15px; text-align: right; color: #333;">₹{{ $item->price }}</td>
@@ -68,10 +72,15 @@
             @php
                 $subtotal = Cart::getTotal();
                 $discount = $total_dis;
-                $grand_total = $subtotal - $discount;
+                $grand_total = $subtotal - $discount - $coupon_discount;
             @endphp 
 
             <div style="background-color: #f8f9fa; padding: 30px; border-top: 1px solid #e9ecef;">
+                <form method="POST" action="{{ route('apply.coupon') }}" style="margin-bottom: 20px; display: flex; justify-content: flex-end;">
+                    @csrf
+                    <input type="text" name="coupon_code" placeholder="Enter coupon code" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px;">
+                    <button type="submit" style="padding: 10px 15px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Apply</button>
+                </form>
                 <div style="display: flex; justify-content: flex-end; align-items: flex-start;">
                     <div style="width: 300px;">
                         <h4 style="margin-bottom: 20px; color: #333; font-size: 1.2rem;">Cart Summary</h4>
@@ -83,69 +92,19 @@
                             <span style="color: #666;">Discount:</span>
                             <span style="font-weight: 600; color: #28a745;">-₹{{$discount}}</span>
                         </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="color: #666;">Coupon Discount:</span>
+                            <span style="font-weight: 600; color: #28a745;">-₹{{$coupon_discount}}</span>
+                        </div>
                         <div style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 15px; border-top: 1px solid #dee2e6;">
                             <span style="font-weight: 600; color: #333;">Total:</span>
-                            <span style="font-weight: 600; color: #333; font-size: 1.2rem;">
-                                @if(Cart::getTotal() == 0)
-                                    Free
-                                @else
-                                    ₹{{ $grand_total }}
-                                @endif
-                            </span>
+                            <span style="font-weight: 600; color: #333; font-size: 1.2rem;">₹{{ max(0, $grand_total) }}</span>
                         </div>
                     </div>
-                </div>
-
-                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
-                    <a href="{{url('workshops')}}" style="display: inline-block; padding: 12px 24px; background-color: #6c757d; color: #fff; text-decoration: none; border-radius: 5px; margin-right: 10px; transition: background-color 0.3s ease;">Back to Explore</a>
-                    
-                    @if(!empty(Auth::user()))
-                        <form action="{{url('process-order')}}" method="post" style="display: inline-block;">
-                            @csrf
-                            @if(empty(Auth::user()->email_verified_at))
-                                <button type="submit" style="display: inline-block; padding: 12px 24px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">Make Purchase</button>
-                            @else
-                                <button type="button" style="display: inline-block; padding: 12px 24px; background-color: #dc3545; color: #fff; border: none; border-radius: 5px; cursor: not-allowed;">Email not verified</button>
-                            @endif
-                        </form>
-                    @else
-                        <form action="{{url('process-order')}}" method="post" style="display: inline-block;">
-                            @csrf
-                            <button type="submit" style="display: inline-block; padding: 12px 24px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">Make Purchase</button>
-                        </form>
-                    @endif
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<style>
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    @keyframes slideDown {
-        from { 
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        to { 
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .shop-cart tr:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    button:hover {
-        opacity: 0.8;
-    }
-</style>
-
 @include('front.common.footer')
-
