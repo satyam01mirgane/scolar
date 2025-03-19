@@ -14,6 +14,8 @@
         @php 
             $udis = 0;
             $total_dis = 0;
+            $coupon_discount = 0;
+            $coupon_code = request('coupon_code');
         @endphp
 
         <div class="shop-cart" style="background-color: #fff; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); overflow: hidden; opacity: 0; animation: fadeIn 0.5s ease-out 0.2s forwards;">
@@ -69,12 +71,27 @@
                 $subtotal = Cart::getTotal();
                 $discount = $total_dis;
                 $grand_total = $subtotal - $discount;
+
+                // Apply coupon discount if the coupon code is "FLAT10"
+                if ($coupon_code === 'FLAT10') {
+                    $coupon_discount = $subtotal * 0.10;
+                    $grand_total -= $coupon_discount;
+                }
             @endphp 
 
             <div style="background-color: #f8f9fa; padding: 30px; border-top: 1px solid #e9ecef;">
                 <div style="display: flex; justify-content: flex-end; align-items: flex-start;">
                     <div style="width: 300px;">
                         <h4 style="margin-bottom: 20px; color: #333; font-size: 1.2rem;">Cart Summary</h4>
+                        
+                        <!-- Coupon Code Input Field -->
+                        <form action="{{ url()->current() }}" method="GET" style="margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <input type="text" name="coupon_code" placeholder="Enter Coupon Code" style="padding: 8px; border: 1px solid #ddd; border-radius: 5px; flex: 1; margin-right: 10px;">
+                                <button type="submit" style="padding: 8px 15px; background-color: #28a745; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Apply</button>
+                            </div>
+                        </form>
+
                         <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                             <span style="color: #666;">Subtotal:</span>
                             <span style="font-weight: 600; color: #333;">₹{{$subtotal}}</span>
@@ -83,10 +100,16 @@
                             <span style="color: #666;">Discount:</span>
                             <span style="font-weight: 600; color: #28a745;">-₹{{$discount}}</span>
                         </div>
+                        @if ($coupon_code === 'FLAT10')
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="color: #666;">Coupon Discount (10%):</span>
+                                <span style="font-weight: 600; color: #28a745;">-₹{{$coupon_discount}}</span>
+                            </div>
+                        @endif
                         <div style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 15px; border-top: 1px solid #dee2e6;">
                             <span style="font-weight: 600; color: #333;">Total:</span>
                             <span style="font-weight: 600; color: #333; font-size: 1.2rem;">
-                                @if(Cart::getTotal() == 0)
+                                @if($grand_total == 0)
                                     Free
                                 @else
                                     ₹{{ $grand_total }}
@@ -148,4 +171,3 @@
 </style>
 
 @include('front.common.footer')
-
