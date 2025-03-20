@@ -56,6 +56,14 @@
                                 </div>
                             </div>
                             <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="reference">Reference</label>
+                                            <div class="input-group show-hide-password">
+                                                <input id="reference" type="text" class="form-control" name="reference">
+                                            </div>
+                                        </div>
+                                    </div> 
+                            <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="school">University/School<span class="text-danger">*</span></label>
                                     <input id="school" type="text" class="form-control" name="school" value="{{ old('school') }}" required autocomplete="University/school">
