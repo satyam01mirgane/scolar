@@ -57,7 +57,7 @@
                             </div>
                             <div class="row">
                                         <div class="form-group col-md-12">
-                                            <label for="reference">Reference</label>
+                                            <label for="reference">Reference Code</label>
                                             <div class="input-group show-hide-password">
                                                 <input id="reference" type="text" class="form-control" name="reference">
                                             </div>
