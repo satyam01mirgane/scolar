@@ -26,12 +26,12 @@
                 <table class="table" style="width: 100%; border-collapse: separate; border-spacing: 0 15px;">
                     <thead>
                         <tr style="background-color: #f1f3f5;">
-                            <th style="padding: 15px; text-align: left; color: #495057; font-weight: 600;">Masterclass</th>
-                            <th style="padding: 15px; text-align: left; color: #495057; font-weight: 600;">Instructor</th>
-                            <th style="padding: 15px; text-align: right; color: #495057; font-weight: 600;">Unit Price</th>
-                            <th style="padding: 15px; text-align: right; color: #495057; font-weight: 600;">Discount</th>
-                            <th style="padding: 15px; text-align: right; color: #495057; font-weight: 600;">Total</th>
-                            <th style="padding: 15px; text-align: center; color: #495057; font-weight: 600;">Action</th>
+                            <th>Masterclass</th>
+                            <th>Instructor</th>
+                            <th style="text-align:right;">Unit Price</th>
+                            <th style="text-align:right;">Discount</th>
+                            <th style="text-align:right;">Total</th>
+                            <th style="text-align:center;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,22 +42,22 @@
                                     $total_dis += $item_discount;
                                     $subtotal += ($item->price * $item->quantity);
                                 @endphp
-                                <tr style="background-color: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: all 0.3s ease;">
-                                    <td style="padding: 15px; display: flex; align-items: center;">
+                                <tr>
+                                    <td>
                                         <img src="{{ asset($item->attributes->image) }}" alt="{{ $item->name }}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px; margin-right: 15px;">
-                                        <span style="font-weight: 500; color: #333;">{{ $item->name }}</span>
+                                        {{ $item->name }}
                                     </td>
-                                    <td style="padding: 15px; color: #666;">{{ GetCatNameById($item->id)->trainer_name }}</td>
-                                    <td style="padding: 15px; text-align: right; color: #333;">₹{{ $item->price }}</td>
-                                    <td style="padding: 15px; text-align: right; color: #28a745;">-₹{{ $item_discount }}</td>
-                                    <td style="padding: 15px; text-align: right; font-weight: 600; color: #333;">
+                                    <td>{{ GetCatNameById($item->id)->trainer_name }}</td>
+                                    <td style="text-align:right;">₹{{ $item->price }}</td>
+                                    <td style="text-align:right; color: #28a745;">-₹{{ $item_discount }}</td>
+                                    <td style="text-align:right; font-weight: 600;">
                                         ₹{{ ($item->price * $item->quantity) - $item_discount }}
                                     </td>
-                                    <td style="padding: 15px; text-align: center;">
+                                    <td style="text-align:center;">
                                         <form action="{{ route('cart.remove') }}" method="POST">
                                             @csrf
                                             <input type="hidden" value="{{ $item->id }}" name="id">
-                                            <button type="submit" style="background: none; border: none; color: #dc3545; cursor: pointer; transition: color 0.3s ease;">
+                                            <button type="submit" style="background: none; border: none; color: #dc3545; cursor: pointer;">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </form>
@@ -77,42 +77,50 @@
                 $grand_total = $subtotal - $total_dis;
 
                 // Apply coupon discount
-                if ($coupon_code === 'FLAT10') {
+                if (!empty($coupon_code) && $coupon_code === 'FLAT10') {
                     $coupon_discount = ($subtotal * 10) / 100;
                     $grand_total -= $coupon_discount;
                 }
             @endphp 
 
             <div style="background-color: #f8f9fa; padding: 30px; border-top: 1px solid #e9ecef;">
-                <div style="display: flex; justify-content: flex-end; align-items: flex-start;">
-                    <div style="width: 300px;">
-                        <h4 style="margin-bottom: 20px; color: #333; font-size: 1.2rem;">Cart Summary</h4>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <!-- Coupon Input -->
+                    <form action="{{ url()->current() }}" method="GET" style="display: flex; gap: 10px;">
+                        <input type="text" name="coupon_code" placeholder="Enter Coupon Code" value="{{ $coupon_code }}" style="padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                        <button type="submit" style="padding: 8px 15px; background-color: #28a745; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+                            Apply
+                        </button>
+                    </form>
+                </div>
 
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                            <span style="color: #666;">Subtotal:</span>
-                            <span style="font-weight: 600; color: #333;">₹{{ $subtotal }}</span>
+                <div style="margin-top: 20px;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>Subtotal:</span>
+                        <span>₹{{ $subtotal }}</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>Item Discount:</span>
+                        <span style="color: #28a745;">-₹{{ $total_dis }}</span>
+                    </div>
+                    @if ($coupon_discount > 0)
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Coupon Discount:</span>
+                            <span style="color: #28a745;">-₹{{ $coupon_discount }}</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                            <span style="color: #666;">Item Discount:</span>
-                            <span style="font-weight: 600; color: #28a745;">-₹{{ $total_dis }}</span>
-                        </div>
-                        @if ($coupon_discount > 0)
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                <span style="color: #666;">Coupon Discount:</span>
-                                <span style="font-weight: 600; color: #28a745;">-₹{{ $coupon_discount }}</span>
-                            </div>
-                        @endif
-                        <div style="display: flex; justify-content: space-between; margin-top: 15px; padding-top: 15px; border-top: 1px solid #dee2e6;">
-                            <span style="font-weight: 600; color: #333;">Total:</span>
-                            <span style="font-weight: 600; color: #333; font-size: 1.2rem;">₹{{ $grand_total }}</span>
-                        </div>
+                    @endif
+                    <div style="display: flex; justify-content: space-between; font-weight: bold; margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd;">
+                        <span>Total Payable:</span>
+                        <span>₹{{ $grand_total }}</span>
                     </div>
                 </div>
 
-                <div style="margin-top: 30px; display: flex; justify-content: flex-end;">
+                <div style="margin-top: 30px; text-align: right;">
                     <form action="{{ url('process-order') }}" method="post">
                         @csrf
-                        <button type="submit" style="display: inline-block; padding: 12px 24px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">
+                        <input type="hidden" name="final_amount" value="{{ $grand_total }}">
+                        <input type="hidden" name="coupon_code" value="{{ $coupon_code }}">
+                        <button type="submit" style="padding: 12px 24px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
                             Proceed to Payment (₹{{ $grand_total }})
                         </button>
                     </form>
