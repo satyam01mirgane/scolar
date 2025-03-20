@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Razorpay\Api\Api;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 use App\Models\Order;
 
 class RazorpayPaymentController extends Controller
@@ -14,46 +14,53 @@ class RazorpayPaymentController extends Controller
 
     public function __construct()
     {
-        // Load Razorpay API keys from config or env
-        $this->razorpayKey = config('services.razorpay.key');
-        $this->razorpaySecret = config('services.razorpay.secret');
+        // Load Razorpay API keys from .env
+        $this->razorpayKey = env('RAZORPAY_KEY_ID');
+        $this->razorpaySecret = env('RAZORPAY_KEY_SECRET');
     }
 
-    public function pay(Request $request)
+    /**
+     * Handle payment after Razorpay form submission
+     */
+    public function store(Request $request)
     {
-        // Retrieve the final amount after discounts (calculated earlier)
-        $finalAmount = session('final_amount');
-        $orderId    = session('order_id');
+        // Initialize Razorpay API
+        $api = new Api($this->razorpayKey, $this->razorpaySecret);
 
-        if (!$finalAmount) {
-            return redirect()->back()->with('error', 'Payment amount not found.');
+        // Retrieve payment details from Razorpay response
+        $paymentId = $request->input('razorpay_payment_id');
+        $razorpayOrderId = Session::get('razorpay_order_id');
+        $finalAmount = Session::get('final_amount');
+        $orderId = Session::get('order_id');
+
+        if (!$paymentId || !$razorpayOrderId || !$orderId) {
+            return redirect()->route('cart.list')->with('error', 'Invalid payment details. Please try again.');
         }
 
-        // Convert amount to smallest currency unit (e.g., paise for INR)
-        $amount = $finalAmount * 100;
-
         try {
-            // Initialize Razorpay API
-            $api = new Api($this->razorpayKey, $this->razorpaySecret);
-            // Create a Razorpay order with the **discounted** total amount
-            $razorpayOrder = $api->order->create([
-                'receipt'  => $orderId ?: Str::random(10),
-                'amount'   => $amount,
-                'currency' => 'INR',
-            ]);
+            // Fetch payment details
+            $payment = $api->payment->fetch($paymentId);
 
-            // Store the Razorpay order ID for verification after payment
-            session(['razorpay_order_id' => $razorpayOrder['id']]);
+            // Verify payment
+            if ($payment->status === 'captured') {
+                // Update order status in the database
+                $order = Order::find($orderId);
+                if ($order) {
+                    $order->payment_status = 'paid';
+                    $order->payment_id = $paymentId;
+                    $order->save();
+                }
 
-            // Load a view to proceed with Razorpay payment (passing the necessary details)
-            return view('checkout.razorpay_payment', [
-                'razorpayOrderId' => $razorpayOrder['id'],
-                'razorpayKey'     => $this->razorpayKey,
-                'finalAmount'     => $finalAmount,
-                'orderId'         => $orderId,
-            ]);
+                // Clear session and cart
+                Session::forget(['razorpay_order_id', 'final_amount', 'order_id']);
+                \Cart::clear();
+
+                return redirect()->route('order.success')->with('success', 'Payment successful!');
+            } else {
+                return redirect()->route('cart.list')->with('error', 'Payment verification failed. Please try again.');
+            }
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to initiate payment: '.$e->getMessage());
+            return redirect()->route('cart.list')->with('error', 'Payment failed: ' . $e->getMessage());
         }
     }
 }
