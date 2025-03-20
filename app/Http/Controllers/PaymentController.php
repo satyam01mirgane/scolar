@@ -3,92 +3,183 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Coupon;
-use App\Models\Order;
-use Cart;  // assuming a Cart facade or library is being used
+use Illuminate\Support\Facades\Validator;
+use Razorpay\Api\Api;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Cart;
 
 class PaymentController extends Controller
 {
-    public function placeOrder(Request $request)
+    private $razorpay;
+
+    public function __construct()
     {
-        // Calculate subtotal and item-specific discounts from cart items
-        $cartItems    = Cart::content();  // get all items in cart
-        $subtotal     = 0;
-        $itemDiscount = 0;
+        $this->razorpay = new Api(
+            env('RAZORPAY_KEY_ID'),
+            env('RAZORPAY_KEY_SECRET')
+        );
+    }
+
+    public function processOrder(Request $request)
+    {
+        // Validate request
+        $validator = Validator::make($request->all(), [
+            'coupon_code' => 'nullable|string'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        // Calculate cart totals with discounts
+        $cartItems = Cart::getContent();
+        $subtotal = Cart::getTotal();
+        $itemDiscounts = 0;
+
         foreach ($cartItems as $item) {
-            $subtotal += $item->price * $item->quantity;
-            // If item has an individual discount or an original price to compare
-            if (isset($item->options['discount'])) {
-                // Discount per item (e.g., stored in options)
-                $itemDiscount += $item->options['discount'] * $item->quantity;
-            } elseif (isset($item->original_price)) {
-                // Difference between original price and discounted price
-                $itemDiscount += ($item->original_price - $item->price) * $item->quantity;
-            }
+            $itemDiscounts += $this->calculateItemDiscount($item->id);
         }
 
-        // Calculate coupon discount if a coupon code is applied
-        $couponDiscount = 0;
-        $couponCode = $request->input('coupon_code');
-        if ($couponCode) {
-            $couponDiscount = $this->calculateCouponDiscount($couponCode, $subtotal - $itemDiscount);
+        // Apply coupon discount
+        $coupon = $this->validateCoupon($request->coupon_code);
+        $couponDiscount = $coupon ? $this->calculateCouponDiscount($subtotal, $coupon) : 0;
+
+        $grandTotal = ($subtotal - $itemDiscounts - $couponDiscount);
+
+        // Handle free orders
+        if ($grandTotal <= 0) {
+            return $this->handleFreeOrder();
         }
 
-        // Final amount = subtotal - item discounts - coupon discount
-        $finalAmount = $subtotal - $itemDiscount - $couponDiscount;
-        if ($finalAmount < 0) {
-            $finalAmount = 0;
-        }
+        // Create Razorpay order
+        try {
+            $order = $this->createRazorpayOrder($grandTotal);
+            
+            // Store payment data in session
+            Session::put('razorpay_order', [
+                'id' => $order->id,
+                'amount' => $grandTotal,
+                'coupon_code' => $request->coupon_code,
+                'coupon_discount' => $couponDiscount,
+                'item_discount' => $itemDiscounts
+            ]);
 
-        // Create a new Order record with all calculated values (including discounts)
-        $order = new Order();
-        $order->user_id         = auth()->id() ?? null;
-        $order->subtotal        = $subtotal;
-        $order->item_discount   = $itemDiscount;
-        $order->coupon_discount = $couponDiscount;
-        $order->total           = $finalAmount;
-        $order->payment_method  = $request->input('payment_method');
-        $order->status          = 'pending';  // set as pending until payment is confirmed
-        $order->save();
+            return view('payment.razorpay-checkout', [
+                'order_id' => $order->id,
+                'amount' => $grandTotal * 100, // Razorpay expects amount in paise
+                'currency' => 'INR',
+                'user' => Auth::user()
+            ]);
 
-        // If the chosen payment method is Razorpay, redirect to Razorpay payment handler
-        if ($order->payment_method === 'razorpay') {
-            // Store the final amount and order ID in session for RazorpayPaymentController
-            session(['order_id' => $order->id, 'final_amount' => $finalAmount]);
-            return redirect()->action([RazorpayPaymentController::class, 'pay']);
-        } else {
-            // Handle other payment methods (e.g., Cash on Delivery)
-            if ($order->payment_method === 'cod') {
-                $order->status = 'placed';  // order placed directly for COD
-                $order->save();
-            }
-            // Clear the cart since the order is now placed
-            Cart::destroy();
-            return redirect()->route('order.success')->with('success', 'Order placed successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Payment initialization failed: ' . $e->getMessage());
         }
     }
 
-    /**
-     * Calculate the discount amount for a given coupon code on a given amount.
-     * This ensures the coupon discount is applied to the current total after item discounts.
-     */
-    private function calculateCouponDiscount($code, $amount)
+    public function handleCallback(Request $request)
     {
-        $discount = 0;
-        $coupon = Coupon::where('code', $code)->where('is_active', 1)->first();
-        if ($coupon) {
-            if ($coupon->type === 'fixed') {
-                // Fixed amount coupon discount
-                $discount = $coupon->value;
-            } elseif ($coupon->type === 'percent') {
-                // Percentage-based coupon discount
-                $discount = ($amount * $coupon->value) / 100;
-            }
-            // Do not allow coupon discount to exceed the amount after item discounts
-            if ($discount > $amount) {
-                $discount = $amount;
-            }
+        $paymentId = $request->input('razorpay_payment_id');
+        $orderId = $request->input('razorpay_order_id');
+        $signature = $request->input('razorpay_signature');
+
+        // Verify payment signature
+        try {
+            $attributes = [
+                'razorpay_order_id' => $orderId,
+                'razorpay_payment_id' => $paymentId,
+                'razorpay_signature' => $signature
+            ];
+
+            $this->razorpay->utility->verifyPaymentSignature($attributes);
+
+            // Store payment details
+            $payment = $this->razorpay->payment->fetch($paymentId);
+            $orderData = Session::get('razorpay_order');
+
+            DB::table('payments')->insert([
+                'user_id' => Auth::id(),
+                'order_id' => $orderId,
+                'payment_id' => $paymentId,
+                'amount' => $orderData['amount'],
+                'currency' => 'INR',
+                'coupon_code' => $orderData['coupon_code'],
+                'item_discount' => $orderData['item_discount'],
+                'coupon_discount' => $orderData['coupon_discount'],
+                'payment_method' => $payment->method,
+                'status' => $payment->status,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+
+            // Clear cart and session data
+            Cart::clear();
+            Session::forget('razorpay_order');
+
+            return redirect()->route('order.success')
+                ->with('success', 'Payment completed successfully!');
+
+        } catch (\Exception $e) {
+            return redirect()->route('payment.failed')
+                ->with('error', 'Payment verification failed: ' . $e->getMessage());
         }
-        return $discount;
+    }
+
+    private function createRazorpayOrder($amount)
+    {
+        return $this->razorpay->order->create([
+            'receipt' => 'ORDER_' . uniqid(),
+            'amount' => $amount * 100, // Convert to paise
+            'currency' => 'INR',
+            'payment_capture' => 1
+        ]);
+    }
+
+    private function validateCoupon($code)
+    {
+        // Implement your coupon validation logic
+        if ($code === 'FLAT10') {
+            return ['code' => $code, 'type' => 'percentage', 'value' => 10];
+        }
+        return null;
+    }
+
+    private function calculateItemDiscount($itemId)
+    {
+        // Implement your item-specific discount logic
+        return 0; // Example value
+    }
+
+    private function calculateCouponDiscount($subtotal, $coupon)
+    {
+        if ($coupon['type'] === 'percentage') {
+            return ($subtotal * $coupon['value']) / 100;
+        }
+        return $coupon['value'];
+    }
+
+    private function handleFreeOrder()
+    {
+        try {
+            DB::table('payments')->insert([
+                'user_id' => Auth::id(),
+                'amount' => 0,
+                'currency' => 'INR',
+                'status' => 'free',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+
+            Cart::clear();
+            
+            return redirect()->route('order.success')
+                ->with('success', 'Free order processed successfully!');
+
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Free order processing failed: ' . $e->getMessage());
+        }
     }
 }
