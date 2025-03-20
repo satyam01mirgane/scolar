@@ -33,11 +33,12 @@ class PaymentController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-        // Calculate cart totals with discounts
+        // Fetch cart items
         $cartItems = Cart::getContent();
         $subtotal = Cart::getTotal();
         $itemDiscounts = 0;
 
+        // Calculate total item discounts
         foreach ($cartItems as $item) {
             $itemDiscounts += $this->calculateItemDiscount($item->id);
         }
@@ -46,6 +47,7 @@ class PaymentController extends Controller
         $coupon = $this->validateCoupon($request->coupon_code);
         $couponDiscount = $coupon ? $this->calculateCouponDiscount($subtotal, $coupon) : 0;
 
+        // Final price after discounts
         $grandTotal = ($subtotal - $itemDiscounts - $couponDiscount);
 
         // Handle free orders
@@ -53,14 +55,14 @@ class PaymentController extends Controller
             return $this->handleFreeOrder();
         }
 
-        // Create Razorpay order
+        // Create Razorpay order using the discounted price
         try {
             $order = $this->createRazorpayOrder($grandTotal);
-            
+
             // Store payment data in session
             Session::put('razorpay_order', [
                 'id' => $order->id,
-                'amount' => $grandTotal,
+                'amount' => $grandTotal,  // Discounted amount
                 'coupon_code' => $request->coupon_code,
                 'coupon_discount' => $couponDiscount,
                 'item_discount' => $itemDiscounts
@@ -74,8 +76,7 @@ class PaymentController extends Controller
             ]);
 
         } catch (\Exception $e) {
-            return redirect()->back()
-                ->with('error', 'Payment initialization failed: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Payment initialization failed: ' . $e->getMessage());
         }
     }
 
