@@ -39,7 +39,6 @@
                                         <input type="hidden" value="<?php echo e($course->price); ?>" name="price">
                                         <input type="hidden" value="<?php echo e($course->image); ?>" name="image">
                                         <input type="hidden" value="1" name="quantity">
-                                        <button class="btn btn-orange btn-sm" type="submit"><?php echo e($course->total_seat > 0 ? 'Enroll Now' : 'Seat Full'); ?></button>
                                     </form>
                                     <?php else: ?>
                                     <button class="btn btn-orange btn-sm" type="button">In Cart</button>
