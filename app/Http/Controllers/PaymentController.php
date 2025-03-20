@@ -4,140 +4,182 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use View;
-use Session;
-use Redirect;
-use Auth;
-use DB;
-
+use Razorpay\Api\Api;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Cart;
 
 class PaymentController extends Controller
 {
-    public function index()
-    {
-        return view('event');
-    }
-    public function payment(Request $request)
-    { 
-        $this->validate($request, [
-            'amount' => 'required',
-            'purpose' => 'required',
-            'buyer_name' => 'required',
-            'phone' => 'required',
-        ]);
-        
-        $ch = curl_init();
+    private $razorpay;
 
-        // For Live Payment change CURLOPT_URL to https://www.instamojo.com/api/1.1/payment-requests/
-       
-        curl_setopt($ch, CURLOPT_URL, 'https://test.instamojo.com/api/1.1/payment-requests/');
-        curl_setopt($ch, CURLOPT_HEADER, FALSE);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-        curl_setopt($ch, CURLOPT_HTTPHEADER,
-            array("X-Api-Key:test_ae53f792514dcd2e45af91a6cdf",
-                "X-Auth-Token:test_fecc2b6dbfefbdb171cdea243ec"));
-        $payload = Array(
-            'purpose' => $request->get('purpose'),
-            'amount' => $request->get('amount'),
-            'phone' => $request->get('phone'),
-            'buyer_name' => $request->get('buyer_name'),
-            'redirect_url' => url('/returnurl'),
-            'send_email' => false,
-            'webhook' => 'http://instamojo.com/webhook/',
-            'send_sms' => true,
-            'email' => 'laracode101@gmail.com',
-            'allow_repeated_payments' => false
+    public function __construct()
+    {
+        $this->razorpay = new Api(
+            env('RAZORPAY_KEY_ID'),
+            env('RAZORPAY_KEY_SECRET')
         );
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-        $response = curl_exec($ch);
-        $err = curl_error($ch);
-        curl_close($ch); 
-		
-        if ($err) {
-            \Session::put('error',$err.'Payment Failed, Try Again!!');
-            return redirect()->back();
-        } else {
-            $data = json_decode($response);
-        }
-		//dd($data);
-
-        if($data->success == true) {
-            return redirect($data->payment_request->longurl);
-        } else { 
-            \Session::put('error','Payment Failed, Try Again!!');
-            return redirect()->back();
-        }
-
     }
 
-    public function returnurl(Request $request)
+    public function processOrder(Request $request)
     {
-        $ch = curl_init();
+        // Validate request
+        $validator = Validator::make($request->all(), [
+            'coupon_code' => 'nullable|string'
+        ]);
 
-        curl_setopt($ch, CURLOPT_URL, 'https://test.instamojo.com/api/1.1/payments/'.$request->get('payment_id'));
-        curl_setopt($ch, CURLOPT_HEADER, FALSE);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-        curl_setopt($ch, CURLOPT_HTTPHEADER,
-            array("X-Api-Key:test_ae53f792514dcd2e45af91a6cdf",
-                "X-Auth-Token:test_fecc2b6dbfefbdb171cdea243ec"));
-
-        $response = curl_exec($ch);
-        $err = curl_error($ch);
-        curl_close($ch); 
-
-        if ($err) {
-            \Session::put('error','Payment Failed, Try Again!!');
-            return redirect()->route('payment');
-        } else {
-            $data = json_decode($response);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
         }
-   
-        if($data->success == true) {
-            if($data->payment->status == 'Credit') {
-                
-                // From here you can save respose data in database from $data
-				$response_data = DB::table('student_course')->insert([
-						'student_id'=>Auth::user()->id,
-						'course_id'=>Session::get('courseid'),
-						'course_type'=>Session::get('cousretype'),
-						'status'=>$data->payment->status,
-						'payment_id'=>$data->payment->payment_id,
-						'currency'=>$data->payment->currency,
-						'amount'=>$data->payment->amount,
-						'buyer_name'=>$data->payment->buyer_name,
-						'buyer_phone'=>$data->payment->buyer_phone,
-						'buyer_email'=>$data->payment->buyer_email,
-						'shipping_address'=>$data->payment->shipping_address,
-						'shipping_city'=>$data->payment->shipping_city,
-						'shipping_state'=>$data->payment->shipping_state,
-						'shipping_zip'=>$data->payment->shipping_zip,
-						'shipping_country'=>$data->payment->shipping_country,
-						'quantity'=>$data->payment->quantity,
-						'unit_price'=>$data->payment->unit_price,
-						'fees'=>$data->payment->fees,
-						'affiliate_commission'=>$data->payment->affiliate_commission,
-						'payment_request'=>$data->payment->payment_request,
-						'instrument_type'=>$data->payment->instrument_type,
-						'billing_instrument'=>$data->payment->billing_instrument,
-						'tax_invoice_id'=>$data->payment->tax_invoice_id,
-						'created_at'=>$data->payment->created_at,
-				]);
-				session()->put('courseid', '');
-				session()->put('cousretype', '');
-                \Session::put('success','Your payment has been pay successfully, Enjoy!!');
-                return redirect()->route('payment');
 
-            } else {
-                \Session::put('error','Payment Failed, Try Again!!');
-                return redirect()->route('payment');
-            }
-        } else {
-            \Session::put('error','Payment Failed, Try Again!!');
-            return redirect()->route('payment');
+        // Calculate cart totals with discounts
+        $cartItems = Cart::getContent();
+        $subtotal = Cart::getTotal();
+        $itemDiscounts = 0;
+
+        foreach ($cartItems as $item) {
+            $itemDiscounts += $this->calculateItemDiscount($item->id);
+        }
+
+        // Apply coupon discount
+        $coupon = $this->validateCoupon($request->coupon_code);
+        $couponDiscount = $coupon ? $this->calculateCouponDiscount($subtotal, $coupon) : 0;
+
+        $grandTotal = ($subtotal - $itemDiscounts - $couponDiscount);
+
+        // Handle free orders
+        if ($grandTotal <= 0) {
+            return $this->handleFreeOrder();
+        }
+
+        // Create Razorpay order
+        try {
+            $order = $this->createRazorpayOrder($grandTotal);
+            
+            // Store payment data in session
+            Session::put('razorpay_order', [
+                'id' => $order->id,
+                'amount' => $grandTotal,
+                'coupon_code' => $request->coupon_code,
+                'coupon_discount' => $couponDiscount,
+                'item_discount' => $itemDiscounts
+            ]);
+
+            return view('payment.razorpay-checkout', [
+                'order_id' => $order->id,
+                'amount' => $grandTotal * 100, // Razorpay expects amount in paise
+                'currency' => 'INR',
+                'user' => Auth::user()
+            ]);
+
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Payment initialization failed: ' . $e->getMessage());
         }
     }
 
+    public function handleCallback(Request $request)
+    {
+        $paymentId = $request->input('razorpay_payment_id');
+        $orderId = $request->input('razorpay_order_id');
+        $signature = $request->input('razorpay_signature');
+
+        // Verify payment signature
+        try {
+            $attributes = [
+                'razorpay_order_id' => $orderId,
+                'razorpay_payment_id' => $paymentId,
+                'razorpay_signature' => $signature
+            ];
+
+            $this->razorpay->utility->verifyPaymentSignature($attributes);
+
+            // Store payment details
+            $payment = $this->razorpay->payment->fetch($paymentId);
+            $orderData = Session::get('razorpay_order');
+
+            DB::table('payments')->insert([
+                'user_id' => Auth::id(),
+                'order_id' => $orderId,
+                'payment_id' => $paymentId,
+                'amount' => $orderData['amount'],
+                'currency' => 'INR',
+                'coupon_code' => $orderData['coupon_code'],
+                'item_discount' => $orderData['item_discount'],
+                'coupon_discount' => $orderData['coupon_discount'],
+                'payment_method' => $payment->method,
+                'status' => $payment->status,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+
+            // Clear cart and session data
+            Cart::clear();
+            Session::forget('razorpay_order');
+
+            return redirect()->route('order.success')
+                ->with('success', 'Payment completed successfully!');
+
+        } catch (\Exception $e) {
+            return redirect()->route('payment.failed')
+                ->with('error', 'Payment verification failed: ' . $e->getMessage());
+        }
+    }
+
+    private function createRazorpayOrder($amount)
+    {
+        return $this->razorpay->order->create([
+            'receipt' => 'ORDER_' . uniqid(),
+            'amount' => $amount * 100, // Convert to paise
+            'currency' => 'INR',
+            'payment_capture' => 1
+        ]);
+    }
+
+    private function validateCoupon($code)
+    {
+        // Implement your coupon validation logic
+        if ($code === 'FLAT10') {
+            return ['code' => $code, 'type' => 'percentage', 'value' => 10];
+        }
+        return null;
+    }
+
+    private function calculateItemDiscount($itemId)
+    {
+        // Implement your item-specific discount logic
+        return 0; // Example value
+    }
+
+    private function calculateCouponDiscount($subtotal, $coupon)
+    {
+        if ($coupon['type'] === 'percentage') {
+            return ($subtotal * $coupon['value']) / 100;
+        }
+        return $coupon['value'];
+    }
+
+    private function handleFreeOrder()
+    {
+        try {
+            DB::table('payments')->insert([
+                'user_id' => Auth::id(),
+                'amount' => 0,
+                'currency' => 'INR',
+                'status' => 'free',
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+
+            Cart::clear();
+            
+            return redirect()->route('order.success')
+                ->with('success', 'Free order processed successfully!');
+
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Free order processing failed: ' . $e->getMessage());
+        }
+    }
 }
