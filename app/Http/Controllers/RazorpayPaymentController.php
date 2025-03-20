@@ -153,9 +153,9 @@ class RazorpayPaymentController extends Controller
 				$body .= '</tr>';
 			$body .= '</thead>';
 			$body .= '<tbody>';
-			$total = 0;
+			$grand_total = 0;
 				foreach($orderItem as $k=>$v){
-				    $total = $total + $v->product_price;
+				    $grand_total = $grand_total + $v->product_price;
 				$body .= '<tr>';
 					$body .= '<td style="border: 1px solid #ddd;padding: 8px;text-align:center;">'.$v->product_name.'</td>';
 					$body .= '<td style="border: 1px solid #ddd;padding: 8px;text-align:center;">₹'.$v->product_price.'</td>';
@@ -167,11 +167,11 @@ class RazorpayPaymentController extends Controller
 			$body .= '<tfoot>';
 				$body .= '<tr>';
 					$body .= '<th colspan="3" class="text-right">Sub Total:</th>';
-					$body .= '<th class="text-center">Rs.'.$total.'</th>';
+					$body .= '<th class="text-center">Rs.'.$grand_total.'</th>';
 				$body .= '</tr>';
 				$body .= '<tr>';
 					$body .= '<th colspan="3" class="text-right">Total:</th>';
-					$body .= '<th class="text-center">Rs.'.$total.'</th>';
+					$body .= '<th class="text-center">Rs.'.$grand_total.'</th>';
 				$body .= '</tr>';
 			$body .= '</tfoot>';
 		$body .= '</table>';
