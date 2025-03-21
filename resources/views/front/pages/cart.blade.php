@@ -166,7 +166,7 @@
     </div> <!-- col.// -->
   <aside class="col-lg-3">
   
-      <!--<div class="card mb-3">
+      <div class="card mb-3">
       <div class="card-body">
       <form>
         <div class="form-group">
@@ -178,7 +178,7 @@
         </div>
       </form>
       </div>
-      </div> -->
+      </div>
   
       <div class="card">
       <div class="card-body">
@@ -186,14 +186,14 @@
           <dt>Total price:</dt>
           <dd class="text-end"> @if(Cart::getTotal() ==0 ) Free @else ₹{{ Cart::getTotal() }} @endif</dd>
         </dl>
-        <!--<dl class="dlist-align">
+        <dl class="dlist-align">
           <dt>Discount:</dt>
           <dd class="text-end text-success"> - ₹60.00 </dd>
         </dl>
         <dl class="dlist-align">
           <dt>TAX:</dt>
           <dd class="text-end"> ₹14.00 </dd>
-        </dl>-->
+        </dl>
         <hr>
         <dl class="dlist-align">
           <dt>Total:</dt>
