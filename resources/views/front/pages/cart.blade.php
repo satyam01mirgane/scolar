@@ -109,7 +109,63 @@
 <section class="padding-y bg-light">
   <div class="container">
   
- 
+  <!-- =================== COMPONENT CART+SUMMARY ====================== -->
+  <div class="row">
+    <div class="col-lg-9">
+  
+      <div class="card">
+      <div class="content-body">
+        <h4 class="card-title mb-4">Cart</h4>
+		@if ($message = Session::get('success'))
+			<div class="alert alert-success">
+			  <p class="text-green-800">{{ $message }}</p>
+			</div>
+		@endif
+
+		@if(count($cartItems) >0)
+		@foreach ($cartItems as $item)
+        <article class="row gy-3 mb-4">
+          <div class="col-lg-5">
+            <figure class="itemside me-lg-5">
+              <div class="aside"><img src="{{asset($item->attributes->image)}}" class="img-sm img-thumbnail"></div>
+              <figcaption class="info">
+                <a href="#" class="title">Workshop Id - WKPID{{$item->id}}</a>
+                <p class="text-muted"> {{$item->name}} </p>
+                <p class="text-muted"> Instructor Name - {{GetCatNameById($item->id)->trainer_name}} </p>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="col-lg-4 col-sm-4 col-6">
+            <div class="price-wrap lh-sm"> 
+              <var class="price h6">₹{{ $item->price * $item->quantity }}</var>  <br>
+              <small class="text-muted"> ₹{{ $item->price}} / per item </small> 
+            </div> <!-- price-wrap .// -->
+          </div>
+          <div class="col-lg col-sm-4">
+            <div class="float-lg-end">
+			  <form action="{{ route('cart.remove') }}" method="POST">
+			  @csrf
+				  <input type="hidden" value="{{ $item->id }}" name="id">
+				  <button class="btn btn-light text-danger">Remove</button>
+			  </form>
+            </div>
+          </div>
+        </article> <!-- row.// -->
+		@endforeach
+		@else
+		<article class="row gy-3 mb-4">
+          <span style="color:red;">Cart is empty</span>
+        </article> <!-- row.// -->	
+		@endif
+      </div> <!-- card-body .// -->
+  
+      
+  
+      </div> <!-- card.// -->
+  
+    </div> <!-- col.// -->
+  <aside class="col-lg-3">
+  
       <!--<div class="card mb-3">
       <div class="card-body">
       <form>
