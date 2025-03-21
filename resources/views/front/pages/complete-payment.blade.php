@@ -35,7 +35,7 @@
 
             @php 
                 $subtotal = Cart::getTotal();
-                $grand_total = $subtotal-10;
+                $grand_total = $subtotal;
             @endphp
 
             <div class="row">

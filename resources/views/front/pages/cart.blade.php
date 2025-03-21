@@ -38,9 +38,10 @@
       </div>
     </div>
 
-    {{-- Price Summary --}}
+    {{-- Price Summary & Coupon --}}
     <div class="card mb-4">
       <div class="card-body">
+        {{-- Coupon Code Form --}}
         <form method="GET" action="{{ url()->current() }}">
           <div class="mb-3">
             <label class="form-label">Have a coupon?</label>
@@ -51,6 +52,7 @@
           </div>
         </form>
 
+        {{-- Discount Calculation --}}
         @php
           $discount = 0;
           $couponCode = strtoupper(request('coupon'));
@@ -62,9 +64,13 @@
 
         <dl class="row">
           <dt class="col-sm-6">Total Price:</dt>
-          <dd class="col-sm-6 text-end">₹{{ $subtotal }}</dd>
+          <dd class="col-sm-6 text-end">₹{{ number_format($subtotal, 2) }}</dd>
 
-          <dt class="col-sm-6">Discount @if($discount > 0)(10%)@endif:</dt>
+          <dt class="col-sm-6">
+            Discount 
+            @if($couponCode === 'FF10') (10% - Code: FF10) 
+            @endif
+          </dt>
           <dd class="col-sm-6 text-end text-success">- ₹{{ number_format($discount, 2) }}</dd>
 
           <hr>
