@@ -60,6 +60,7 @@
               $discount = $subtotal * 0.10;
           }
           $grandTotal = $subtotal - $discount;
+          $subtotal=$subtotal-$discount;
         @endphp
 
         <dl class="row">
