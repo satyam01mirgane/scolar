@@ -1,106 +1,132 @@
 @include('front.common.header')
 @include('front.common.navbar')
 
-<section class="py-5 bg-light">
-  <div class="container">
-    <h2 class="mb-4">Your Cart</h2>
-
-    @if ($message = Session::get('success'))
-      <div class="alert alert-success">{{ $message }}</div>
-    @endif
-
-    {{-- Items List --}}
-    <div class="card mb-4">
-      <div class="card-body">
-        @php
-          $subtotal = 0;
-        @endphp
-
-        @if(count($cartItems) > 0)
-          @foreach ($cartItems as $item)
-            @php
-              $itemTotal = $item->price * $item->quantity;
-              $subtotal += $itemTotal;
-            @endphp
-            <div class="row align-items-center mb-3">
-              <div class="col-md-6">
-                <h6 class="mb-0">{{ $item->name }}</h6>
-                <small>Qty: {{ $item->quantity }}</small>
-              </div>
-              <div class="col-md-6 text-end">
-                ₹{{ $itemTotal }}
-              </div>
-            </div>
-          @endforeach
-        @else
-          <p class="text-danger">Cart is empty.</p>
-        @endif
-      </div>
+<section id="page-title" data-bg-parallax="{{ asset('assets/images/top-cart-banner.jpg') }}">
+    <div class="container">
+        <div class="page-title">
+            <h1>Cart</h1>
+        </div>
     </div>
+</section>
 
-    {{-- Price Summary & Coupon --}}
-    <div class="card mb-4">
-      <div class="card-body">
-        {{-- Coupon Code Form --}}
-        <form method="GET" action="{{ url()->current() }}">
-          <div class="mb-3">
-            <label class="form-label">Have a coupon?</label>
-            <div class="input-group">
-              <input type="text" class="form-control" name="coupon" value="{{ request('coupon') }}" placeholder="Enter coupon code">
-              <button type="submit" class="btn btn-outline-primary">Apply</button>
-            </div>
-          </div>
-        </form>
-
-        {{-- Discount Calculation --}}
-        @php
-          $discount = 0;
-          $couponCode = strtoupper(request('coupon'));
-          if ($couponCode === 'FF10') {
-              $discount = $subtotal * 0.10;
-          }
-          $grandTotal = $subtotal - $discount;
-          $subtotal=$subtotal-$discount;
-        @endphp
-
-        <dl class="row">
-          <dt class="col-sm-6">Total Price:</dt>
-          <dd class="col-sm-6 text-end">₹{{ number_format($subtotal, 2) }}</dd>
-
-          <dt class="col-sm-6">
-            Discount 
-            @if($couponCode === 'FF10') (10% - Code: FF10) 
+<section id="shop-cart">
+    <div class="container">
+        <div class="shop-cart">
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <p class="text-green-800">{{ $message }}</p>
+                </div>
             @endif
-          </dt>
-          <dd class="col-sm-6 text-end text-success">- ₹{{ number_format($discount, 2) }}</dd>
 
-          <hr>
+            <div class="table table-sm table-striped table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Workshop/Course</th>
+                            <th>Instructor</th>
+                            <th>Unit Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(count($cartItems) > 0)
+                            @foreach ($cartItems as $item)
+                                <tr>
+                                    <td>
+                                        <form action="{{ route('cart.remove') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" value="{{ $item->id }}" name="id">
+                                            <button class="btn btn-light text-danger">×</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <a href="#"><img alt="Course Image" src="{{ asset($item->attributes->image) }}" style="width: 80px;"></a>
+                                        <div>{{ $item->name }}</div>
+                                    </td>
+                                    <td>{{ GetCatNameById($item->id)->trainer_name ?? 'N/A' }}</td>
+                                    <td>₹{{ $item->price }}</td>
+                                    <td>₹{{ $item->price * $item->quantity }}</td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="5" class="text-center">Cart is empty</td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
 
-          <dt class="col-sm-6 h5">Grand Total:</dt>
-          <dd class="col-sm-6 text-end h5 text-dark">₹{{ number_format($grandTotal, 2) }}</dd>
-        </dl>
-      </div>
+            <div class="row">
+                <hr class="space">
+                <div class="col-lg-12 p-r-10">
+                    <div class="table-responsive">
+                        <h4>Cart Subtotal</h4>
+                        <table class="table">
+                            <tbody>
+                                @php
+                                    $subtotal = Cart::getTotal();
+                                    $discount = 0;
+                                    $coupon = strtoupper(request('coupon'));
+                                    if ($coupon === 'FF10') {
+                                        $discount = $subtotal * 0.10;
+                                    }
+                                    $grandTotal = $subtotal - $discount;
+                                @endphp
+                                <tr>
+                                    <td><strong>Total:</strong></td>
+                                    <td class="text-end"><strong>₹{{ number_format($subtotal, 2) }}</strong></td>
+                                </tr>
+                                @if($discount > 0)
+                                <tr>
+                                    <td><strong>Discount (FF10 - 10%)</strong></td>
+                                    <td class="text-end text-success">- ₹{{ number_format($discount, 2) }}</td>
+                                </tr>
+                                @endif
+                                <tr>
+                                    <td><strong>Grand Total:</strong></td>
+                                    <td class="text-end text-dark h5"><strong>₹{{ number_format($grandTotal, 2) }}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {{-- Coupon Field --}}
+                    <form method="GET" action="{{ url()->current() }}" class="mb-3">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Have a coupon?</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="coupon" class="form-control" value="{{ request('coupon') }}" placeholder="Enter coupon code">
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="submit" class="btn btn-outline-primary">Apply</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    {{-- Payment Button --}}
+                    @if(Auth::check())
+                        <form action="{{ url('process-order') }}" method="POST">
+                            @csrf
+                            @if(empty(Auth::user()->email_verified_at))
+                                <button class="btn btn-success float-end">Make Purchase</button>
+                            @else
+                                <button class="btn btn-danger float-end" type="button">Email not verified</button>
+                            @endif
+                        </form>
+                        <a href="{{ url('workshops') }}" class="btn btn-secondary float-end me-2">Back to workshops</a>
+                    @else
+                        <form action="{{ url('process-order') }}" method="POST">
+                            @csrf
+                            <button class="btn btn-success float-end">Make Purchase</button>
+                            <a href="{{ url('workshops') }}" class="btn btn-secondary float-end me-2">Back to workshops</a>
+                        </form>
+                    @endif
+                </div>
+            </div>
+        </div>
     </div>
-
-    {{-- Proceed to Payment --}}
-    <div class="text-end">
-      @if(Auth::check())
-        <form action="{{ url('process-order') }}" method="POST">
-          @csrf
-          @if(empty(Auth::user()->email_verified_at))
-            <button type="submit" class="btn btn-success">Proceed to Payment</button>
-          @else
-            <button type="button" class="btn btn-danger">Email not verified</button>
-          @endif
-        </form>
-      @else
-        <form action="{{ url('process-order') }}" method="POST">
-          @csrf
-          <button type="submit" class="btn btn-success">Proceed to Payment</button>
-        </form>
-      @endif
-    </div>
-  </div>
 </section>
 
 @include('front.common.footer')
