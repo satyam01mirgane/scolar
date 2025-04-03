@@ -18,7 +18,7 @@
                             <div class="post-item-wrap">
                                 <div class="post-image" style="overflow: hidden; border-radius: 8px;">
                                     <a href="{{ url('course-detail/'.$v->slug) }}">
-                                        <img src="{{ asset($v->image) }}" alt="{{ $v->name }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+                                        <img src="{{ asset($v->image) }}" alt="{{ $v->name }}" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px;">
                                     </a>
                                 </div>
                                 <div class="post-item-description" style="padding: 1rem;">
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cards.forEach(card => {
             card.style.display = 'block';
         });
-        
+
         // Hide the "See More" button after clicking
         showMoreBtn.style.display = 'none';
     });
