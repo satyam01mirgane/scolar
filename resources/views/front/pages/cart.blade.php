@@ -74,16 +74,19 @@
                                     }
                                     $grandTotal = $subtotal - $discount;
                                 @endphp
+
                                 <tr>
                                     <td><strong>Total:</strong></td>
                                     <td class="text-end"><strong>₹{{ number_format($subtotal, 2) }}</strong></td>
                                 </tr>
+
                                 @if($discount > 0)
-                                <tr>
-                                    <td><strong>Discount (FF10 - 10%)</strong></td>
-                                    <td class="text-end text-success">- ₹{{ number_format($discount, 2) }}</td>
-                                </tr>
+                                    <tr>
+                                        <td><strong>Discount ({{ $coupon }} - 10%)</strong></td>
+                                        <td class="text-end text-success">- ₹{{ number_format($discount, 2) }}</td>
+                                    </tr>
                                 @endif
+
                                 <tr>
                                     <td><strong>Grand Total:</strong></td>
                                     <td class="text-end text-dark h5"><strong>₹{{ number_format($grandTotal, 2) }}</strong></td>
@@ -105,11 +108,16 @@
                         </div>
                     </form>
 
+                    {{-- Invalid Coupon Alert --}}
+                    @if(request()->has('coupon') && $coupon !== 'FF10')
+                        <div class="alert alert-warning mt-2">Invalid coupon code</div>
+                    @endif
+
                     {{-- Payment Button --}}
                     @if(Auth::check())
                         <form action="{{ url('process-order') }}" method="POST">
                             @csrf
-                            @if(empty(Auth::user()->email_verified_at))
+                            @if(!empty(Auth::user()->email_verified_at))
                                 <button class="btn btn-success float-end">Make Purchase</button>
                             @else
                                 <button class="btn btn-danger float-end" type="button">Email not verified</button>
