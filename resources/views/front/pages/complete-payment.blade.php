@@ -35,9 +35,12 @@
 
             @php 
                 $subtotal = Cart::getTotal();
-                $grand_total = $subtotal;
-				
-
+                $discount = 0;
+                $coupon = strtoupper(request('coupon'));
+                if ($coupon === 'FF10') {
+                    $discount = $subtotal * 0.10;
+                }
+                $grand_total = $subtotal - $discount;
             @endphp
 
             <div class="row">
