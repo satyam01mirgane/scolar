@@ -113,24 +113,20 @@
                         <div class="alert alert-warning mt-2">Invalid coupon code</div>
                     @endif
 
-                    {{-- Payment Button --}}
-                    @if(Auth::check())
-                        <form action="{{ url('process-order') }}" method="POST">
-                            @csrf
-                            @if(!empty(Auth::user()->email_verified_at))
-                                <button class="btn btn-success float-end">Make Purchase</button>
-                            @else
-                                <button class="btn btn-danger float-end" type="button">Email not verified</button>
-                            @endif
-                        </form>
-                        <a href="{{ url('workshops') }}" class="btn btn-secondary float-end me-2">Back to workshops</a>
-                    @else
-                        <form action="{{ url('process-order') }}" method="POST">
-                            @csrf
-                            <button class="btn btn-success float-end">Make Purchase</button>
-                            <a href="{{ url('workshops') }}" class="btn btn-secondary float-end me-2">Back to workshops</a>
-                        </form>
-                    @endif
+                  {{-- Payment Button --}}
+@if(Auth::check())
+    <form action="{{ url('process-order') }}" method="POST">
+        @csrf
+        <button class="btn btn-success float-end">Make Purchase</button>
+    </form>
+    <a href="{{ url('workshops') }}" class="btn btn-secondary float-end me-2">Back to workshops</a>
+@else
+    <form action="{{ url('process-order') }}" method="POST">
+        @csrf
+        <button class="btn btn-success float-end">Make Purchase</button>
+    </form>
+    <a href="{{ url('workshops') }}" class="btn btn-secondary float-end me-2">Back to workshops</a>
+@endif
                 </div>
             </div>
         </div>
