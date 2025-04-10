@@ -41,29 +41,44 @@
 
                 <!-- Button Section -->
                 <div class="d-flex flex-wrap gap-3 mt-4">
+                    @php
+                        $isAlreadyScheduled = false;
+                        if(Auth::check()) {
+                            // Assuming you have passed $scheduledCourses from controller
+                            $isAlreadyScheduled = DB::table('orders')
+                                ->where('user_id', Auth::id())
+                                ->where('product_id', $course_details->id)
+                                ->exists();
+                        }
+                    @endphp
+
                     @if($course_details->total_seat > 0)
-                    <button class="btn btn-outline-success">
-                        <i class="fas fa-users me-1"></i> {{ $course_details->total_seat }} Seats Left
-                    </button>
+                        <button class="btn btn-outline-success">
+                            <i class="fas fa-users me-1"></i> {{ $course_details->total_seat }} Seats Left
+                        </button>
                     @else
-                    <button class="btn btn-outline-secondary" disabled>
-                        <i class="fas fa-users-slash me-1"></i> Seat Full
-                    </button>
+                        <button class="btn btn-outline-secondary" disabled>
+                            <i class="fas fa-users-slash me-1"></i> Seat Full
+                        </button>
                     @endif
 
-                    @if(!in_array($course_details->id, cartproduct()))
+                    @if($isAlreadyScheduled)
+                        <button class="btn btn-secondary" disabled>
+                            <i class="fas fa-check-circle me-1"></i> Already Registered
+                        </button>
+                    @elseif(!in_array($course_details->id, cartproduct()))
                         @if($course_details->total_seat > 0)
-                        <form action="{{ route('cart.store') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $course_details->id }}">
-                            <input type="hidden" name="name" value="{{ $course_details->name }}-Course">
-                            <input type="hidden" name="price" value="{{ $course_details->price }}">
-                            <input type="hidden" name="image" value="{{ $course_details->image }}">
-                            <input type="hidden" name="quantity" value="1">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-shopping-cart me-1"></i> Enroll Now
-                            </button>
-                        </form>
+                            <form action="{{ route('cart.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $course_details->id }}">
+                                <input type="hidden" name="name" value="{{ $course_details->name }}-Course">
+                                <input type="hidden" name="price" value="{{ $course_details->price }}">
+                                <input type="hidden" name="image" value="{{ $course_details->image }}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-shopping-cart me-1"></i> Enroll Now
+                                </button>
+                            </form>
                         @endif
                     @else
                         <a href="{{ url('cart') }}" class="btn btn-secondary">
