@@ -63,8 +63,8 @@
                                         </div>
                                     </a>
                                 @else
-                                    <a class="post-prev">
-                                        <div class="post-prev-title"><span>&nbsp;</span>No record available</div>
+                                    <a class="post-next">
+                                        <div class="post-next-title"><span>&nbsp;</span>No record available</div>
                                     </a>
                                 @endif
                             </div>
@@ -92,8 +92,6 @@
                     </div>
                 </div>
                 <!-- End Recent Posts -->
-
-               
             </div>
             <!-- End Sidebar -->
         </div>
@@ -166,6 +164,17 @@ function shareContent() {
         width: 100%;
         justify-content: center;
     }
+}
+
+/* Fix for post navigation */
+.post-navigation {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.post-prev, .post-next {
+    max-width: 45%;
 }
 </style>
 
