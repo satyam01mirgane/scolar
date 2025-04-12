@@ -55,9 +55,7 @@
                                         <div class="post-prev-title"><span>&nbsp;</span>No record available</div>
                                     </a>
                                 @endif
-                                <a href="{{ url('blog-masonry-3.html') }}" class="post-all">
-                                    <i class="icon-grid"></i>
-                                </a>
+                          
                                 @if(isset($blog_detail_next))
                                     <a href="{{ url('/blog-detail/'.$blog_detail_next->slug) }}" class="post-next">
                                         <div class="post-next-title">
