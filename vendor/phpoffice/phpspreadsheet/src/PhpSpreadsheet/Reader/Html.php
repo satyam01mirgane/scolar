@@ -676,9 +676,504 @@ class Html extends BaseReader
 
         // Create a new DOM object
         $dom = new DOMDocument();
-        // Set error handling options to suppress warnings
-        $previousValue = libxml_use_internal_errors(true);
-        
         // Reload the HTML file into the DOM object
         try {
-            $content = $this->getSecurityScannerOrThrow()->scanFile($filename);
+            $convert = $this->getSecurityScannerOrThrow()->scanFile($filename);
+            $lowend = "\u{80}";
+            $highend = "\u{10ffff}";
+            $regexp = "/[$lowend-$highend]/u";
+            /** @var callable */
+            $callback = [self::class, 'replaceNonAscii'];
+            $convert = preg_replace_callback($regexp, $callback, $convert);
+            $loaded = ($convert === null) ? false : $dom->loadHTML($convert);
+        } catch (Throwable $e) {
+            $loaded = false;
+        }
+        if ($loaded === false) {
+            throw new Exception('Failed to load ' . $filename . ' as a DOM Document', 0, $e ?? null);
+        }
+        self::loadProperties($dom, $spreadsheet);
+
+        return $this->loadDocument($dom, $spreadsheet);
+    }
+
+    private static function loadProperties(DOMDocument $dom, Spreadsheet $spreadsheet): void
+    {
+        $properties = $spreadsheet->getProperties();
+        foreach ($dom->getElementsByTagName('meta') as $meta) {
+            $metaContent = (string) $meta->getAttribute('content');
+            if ($metaContent !== '') {
+                $metaName = (string) $meta->getAttribute('name');
+                switch ($metaName) {
+                    case 'author':
+                        $properties->setCreator($metaContent);
+
+                        break;
+                    case 'category':
+                        $properties->setCategory($metaContent);
+
+                        break;
+                    case 'company':
+                        $properties->setCompany($metaContent);
+
+                        break;
+                    case 'created':
+                        $properties->setCreated($metaContent);
+
+                        break;
+                    case 'description':
+                        $properties->setDescription($metaContent);
+
+                        break;
+                    case 'keywords':
+                        $properties->setKeywords($metaContent);
+
+                        break;
+                    case 'lastModifiedBy':
+                        $properties->setLastModifiedBy($metaContent);
+
+                        break;
+                    case 'manager':
+                        $properties->setManager($metaContent);
+
+                        break;
+                    case 'modified':
+                        $properties->setModified($metaContent);
+
+                        break;
+                    case 'subject':
+                        $properties->setSubject($metaContent);
+
+                        break;
+                    case 'title':
+                        $properties->setTitle($metaContent);
+
+                        break;
+                    default:
+                        if (preg_match('/^custom[.](bool|date|float|int|string)[.](.+)$/', $metaName, $matches) === 1) {
+                            switch ($matches[1]) {
+                                case 'bool':
+                                    $properties->setCustomProperty($matches[2], (bool) $metaContent, Properties::PROPERTY_TYPE_BOOLEAN);
+
+                                    break;
+                                case 'float':
+                                    $properties->setCustomProperty($matches[2], (float) $metaContent, Properties::PROPERTY_TYPE_FLOAT);
+
+                                    break;
+                                case 'int':
+                                    $properties->setCustomProperty($matches[2], (int) $metaContent, Properties::PROPERTY_TYPE_INTEGER);
+
+                                    break;
+                                case 'date':
+                                    $properties->setCustomProperty($matches[2], $metaContent, Properties::PROPERTY_TYPE_DATE);
+
+                                    break;
+                                default: // string
+                                    $properties->setCustomProperty($matches[2], $metaContent, Properties::PROPERTY_TYPE_STRING);
+                            }
+                        }
+                }
+            }
+        }
+        if (!empty($dom->baseURI)) {
+            $properties->setHyperlinkBase($dom->baseURI);
+        }
+    }
+
+    private static function replaceNonAscii(array $matches): string
+    {
+        return '&#' . mb_ord($matches[0], 'UTF-8') . ';';
+    }
+
+    /**
+     * Spreadsheet from content.
+     *
+     * @param string $content
+     */
+    public function loadFromString($content, ?Spreadsheet $spreadsheet = null): Spreadsheet
+    {
+        //    Create a new DOM object
+        $dom = new DOMDocument();
+        //    Reload the HTML file into the DOM object
+        try {
+            $convert = $this->getSecurityScannerOrThrow()->scan($content);
+            $lowend = "\u{80}";
+            $highend = "\u{10ffff}";
+            $regexp = "/[$lowend-$highend]/u";
+            /** @var callable */
+            $callback = [self::class, 'replaceNonAscii'];
+            $convert = preg_replace_callback($regexp, $callback, $convert);
+            $loaded = ($convert === null) ? false : $dom->loadHTML($convert);
+        } catch (Throwable $e) {
+            $loaded = false;
+        }
+        if ($loaded === false) {
+            throw new Exception('Failed to load content as a DOM Document', 0, $e ?? null);
+        }
+        $spreadsheet = $spreadsheet ?? new Spreadsheet();
+        self::loadProperties($dom, $spreadsheet);
+
+        return $this->loadDocument($dom, $spreadsheet);
+    }
+
+    /**
+     * Loads PhpSpreadsheet from DOMDocument into PhpSpreadsheet instance.
+     */
+    private function loadDocument(DOMDocument $document, Spreadsheet $spreadsheet): Spreadsheet
+    {
+        while ($spreadsheet->getSheetCount() <= $this->sheetIndex) {
+            $spreadsheet->createSheet();
+        }
+        $spreadsheet->setActiveSheetIndex($this->sheetIndex);
+
+        // Discard white space
+        $document->preserveWhiteSpace = false;
+
+        $row = 0;
+        $column = 'A';
+        $content = '';
+        $this->rowspan = [];
+        $this->processDomElement($document, $spreadsheet->getActiveSheet(), $row, $column, $content);
+
+        // Return
+        return $spreadsheet;
+    }
+
+    /**
+     * Get sheet index.
+     *
+     * @return int
+     */
+    public function getSheetIndex()
+    {
+        return $this->sheetIndex;
+    }
+
+    /**
+     * Set sheet index.
+     *
+     * @param int $sheetIndex Sheet index
+     *
+     * @return $this
+     */
+    public function setSheetIndex($sheetIndex)
+    {
+        $this->sheetIndex = $sheetIndex;
+
+        return $this;
+    }
+
+    /**
+     * Apply inline css inline style.
+     *
+     * NOTES :
+     * Currently only intended for td & th element,
+     * and only takes 'background-color' and 'color'; property with HEX color
+     *
+     * TODO :
+     * - Implement to other propertie, such as border
+     *
+     * @param int $row
+     * @param string $column
+     * @param array $attributeArray
+     */
+    private function applyInlineStyle(Worksheet &$sheet, $row, $column, $attributeArray): void
+    {
+        if (!isset($attributeArray['style'])) {
+            return;
+        }
+
+        if ($row <= 0 || $column === '') {
+            $cellStyle = new Style();
+        } elseif (isset($attributeArray['rowspan'], $attributeArray['colspan'])) {
+            $columnTo = $column;
+            for ($i = 0; $i < (int) $attributeArray['colspan'] - 1; ++$i) {
+                ++$columnTo;
+            }
+            $range = $column . $row . ':' . $columnTo . ($row + (int) $attributeArray['rowspan'] - 1);
+            $cellStyle = $sheet->getStyle($range);
+        } elseif (isset($attributeArray['rowspan'])) {
+            $range = $column . $row . ':' . $column . ($row + (int) $attributeArray['rowspan'] - 1);
+            $cellStyle = $sheet->getStyle($range);
+        } elseif (isset($attributeArray['colspan'])) {
+            $columnTo = $column;
+            for ($i = 0; $i < (int) $attributeArray['colspan'] - 1; ++$i) {
+                ++$columnTo;
+            }
+            $range = $column . $row . ':' . $columnTo . $row;
+            $cellStyle = $sheet->getStyle($range);
+        } else {
+            $cellStyle = $sheet->getStyle($column . $row);
+        }
+
+        // add color styles (background & text) from dom element,currently support : td & th, using ONLY inline css style with RGB color
+        $styles = explode(';', $attributeArray['style']);
+        foreach ($styles as $st) {
+            $value = explode(':', $st);
+            $styleName = isset($value[0]) ? trim($value[0]) : null;
+            $styleValue = isset($value[1]) ? trim($value[1]) : null;
+            $styleValueString = (string) $styleValue;
+
+            if (!$styleName) {
+                continue;
+            }
+
+            switch ($styleName) {
+                case 'background':
+                case 'background-color':
+                    $styleColor = $this->getStyleColor($styleValueString);
+
+                    if (!$styleColor) {
+                        continue 2;
+                    }
+
+                    $cellStyle->applyFromArray(['fill' => ['fillType' => Fill::FILL_SOLID, 'color' => ['rgb' => $styleColor]]]);
+
+                    break;
+                case 'color':
+                    $styleColor = $this->getStyleColor($styleValueString);
+
+                    if (!$styleColor) {
+                        continue 2;
+                    }
+
+                    $cellStyle->applyFromArray(['font' => ['color' => ['rgb' => $styleColor]]]);
+
+                    break;
+
+                case 'border':
+                    $this->setBorderStyle($cellStyle, $styleValueString, 'allBorders');
+
+                    break;
+
+                case 'border-top':
+                    $this->setBorderStyle($cellStyle, $styleValueString, 'top');
+
+                    break;
+
+                case 'border-bottom':
+                    $this->setBorderStyle($cellStyle, $styleValueString, 'bottom');
+
+                    break;
+
+                case 'border-left':
+                    $this->setBorderStyle($cellStyle, $styleValueString, 'left');
+
+                    break;
+
+                case 'border-right':
+                    $this->setBorderStyle($cellStyle, $styleValueString, 'right');
+
+                    break;
+
+                case 'font-size':
+                    $cellStyle->getFont()->setSize(
+                        (float) $styleValue
+                    );
+
+                    break;
+
+                case 'font-weight':
+                    if ($styleValue === 'bold' || $styleValue >= 500) {
+                        $cellStyle->getFont()->setBold(true);
+                    }
+
+                    break;
+
+                case 'font-style':
+                    if ($styleValue === 'italic') {
+                        $cellStyle->getFont()->setItalic(true);
+                    }
+
+                    break;
+
+                case 'font-family':
+                    $cellStyle->getFont()->setName(str_replace('\'', '', $styleValueString));
+
+                    break;
+
+                case 'text-decoration':
+                    switch ($styleValue) {
+                        case 'underline':
+                            $cellStyle->getFont()->setUnderline(Font::UNDERLINE_SINGLE);
+
+                            break;
+                        case 'line-through':
+                            $cellStyle->getFont()->setStrikethrough(true);
+
+                            break;
+                    }
+
+                    break;
+
+                case 'text-align':
+                    $cellStyle->getAlignment()->setHorizontal($styleValueString);
+
+                    break;
+
+                case 'vertical-align':
+                    $cellStyle->getAlignment()->setVertical($styleValueString);
+
+                    break;
+
+                case 'width':
+                    if ($column !== '') {
+                        $sheet->getColumnDimension($column)->setWidth(
+                            (new CssDimension($styleValue ?? ''))->width()
+                        );
+                    }
+
+                    break;
+
+                case 'height':
+                    if ($row > 0) {
+                        $sheet->getRowDimension($row)->setRowHeight(
+                            (new CssDimension($styleValue ?? ''))->height()
+                        );
+                    }
+
+                    break;
+
+                case 'word-wrap':
+                    $cellStyle->getAlignment()->setWrapText(
+                        $styleValue === 'break-word'
+                    );
+
+                    break;
+
+                case 'text-indent':
+                    $cellStyle->getAlignment()->setIndent(
+                        (int) str_replace(['px'], '', $styleValueString)
+                    );
+
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Check if has #, so we can get clean hex.
+     *
+     * @param mixed $value
+     *
+     * @return null|string
+     */
+    public function getStyleColor($value)
+    {
+        $value = (string) $value;
+        if (strpos($value, '#') === 0) {
+            return substr($value, 1);
+        }
+
+        return \PhpOffice\PhpSpreadsheet\Helper\Html::colourNameLookup($value);
+    }
+
+    /**
+     * @param string    $column
+     * @param int       $row
+     */
+    private function insertImage(Worksheet $sheet, $column, $row, array $attributes): void
+    {
+        if (!isset($attributes['src'])) {
+            return;
+        }
+
+        $src = urldecode($attributes['src']);
+        $width = isset($attributes['width']) ? (float) $attributes['width'] : null;
+        $height = isset($attributes['height']) ? (float) $attributes['height'] : null;
+        $name = $attributes['alt'] ?? null;
+
+        $drawing = new Drawing();
+        $drawing->setPath($src);
+        $drawing->setWorksheet($sheet);
+        $drawing->setCoordinates($column . $row);
+        $drawing->setOffsetX(0);
+        $drawing->setOffsetY(10);
+        $drawing->setResizeProportional(true);
+
+        if ($name) {
+            $drawing->setName($name);
+        }
+
+        if ($width) {
+            $drawing->setWidth((int) $width);
+        }
+
+        if ($height) {
+            $drawing->setHeight((int) $height);
+        }
+
+        $sheet->getColumnDimension($column)->setWidth(
+            $drawing->getWidth() / 6
+        );
+
+        $sheet->getRowDimension($row)->setRowHeight(
+            $drawing->getHeight() * 0.9
+        );
+    }
+
+    private const BORDER_MAPPINGS = [
+        'dash-dot' => Border::BORDER_DASHDOT,
+        'dash-dot-dot' => Border::BORDER_DASHDOTDOT,
+        'dashed' => Border::BORDER_DASHED,
+        'dotted' => Border::BORDER_DOTTED,
+        'double' => Border::BORDER_DOUBLE,
+        'hair' => Border::BORDER_HAIR,
+        'medium' => Border::BORDER_MEDIUM,
+        'medium-dashed' => Border::BORDER_MEDIUMDASHED,
+        'medium-dash-dot' => Border::BORDER_MEDIUMDASHDOT,
+        'medium-dash-dot-dot' => Border::BORDER_MEDIUMDASHDOTDOT,
+        'none' => Border::BORDER_NONE,
+        'slant-dash-dot' => Border::BORDER_SLANTDASHDOT,
+        'solid' => Border::BORDER_THIN,
+        'thick' => Border::BORDER_THICK,
+    ];
+
+    public static function getBorderMappings(): array
+    {
+        return self::BORDER_MAPPINGS;
+    }
+
+    /**
+     * Map html border style to PhpSpreadsheet border style.
+     *
+     * @param  string $style
+     *
+     * @return null|string
+     */
+    public function getBorderStyle($style)
+    {
+        return self::BORDER_MAPPINGS[$style] ?? null;
+    }
+
+    /**
+     * @param string $styleValue
+     * @param string $type
+     */
+    private function setBorderStyle(Style $cellStyle, $styleValue, $type): void
+    {
+        if (trim($styleValue) === Border::BORDER_NONE) {
+            $borderStyle = Border::BORDER_NONE;
+            $color = null;
+        } else {
+            $borderArray = explode(' ', $styleValue);
+            $borderCount = count($borderArray);
+            if ($borderCount >= 3) {
+                $borderStyle = $borderArray[1];
+                $color = $borderArray[2];
+            } else {
+                $borderStyle = $borderArray[0];
+                $color = $borderArray[1] ?? null;
+            }
+        }
+
+        $cellStyle->applyFromArray([
+            'borders' => [
+                $type => [
+                    'borderStyle' => $this->getBorderStyle($borderStyle),
+                    'color' => ['rgb' => $this->getStyleColor($color)],
+                ],
+            ],
+        ]);
+    }
+}
